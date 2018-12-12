@@ -43,8 +43,11 @@ def about():
 
     frames = []
 
-    for file in glob.glob('textures/space/*'):
-        frames.append(image.load(file))
+    print('loading')
+
+    for file in range(2, 200):
+        frames.append(image.load('textures/space/%03i.jpg' % file))
+        print(file)
 
     clock = time.Clock()
 
@@ -89,7 +92,7 @@ def about():
             return nav_update
 
         display.update()
-        clock.tick(10)
+        clock.tick(30)
 
 if __name__ == '__main__':
     size = (960, 540)
