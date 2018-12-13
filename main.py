@@ -1,53 +1,137 @@
 from pygame import *
 from components.mehdi import *
+import components.menu as menu
 import traceback
 import glob
 
 def login():
     pass
 
-def menu():
-    return 'about'
+def menu_screen():
+
+    global screen
+
+    display.set_caption("RahCraft")
+
+    #Params of buttons
+    menu_list = [[0, 'server_picker', "Connect to server"],
+                 [1, 'options', "Options"],
+                 [2, 'about', "About"],
+                 [2, 'assistance', "Help"],
+                 [3, 'exit', "Exit"],
+                 [4, 'logout', "Logout"]]
+
+    #Create menu object
+    main_menu = menu.Menu(menu_list, 0, 0, size[0], size[1])
+
+    #Blits logo and UI elements
+    #logo = transform.scale(image.load("textures/menu/logo.png"), (size[0] // 3, int(size[0] // 3 * 51 / 301)))
+
+    frame = 0
+
+    while True:
+
+        if frame < len(frames) - 1:
+            frame += 1
+        else:
+            frame = 0
+
+        #Resets wallpaper and graphics
+        wallpaper(screen, size, frame, frames)
+
+        #text_surface_final = Surface((text_surface.get_width() + 4, text_surface.get_height() + 4), SRCALPHA)
+
+        #screen.blit(logo, (size[0] // 2 - logo.get_width() // 2, size[1] // 2 - 120 - logo.get_height()))
+        #text_surface_final.blit(text_shadow, (2, 2))
+        #text_surface_final.blit(text_surface, (0, 0))
+
+        #Rotates MOTD
+        #rotation += rotation_v
+
+        #Reverses direction if limit hit
+        #if rotation < 0 or rotation > 10:
+        #    rotation_v *= -1
+
+        #Blits MOTD
+        #text_surface_final = transform.rotate(text_surface_final, rotation)
+        #screen.blit(text_surface_final, (size[0] // 2 - text_surface_final.get_width() // 2 + 100, size[1] // 2 - 170))
+
+
+        #Renders all text elements
+        normal_font = font.Font("fonts/UndertaleSans.ttf", 14)
+
+        #version_text = normal_font.render("RahCraft v%s" % current_build, True, (255, 255, 255))
+        #screen.blit(version_text, (10, size[1] - 20))
+
+        about_text = normal_font.render("Copyright (C) Rahmish Empire. All Rahs Reserved!", True, (255, 255, 255))
+        screen.blit(about_text, (size[0] - about_text.get_width(), size[1] - 20))
+
+        #user_text = normal_font.render("Logged in as: %s" % username, True, (255, 255, 255))
+        #screen.blit(user_text, (20, 20))
+
+        #if token:
+        #    user_text = normal_font.render("AUTH ID: %s" % token, True, (255, 255, 255))
+        #    screen.blit(user_text, (20, 50))
+
+        release = False
+
+        for e in event.get():
+            if e.type == QUIT:
+                return 'exit'
+
+            #Mouse update
+            if e.type == MOUSEBUTTONUP and e.button == 1:
+                release = True
+
+            #Resize
+            if e.type == VIDEORESIZE:
+                screen = display.set_mode((max(e.w, 657), max(e.h, 505)), DOUBLEBUF + RESIZABLE)
+                return 'menu'
+
+        mx, my = mouse.get_pos()
+        m_press = mouse.get_pressed()
+
+        #Update buttons
+        nav_update = main_menu.update(screen, release, mx, my, m_press)
+
+        #If button pressed
+        if nav_update:
+            #Logout
+            if nav_update == 'logout':
+
+                #Clear session
+                username = ''
+                token = ''
+
+                #Erases session file
+                with open('user_data/session.json', 'w') as session_file:
+                    session_file.write('')
+
+                return 'login'
+
+
+            else:
+                return nav_update
+
+        display.update()
+
 
 def about():
     global screen
 
     #Button object
-    #back_button = menu.Button(size[0] // 4, size[1] - 130, size[0] // 2, 40, 'menu', "Back")
+    back_button = menu.Button(size[0] // 4, size[1] - 130, size[0] // 2, 40, 'menu', "Back")
 
     #Font and help page contents
-    normal_font = font.Font("fonts/Lato-Black.ttf", 14)
+    normal_font = font.Font("fonts/UndertaleSans.ttf", 16)
 
     frame = 0
 
-    about_list = ['HELP',
-                  '------------------------------------',
-                  'BOIII',
-                  'SO YOU WANNA PLAY DIS GAME HUH?',
-                  'WELL ITS RLLY EZ ACTUALLY',
-                  'LEGIT',
-                  'YOU TAKE UR FINGERS',
-                  'PRESS DOWN',
-                  'ON UR KEYBOARD',
-                  'AND UR DONE.',
-                  'DO U SEE THAT PERIOD????',
-                  'IT MEANS *MIC DROP*',
-                  '',
-                  'THATS RIGHT',
-                  'ANYWAYS, GOD SAVE THE QUEEN',
-                  'LONG LIVE THE RAHMISH EMPIRE',
-                  '',
-                  '',
-                  'Actually just goto rahmish.com 4 help',
-                  '']
-
-    frames = []
-
-    print('loading')
-
-    for file in range(2, 200):
-        frames.append(image.load('textures/space/%03i.jpg' % file))
-        print(file)
+    about_list = ['Adam really likes astro physics.',
+                  'He is a HUGE nerd.',
+                  'lol. nerd.',
+                  'this is a space game.',
+                  'space is pre good too.']
 
     clock = time.Clock()
 
@@ -72,7 +156,7 @@ def about():
             #Update screen
             if e.type == VIDEORESIZE:
                 screen = display.set_mode((max(e.w, 500), max(e.h, 400)), DOUBLEBUF + RESIZABLE)
-                return 'help'
+                return 'about'
 
         mx, my = mouse.get_pos()
         m_press = mouse.get_pressed()
@@ -83,9 +167,7 @@ def about():
             screen.blit(about_text, (size[0] // 2 - about_text.get_width() // 2, 50 + y * 20))
 
         #Updates button
-        #nav_update = back_button.update(screen, mx, my, m_press, 15, release)
-
-        nav_update = None
+        nav_update = back_button.update(screen, mx, my, m_press, 15, release)
 
         #Execute function if any
         if nav_update is not None:
@@ -104,11 +186,18 @@ if __name__ == '__main__':
 
     meh_screen(screen)
 
-    navigation = 'about'
+    frames = []
+
+    print('loading')
+
+    for file in range(2, 200):
+        frames.append(image.load('textures/space/%03i.jpg' % file))
+
+    navigation = 'menu'
 
     UI = {
         'login': login,
-        'menu': menu,
+        'menu': menu_screen,
         'about': about
     }
 
