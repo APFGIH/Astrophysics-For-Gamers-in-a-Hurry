@@ -31,7 +31,7 @@ def meh_screen(screen):
 
     # Generate logo image and text
     logo = transform.scale(image.load('textures/splash.jpg'), (600, 600))  # load image
-    logo_font = font.Font("fonts/Lato-Black.ttf", 40)  # load Font object
+    logo_font = font.Font("fonts/UndertaleSans.ttf", 40)  # load Font object
     logo_text = logo_font.render("Super Awesome Meaningful COnnection gAmes", True, (255, 255, 255))  # render the text
 
     # Blit the logo and text to the screen
@@ -77,7 +77,7 @@ def text(text, size):
     """ Generates and returns Minecraft-style text. """
 
     # Load the Minecraft Font object
-    minecraft_font = font.Font("fonts/minecraft.ttf", size)
+    minecraft_font = font.Font("fonts/UndertaleSans.ttf", size)
 
     # Make the background and surface text
     text_surface = minecraft_font.render(text, True, (255, 255, 255))  # surface text
@@ -103,11 +103,13 @@ def text(text, size):
 def load_sound(sound_list):
     """ Loads and plays a sound instantly. """
 
+    pass
+
     # Load the sound as a Sound object
-    sound_object = mixer.Sound(choice(sound_list))
+    #sound_object = mixer.Sound(choice(sound_list))
 
     # Play the sound
-    sound_object.play(0)
+    #sound_object.play(0)
 
 
 # Function to center a surface on another surface
