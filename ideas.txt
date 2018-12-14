@@ -1,0 +1,19 @@
+top down undertale style rpg that's about learning science and 
+playing minigames to get past stages
+
+Earth -> Nasa -> Moon -> Asteroid Belt -> Jupiter -> Sun -> Far travel
+-> Nebulae -> Supernova -> Dwarf Star -> Neutron Star -> Black Hole
+-> Experiencing actual collapse -> Physics starts to change as things get smaller
+-> Once it collapses, things expand again, after a long time, goes back to normal universe cept slightly different
+-> Shows narrator/new person learning about physics, some philisophical lines from a prof
+-> He walks and contemplates them, ending fades out into the stars and credits
+
+Some guy starts on earth, and travels the universe to stop
+the collapse of the universe which started by some unknown force,
+must travel to find this out.
+
+classes:
+character
+block
+NPC
+->undertale style text (gets typed as it's read)

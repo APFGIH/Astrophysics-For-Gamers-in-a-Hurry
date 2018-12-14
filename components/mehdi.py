@@ -9,6 +9,34 @@ Main Rahmish Developers: Henry Tu & Syed Safwaan
 from pygame import *  # to allow use of graphics
 from random import *  # to allow use of random generators
 from math import *  # to allow use of trigonometric functions
+import time as t
+
+frames = []
+frame = 0
+
+def load_wallpaper():
+    global frames
+
+    print('loading')
+
+    for file in range(2, 200):
+        frames.append(image.load('textures/space/%03i.jpg' % file))
+
+def transition(screen, next):
+    # Blue tint
+    tint = Surface((screen.get_width(), screen.get_height()))
+    tint.fill((0, 0, 0))
+    tint.set_alpha(10)
+
+    clock = time.Clock()
+
+    for _ in range(50):
+        screen.blit(tint, (0, 0))
+        display.flip()
+
+        clock.tick(50)
+
+    return next()
 
 # Function to control printing in game code (purely for dev purposes)
 def mehprint(*text):
@@ -26,17 +54,13 @@ def mehprint(*text):
 def meh_screen(screen):
     """ Creates a Rahmish loading screen. """
 
-    # Fill the screen with red (commie red)
-    screen.fill((0, 0, 0))
-
     # Generate logo image and text
-    logo = transform.scale(image.load('textures/splash.jpg'), (600, 600))  # load image
-    logo_font = font.Font("fonts/Lato-Black.ttf", 40)  # load Font object
+    logo = transform.scale(image.load('textures/splash.jpg'), (screen.get_width(), screen.get_height()))  # load image
+    logo_font = font.Font("fonts/UndertaleSans.ttf", 40)  # load Font object
     logo_text = logo_font.render("Super Awesome Meaningful COnnection gAmes", True, (255, 255, 255))  # render the text
 
     # Blit the logo and text to the screen
-    screen.blit(logo,
-                center(-10, -50, screen.get_width(), screen.get_height(), logo.get_width(), logo.get_height()))
+    screen.blit(logo, (0, 0))
     screen.blit(logo_text, center(0, 100, screen.get_width(), screen.get_height(), logo_text.get_width(),
                                   logo_text.get_height()))
 
@@ -45,8 +69,15 @@ def meh_screen(screen):
 
 
 # Function to size wallpaper in background
-def wallpaper(screen, size, frame, frames):
+def wallpaper(screen, size):
+    global frame, frames
+
     """ Resizes wallpaper in menu background. """
+
+    if frame < len(frames) - 1:
+        frame += 1
+    else:
+        frame = 0
 
     # Fill the screen with black to clear it
     screen.fill((0, 0, 0))
@@ -77,7 +108,7 @@ def text(text, size):
     """ Generates and returns Minecraft-style text. """
 
     # Load the Minecraft Font object
-    minecraft_font = font.Font("fonts/minecraft.ttf", size)
+    minecraft_font = font.Font("fonts/UndertaleSans.ttf", size)
 
     # Make the background and surface text
     text_surface = minecraft_font.render(text, True, (255, 255, 255))  # surface text
@@ -103,11 +134,13 @@ def text(text, size):
 def load_sound(sound_list):
     """ Loads and plays a sound instantly. """
 
+    pass
+
     # Load the sound as a Sound object
-    sound_object = mixer.Sound(choice(sound_list))
+    #sound_object = mixer.Sound(choice(sound_list))
 
     # Play the sound
-    sound_object.play(0)
+    #sound_object.play(0)
 
 
 # Function to center a surface on another surface
