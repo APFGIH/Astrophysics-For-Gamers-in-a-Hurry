@@ -1,19 +1,22 @@
 import pytmx
+import pygame
+
 
 class Map:
-
     def __init__(self):
-        self.gameMap = pytmx.load_pygame("map.tmx", pixelalpha=True)
+        self.gameMap = pytmx.load_pygame("Map/tileMaps/untitled.tmx", pixelalpha=True)
+        self.width = self.gameMap.width
+        self.height = self.gameMap.height
+        self.tileSize = self.gameMap.tilewidth
 
-    def render(self, surface):
+    def render(self, surface, sx, sy, hx, hy):
         for layer in self.gameMap.visible_layers:
-            if isinstance(layer, pytmx.TiledTileLayer):
-                for x, y, gid in layer:
-                    tile = self.gameMap.get_tile_image_by_gid(gid)
+            for x in range(hx-sx):
+                for y in range(hy-sy):
+                    tile = self.gameMap.get_tile_image(x+sx, y+sy, layer)
                     if tile:
                         surface.blit(tile, (x * self.gameMap.tilewidth, y * self.gameMap.tileheight))
 
-    def make_map(self):
-        mapSurface = pygame.Surface((self.mapwidth, self.mapheight))
-        self.render(mapSurface)
-        return mapSurface
+    def make_map(self, surface, dimension, playerlocation):
+        # stuff
+        pass
