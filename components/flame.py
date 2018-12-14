@@ -10,8 +10,7 @@ import hashlib
 cred = credentials.Certificate('../fb.json')
 firebase_admin.initialize_app(cred)
 
-master_user = None
-username = None
+master_user = {}
 
 def hash(password, salt):
     return hashlib.sha512(str.encode(password + salt)).hexdigest()
@@ -32,7 +31,6 @@ def register(username, password):
 
         return authenticate(username, password)
 
-
 def authenticate(username, password):
     global master_user
 
@@ -49,8 +47,21 @@ def authenticate(username, password):
         print('Rejected.')
         return False
 
-#def save():
+def authenticated():
+    return master_user
+
+def save():
+    if authenticated():
+        firebase_admin.firestore.client(app=None).collection('users').document(master_user['username']).update(
+                        {'master_user': master_user})
+
+        return True
+    return False
 
 if __name__ == '__main__':
-    print(authenticate('test', 'asdassds'))
+    #register('test2', 'asdassds')
+    print(authenticate('test2', 'asdassds'))
     print(master_user)
+
+    master_user['pineapple'] = 'pineappleasdsdasasd'
+    save()
