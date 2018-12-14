@@ -1,9 +1,9 @@
-import pyTMX
+import pytmx
 
 class Map:
 
     def __init__(self):
-        self.gameMap = pyTMX.load_pygame("map.tmx", pixelalpha=True)
+        self.gameMap = pytmx.load_pygame("map.tmx", pixelalpha=True)
 
     def render(self, surface):
         for layer in self.gameMap.visible_layers:
