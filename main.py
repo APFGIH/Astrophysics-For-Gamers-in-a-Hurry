@@ -291,7 +291,7 @@ def menu_screen():
 
     global screen
 
-    display.set_caption("RahCraft")
+    display.set_caption("Astro Physics for Gamers in a Hurry")
 
     #Params of buttons
     menu_list = [[0, 'game', "Attack Gary"],
@@ -332,7 +332,7 @@ def menu_screen():
         #Renders all text elements
         normal_font = font.Font("fonts/UndertaleSans.ttf", 14)
 
-        #version_text = normal_font.render("RahCraft v%s" % current_build, True, (255, 255, 255))
+        #version_text = normal_font.render("Astro Physics for Gamers in a Hurry v%s" % current_build, True, (255, 255, 255))
         #screen.blit(version_text, (10, size[1] - 20))
 
         about_text = normal_font.render("Copyright (C) Rahmish Empire. All Rahs Reserved!", True, (255, 255, 255))
