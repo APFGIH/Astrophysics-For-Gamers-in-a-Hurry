@@ -58,6 +58,17 @@ def save():
         return True
     return False
 
+def update():
+    global master_user
+
+    if authenticated():
+        user = firebase_admin.firestore.client(app=None).collection('users').document(master_user['username']).get().to_dict()
+
+        master_user = user['master_user']
+
+        return True
+    return False
+
 if __name__ == '__main__':
     #register('test2', 'asdassds')
     print(authenticate('test2', 'asdassds'))
