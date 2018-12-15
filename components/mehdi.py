@@ -164,3 +164,38 @@ def joint_rotate(surf, angle):
 
     # Return the rotated copy to the outer scope
     return transform.rotate(new_surf, -degrees(angle))
+
+class medhi:
+    def __init__(self, tileSize):
+        self.tileSize = tileSize
+        self.x = self.vx = self.game_x = 0
+        self.y = self.vy = self.game_y = 0
+        self.currentKey = -1
+        self.facing = 0
+
+    def keyDown(self, key):
+        if key == K_LEFT:
+            self.vx -= .50
+        if key == K_RIGHT:
+            self.vx += .50
+        if key == K_UP:
+            self.vy -= .50
+        if key == K_DOWN:
+            self.vy += .50
+
+    def keyUp(self, key):
+        if key == K_LEFT:
+            self.vx += .5
+        if key == K_RIGHT:
+            self.vx -= .5
+        if key == K_UP:
+            self.vy += .5
+        if key == K_DOWN:
+            self.vy -= .5
+
+    def update(self, multiplier):
+        self.x += self.vx
+        self.y += self.vy
+
+        self.game_x = self.x * self.tileSize
+        self.game_y = self.y * self.tileSize
