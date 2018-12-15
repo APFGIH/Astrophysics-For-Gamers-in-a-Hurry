@@ -7,7 +7,7 @@ import hashlib
 # For one, anyone can pull the entire database and mess with things
 # This project was for english. So... yeah.
 
-cred = credentials.Certificate('../fb.json')
+cred = credentials.Certificate('fb.json')
 firebase_admin.initialize_app(cred)
 
 master_user = {}
@@ -26,7 +26,7 @@ def register(username, password):
         return 'Boi that\'s a really crappy password...'
     else:
         firebase_admin.firestore.client(app=None).collection('users').document(username).set(
-                        {'password': hash(password, username),
+                        {'password': password,
                          'master_user': {}})
 
         return authenticate(username, password)
@@ -36,7 +36,7 @@ def authenticate(username, password):
 
     user = firebase_admin.firestore.client(app=None).collection('users').document(username).get().to_dict()
 
-    if user and 'password' in user and hash(password, username) == user['password']:
+    if user and 'password' in user and password == user['password']:
         print('Successfully authenticated.')
 
         master_user = user['master_user']
@@ -70,8 +70,8 @@ def update():
     return False
 
 if __name__ == '__main__':
-    #register('test2', 'asdassds')
-    print(authenticate('test2', 'asdassds'))
+    #register('henry', hash('password', 'henry'))
+    print(authenticate('henry', hash('password', 'henry')))
     print(master_user)
 
     master_user['pineapple'] = 'pineappleasdsdasasd'

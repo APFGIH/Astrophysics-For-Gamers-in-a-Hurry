@@ -9,18 +9,23 @@ Main Rahmish Developers: Henry Tu & Syed Safwaan
 from pygame import *  # to allow use of graphics
 from random import *  # to allow use of random generators
 from math import *  # to allow use of trigonometric functions
+import random
 import time as t
 
-frames = []
-frame = 0
+# x, y, vx, vy
+stars = []
 
-def load_wallpaper():
-    global frames
+def init_stars(size):
+    for _ in range(100 - len(stars)):
+        vx = cos(radians(random.randint(0, 360)))
+        vy = sin(radians(random.randint(0, 360)))
 
-    print('loading')
+        stars.append([randint(-5, 5) + size[0] // 2 + vx * randint(0,
+        int(
+        (((size[0] ** 2 + size[1] ** 2) ** 0.5) / 2))), randint(-5, 5) + size[1] // 2 + vy * randint(0,
+        int(
+        (((size[0] ** 2 + size[1] ** 2) ** 0.5) / 2))), vx, vy])
 
-    for file in range(2, 200):
-        frames.append(image.load('textures/space/%03i.jpg' % file))
 
 def transition(screen, next):
     # Blue tint
@@ -70,37 +75,28 @@ def meh_screen(screen):
 
 # Function to size wallpaper in background
 def wallpaper(screen, size):
-    global frame, frames
+    global stars
 
     """ Resizes wallpaper in menu background. """
 
-    if frame < len(frames) - 1:
-        frame += 1
-    else:
-        frame = 0
+    for _ in range(100 - len(stars)):
+        stars.append([randint(-5, 5) + size[0] // 2, randint(-5, 5) + size[1] // 2, cos(radians(random.randint(0, 360))), sin(radians(random.randint(0, 360)))])
 
     # Fill the screen with black to clear it
     screen.fill((0, 0, 0))
 
-    # Check to see which axis to scale on
+    for i in range(len(stars) - 1, -1, -1):
 
-    if size[0] < size[1]:  # if width is greater than height
+        star = stars[i]
 
-        # Scale up according to x-axis
-        wpw = size[0]
-        wph = int(500 / 955 * size[0])
+        if Rect(0, 0, size[0], size[1]).collidepoint(star[0], star[1]):
 
-    else:  # if height is greater than width
+            star[0] += star[2]
+            star[1] += star[3]
 
-        # Scale up according to height
-        wph = size[1]
-        wpw = int(955 / 500 * size[1])
-
-    # Load wallpaper and scale it according to the values made above
-    wallpaper = transform.scale(frames[frame], (wpw, wph))
-
-    # Blit the wallpaper to the screen
-    screen.blit(wallpaper, (0, 0))
+            draw.circle(screen, (255, 255, 255), (int(star[0]), int(star[1])), int(5 * (((star[0] - size[0] // 2) ** 2 + (star[1] - size[1] // 2) ** 2) ** 0.5)/(((size[0] ** 2 + size[1] ** 2) ** 0.5) / 2)))
+        else:
+            del stars[i]
 
 
 # Function to make Minecraft-style text
