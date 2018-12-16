@@ -14,15 +14,16 @@ import time as t
 
 # x, y, vx, vy
 stars = []
+prev_size = (0, 0)
 
 def init_stars(size):
     for _ in range(100 - len(stars)):
         vx = cos(radians(random.randint(0, 360)))
         vy = sin(radians(random.randint(0, 360)))
 
-        stars.append([randint(-5, 5) + size[0] // 2 + vx * randint(0,
+        stars.append([randint(-50, 50) + size[0] // 2 + vx * randint(0,
         int(
-        (((size[0] ** 2 + size[1] ** 2) ** 0.5) / 2))), randint(-5, 5) + size[1] // 2 + vy * randint(0,
+        (((size[0] ** 2 + size[1] ** 2) ** 0.5) / 2))), randint(-50, 50) + size[1] // 2 + vy * randint(0,
         int(
         (((size[0] ** 2 + size[1] ** 2) ** 0.5) / 2))), vx, vy])
 
@@ -75,7 +76,13 @@ def meh_screen(screen):
 
 # Function to size wallpaper in background
 def wallpaper(screen, size):
-    global stars
+    global stars, prev_size
+
+    if size != prev_size:
+        prev_size = size
+        stars = []
+
+        init_stars(size)
 
     """ Resizes wallpaper in menu background. """
 

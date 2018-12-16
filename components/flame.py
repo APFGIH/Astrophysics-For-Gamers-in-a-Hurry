@@ -69,6 +69,11 @@ def update():
         return True
     return False
 
+def logout():
+    global master_user
+
+    master_user = {}
+
 if __name__ == '__main__':
     #register('henry', hash('password', 'henry'))
     print(authenticate('henry', hash('password', 'henry')))
