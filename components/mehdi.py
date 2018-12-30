@@ -173,12 +173,15 @@ def joint_rotate(surf, angle):
     return transform.rotate(new_surf, -degrees(angle))
 
 class medhi:
-    def __init__(self, tileSize):
-        self.tileSize = tileSize
-        self.x = self.vx = self.game_x = 0
-        self.y = self.vy = self.game_y = 0
+    def __init__(self, map, gameSurface):
+        self.tileSize = map.tileSize
+        self.x = self.vx = self.cam_x = 0
+        self.y = self.vy = self.cam_y = 0
+        self.screenWidth, self.screenHeight = gameSurface.get_size()
         self.currentKey = -1
         self.facing = 0
+        self.map = map
+        self.gameSurface = gameSurface
 
     def keyDown(self, key):
         if key == K_LEFT:
@@ -204,5 +207,20 @@ class medhi:
         self.x = max(0, self.vx + self.x)
         self.y = max(0, self.vy + self.y)
 
-        self.game_x = self.x
-        self.game_y = self.y
+        self.draw()
+
+    def draw(self):
+        if self.x - self.screenWidth // 2 < 0:
+            self.cam_x = 0
+        elif self.x + self.screenWidth // 2 > self.map.width * self.tileSize:
+            self.cam_x = self.map.width * self.tileSize - self.screenWidth
+        else:
+            self.cam_x = self.x - self.screenWidth // 2
+
+        if self.y - self.screenHeight // 2 < 0:
+            self.cam_y = 0
+        elif self.y + self.screenHeight // 2 > self.map.height * self.tileSize:
+            self.cam_y = self.map.height * self.tileSize - self.screenHeight
+        else:
+            self.cam_y = self.y - self.screenHeight // 2
+
