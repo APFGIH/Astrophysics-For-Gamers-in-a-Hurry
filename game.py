@@ -23,9 +23,10 @@ class game:
 
     def update(self):
         # Draw World
-
+        self.map.make_map(self.gameScreen, (self.medhi.x, self.medhi.y))
         # Player
         self.medhi.update(self.multiplier)
+        draw.rect(self.gameScreen, (255, 255, 255), (960 // 2 - self.playerSize // 2, 540 // 2 - self.playerSize // 2, self.playerSize, self.playerSize))
 
         # Update Game Screen
         self.mainScreen.blit(transform.scale(self.gameScreen, self.display_surface), (int(self.current_display[0]/2-self.display_surface[0]/2), int(int(self.current_display[1]/2-self.display_surface[1]/2))))
@@ -52,7 +53,7 @@ class game:
                         self.display_surface = (e.w, int(e.w / self.aspect_ratio))
                     else:
                         self.display_surface = (int(e.h * self.aspect_ratio), e.h)
-                    self.mainScreen = display.set_mode((e.w, e.h), RESIZABLE | DOUBLEBUF | HWSURFACE)
+                    self.mainScreen = display.set_mode((e.w, e.h), RESIZABLE | HWSURFACE)
 
                     print(e, self.aspect_ratio)
 
@@ -60,14 +61,13 @@ class game:
 
             keys = key.get_pressed()
             # mx, my = mouse.get_pressed()[:2]
-            draw.rect(self.gameScreen, (255, 255, 255), (self.medhi.game_x, self.medhi.game_y, self.playerSize, self.playerSize))
 
             self.update()
 
 
 if __name__ == "__main__":
     init()
-    screen = display.set_mode((960, 540), RESIZABLE | DOUBLEBUF | HWSURFACE)
+    screen = display.set_mode((960, 540), RESIZABLE | HWSURFACE)
     g = game(screen)
 
     g.game()

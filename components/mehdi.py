@@ -182,27 +182,27 @@ class medhi:
 
     def keyDown(self, key):
         if key == K_LEFT:
-            self.vx -= .50
+            self.vx -= 10
         if key == K_RIGHT:
-            self.vx += .50
+            self.vx += 10
         if key == K_UP:
-            self.vy -= .50
+            self.vy -= 10
         if key == K_DOWN:
-            self.vy += .50
+            self.vy += 10
 
     def keyUp(self, key):
         if key == K_LEFT:
-            self.vx += .5
+            self.vx += 10
         if key == K_RIGHT:
-            self.vx -= .5
+            self.vx -= 10
         if key == K_UP:
-            self.vy += .5
+            self.vy += 10
         if key == K_DOWN:
-            self.vy -= .5
+            self.vy -= 10
 
     def update(self, multiplier):
-        self.x += self.vx
-        self.y += self.vy
+        self.x = max(0, self.vx + self.x)
+        self.y = max(0, self.vy + self.y)
 
-        self.game_x = self.x * self.tileSize
-        self.game_y = self.y * self.tileSize
+        self.game_x = self.x
+        self.game_y = self.y
