@@ -2,6 +2,7 @@ from pygame import *
 from components.mehdi import *
 import components.menu as menu
 import components.flame as flame
+import game
 import traceback
 import glob
 
@@ -688,8 +689,8 @@ def menu_screen():
         about_text = normal_font.render("Copyright (C) Rahmish Empire. All Rahs Reserved!", True, (255, 255, 255))
         screen.blit(about_text, (size[0] - about_text.get_width(), size[1] - 20))
 
-        #user_text = normal_font.render("Logged in as: %s" % username, True, (255, 255, 255))
-        #screen.blit(user_text, (20, 20))
+        user_text = normal_font.render("Logged in as: %s" % username, True, (255, 255, 255))
+        screen.blit(user_text, (20, 20))
 
         #if token:
         #    user_text = normal_font.render("AUTH ID: %s" % token, True, (255, 255, 255))
@@ -833,11 +834,11 @@ if __name__ == '__main__':
             if not navigation:
                 raise Exception('You broke something')
             elif navigation == 'game':
-                pass
                 #music_object.stop()
-                #game_nav = Game.game(screen, username, token, host, port, size)
 
-                #navigation = game_nav
+                game_nav = game.game(screen)
+
+                navigation = game_nav
 
             elif navigation[0] == 'crash':
                 navigation = crash(navigation[1], navigation[2])
