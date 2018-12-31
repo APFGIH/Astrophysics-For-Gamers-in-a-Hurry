@@ -406,7 +406,7 @@ class TextBox:
 
         # Draw stars if field is password
         # Otherwise, draw field content
-        if self.name == 'Password':
+        if 'Password' in self.name:
             text = '*' * len(self.content)
         else:
             text = self.content

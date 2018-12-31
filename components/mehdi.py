@@ -9,18 +9,24 @@ Main Rahmish Developers: Henry Tu & Syed Safwaan
 from pygame import *  # to allow use of graphics
 from random import *  # to allow use of random generators
 from math import *  # to allow use of trigonometric functions
+import random
 import time as t
 
-frames = []
-frame = 0
+# x, y, vx, vy
+stars = []
+prev_size = (0, 0)
 
-def load_wallpaper():
-    global frames
+def init_stars(size):
+    for _ in range(100 - len(stars)):
+        vx = cos(radians(random.randint(0, 360)))
+        vy = sin(radians(random.randint(0, 360)))
 
-    print('loading')
+        stars.append([randint(-50, 50) + size[0] // 2 + vx * randint(0,
+        int(
+        (((size[0] ** 2 + size[1] ** 2) ** 0.5) / 2))), randint(-50, 50) + size[1] // 2 + vy * randint(0,
+        int(
+        (((size[0] ** 2 + size[1] ** 2) ** 0.5) / 2))), vx, vy])
 
-    for file in range(2, 200):
-        frames.append(image.load('textures/space/%03i.jpg' % file))
 
 def transition(screen, next):
     # Blue tint
@@ -70,37 +76,34 @@ def meh_screen(screen):
 
 # Function to size wallpaper in background
 def wallpaper(screen, size):
-    global frame, frames
+    global stars, prev_size
+
+    if size != prev_size:
+        prev_size = size
+        stars = []
+
+        init_stars(size)
 
     """ Resizes wallpaper in menu background. """
 
-    if frame < len(frames) - 1:
-        frame += 1
-    else:
-        frame = 0
+    for _ in range(100 - len(stars)):
+        stars.append([randint(-5, 5) + size[0] // 2, randint(-5, 5) + size[1] // 2, cos(radians(random.randint(0, 360))), sin(radians(random.randint(0, 360)))])
 
     # Fill the screen with black to clear it
     screen.fill((0, 0, 0))
 
-    # Check to see which axis to scale on
+    for i in range(len(stars) - 1, -1, -1):
 
-    if size[0] < size[1]:  # if width is greater than height
+        star = stars[i]
 
-        # Scale up according to x-axis
-        wpw = size[0]
-        wph = int(500 / 955 * size[0])
+        if Rect(0, 0, size[0], size[1]).collidepoint(star[0], star[1]):
 
-    else:  # if height is greater than width
+            star[0] += star[2]
+            star[1] += star[3]
 
-        # Scale up according to height
-        wph = size[1]
-        wpw = int(955 / 500 * size[1])
-
-    # Load wallpaper and scale it according to the values made above
-    wallpaper = transform.scale(frames[frame], (wpw, wph))
-
-    # Blit the wallpaper to the screen
-    screen.blit(wallpaper, (0, 0))
+            draw.circle(screen, (255, 255, 255), (int(star[0]), int(star[1])), int(5 * (((star[0] - size[0] // 2) ** 2 + (star[1] - size[1] // 2) ** 2) ** 0.5)/(((size[0] ** 2 + size[1] ** 2) ** 0.5) / 2)))
+        else:
+            del stars[i]
 
 
 # Function to make Minecraft-style text
@@ -168,3 +171,56 @@ def joint_rotate(surf, angle):
 
     # Return the rotated copy to the outer scope
     return transform.rotate(new_surf, -degrees(angle))
+
+class medhi:
+    def __init__(self, map, gameSurface):
+        self.tileSize = map.tileSize
+        self.x = self.vx = self.cam_x = 0
+        self.y = self.vy = self.cam_y = 0
+        self.screenWidth, self.screenHeight = gameSurface.get_size()
+        self.currentKey = -1
+        self.facing = 0
+        self.map = map
+        self.gameSurface = gameSurface
+
+    def keyDown(self, key):
+        if key == K_LEFT:
+            self.vx -= 10
+        if key == K_RIGHT:
+            self.vx += 10
+        if key == K_UP:
+            self.vy -= 10
+        if key == K_DOWN:
+            self.vy += 10
+
+    def keyUp(self, key):
+        if key == K_LEFT:
+            self.vx += 10
+        if key == K_RIGHT:
+            self.vx -= 10
+        if key == K_UP:
+            self.vy += 10
+        if key == K_DOWN:
+            self.vy -= 10
+
+    def update(self, multiplier):
+        self.x = max(0, self.vx + self.x)
+        self.y = max(0, self.vy + self.y)
+
+        self.draw()
+
+    def draw(self):
+        if self.x - self.screenWidth // 2 < 0:
+            self.cam_x = 0
+        elif self.x + self.screenWidth // 2 > self.map.width * self.tileSize:
+            self.cam_x = self.map.width * self.tileSize - self.screenWidth
+        else:
+            self.cam_x = self.x - self.screenWidth // 2
+
+        if self.y - self.screenHeight // 2 < 0:
+            self.cam_y = 0
+        elif self.y + self.screenHeight // 2 > self.map.height * self.tileSize:
+            self.cam_y = self.map.height * self.tileSize - self.screenHeight
+        else:
+            self.cam_y = self.y - self.screenHeight // 2
+

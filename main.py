@@ -1,11 +1,362 @@
 from pygame import *
 from components.mehdi import *
 import components.menu as menu
+import components.flame as flame
+import game
 import traceback
 import glob
 
+
+# This function logs the user into the game
 def login():
-    pass
+    display.set_caption("RahCraft Authentication Service")
+
+    global screen, size, username, password  # Global var used to make modifying easier
+
+    # Sets title
+    title_text = text('Welcome to RahCraft! Login to continue', 20)
+    screen.blit(title_text, (size[0] // 2 - title_text.get_width() // 2, size[1] // 4 - title_text.get_height() - 50))
+
+    # Resets credential vars
+    username, password = '', ''
+
+    # Field accepting entry
+    field_selected = 'Username'
+
+    # List with field objects
+    fields = {'Username': [menu.TextBox(size[0] // 4, size[1] // 2 - 100, size[0] // 2, 40, 'Username'), username],
+              'Password': [menu.TextBox(size[0] // 4, size[1] // 2 - 30, size[0] // 2, 40, 'Password'), password]}
+
+    # Button objects
+    exit_button = menu.Button(size[0] // 4, size[1] // 2 + 200, size[0] // 2, 40, 'exit', 'Exit game')
+    auth_button = menu.Button(size[0] // 4, size[1] // 2 + 50, size[0] // 2, 40, 'auth', 'Login')
+    signup_button = menu.Button(size[0] // 4, size[1] // 2 + 100, size[0] // 2, 40, 'signup', 'Need an account? Signup here')
+
+    while True:
+
+        # Draws background
+        wallpaper(screen, size)
+
+        # Resets mouse vars
+        click = False
+        release = False
+
+        # Var to pass the event to text field
+        pass_event = None
+
+        for e in event.get():
+
+            pass_event = e
+
+            if e.type == QUIT:
+                return 'exit'
+
+            if e.type == MOUSEBUTTONDOWN and e.button == 1:
+                click = True
+
+            if e.type == MOUSEBUTTONUP and e.button == 1:
+                release = True
+
+            if e.type == KEYDOWN:
+                # Shift enter to bypass auth
+                if key.get_mods() & KMOD_CTRL and key.get_mods() & KMOD_SHIFT:
+                    if e.key == K_RETURN and username:
+                        return 'menu'
+
+                # Enter to auth with credentials
+                elif e.key == K_RETURN and fields['Username'][1] and fields['Password'][1]:
+                    username, password = fields['Username'][1], flame.hash(fields['Password'][1], fields['Username'][1])
+
+                    return 'auth'
+
+                # Tab to alternate between fields
+                if e.key == K_TAB:
+                    if field_selected == 'Username':
+                        field_selected = 'Password'
+                    else:
+                        field_selected = 'Username'
+
+            # If resize, recall the function to redraw
+            if e.type == VIDEORESIZE:
+                screen = display.set_mode((max(e.w, 500), max(e.h, 400)), DOUBLEBUF + RESIZABLE)
+                return 'login'
+
+        mx, my = mouse.get_pos()
+        m_press = mouse.get_pressed()
+
+        # Get values from textfields
+        fields[field_selected][1] = fields[field_selected][0].update(pass_event)
+
+        # Draws and updates textfields
+        for field in fields:
+            fields[field][0].draw(screen, field_selected)
+
+            if fields[field][0].rect.collidepoint(mx, my) and click:
+                field_selected = field
+
+        # Create account, redirect to website
+        if signup_button.update(screen, mx, my, m_press, 15, release):
+            return 'register'
+
+        # Authenticate with credentials
+        nav_update = auth_button.update(screen, mx, my, m_press, 15, release)
+        if nav_update and fields['Username'][1] and fields['Password'][1]:
+            # Hash password and set as var for security + match server
+            username, password = fields['Username'][1], flame.hash(fields['Password'][1], fields['Username'][1])
+
+            print(username, password)
+
+            return nav_update
+
+        # Exit game
+        nav_update = exit_button.update(screen, mx, my, m_press, 15, release)
+        if nav_update:
+            return nav_update
+
+        display.update()
+
+def register():
+    display.set_caption("RahCraft Authentication Service")
+
+    global screen, size, username, password  # Global var used to make modifying easier
+
+    # Sets title
+    title_text = text('dis is da register', 20)
+    screen.blit(title_text, (size[0] // 2 - title_text.get_width() // 2, size[1] // 4 - title_text.get_height() - 50))
+
+    # Resets credential vars
+    username, password = '', ''
+
+    # Field accepting entry
+    field_selected = 'Username'
+
+    # List with field objects
+    fields = {'Username': [menu.TextBox(size[0] // 4, size[1] // 2 - 170, size[0] // 2, 40, 'Username'), username],
+              'Password1': [menu.TextBox(size[0] // 4, size[1] // 2 - 100, size[0] // 2, 40, 'Password'), password],
+              'Password2': [menu.TextBox(size[0] // 4, size[1] // 2 - 30, size[0] // 2, 40, 'Password Confirmation'), password]}
+
+    # Button objects
+    exit_button = menu.Button(size[0] // 4, size[1] // 2 + 200, size[0] // 2, 40, 'exit', 'Exit game')
+    register_button = menu.Button(size[0] // 4, size[1] // 2 + 50, size[0] // 2, 40, 'register_service', 'Register')
+    login_button = menu.Button(size[0] // 4, size[1] // 2 + 100, size[0] // 2, 40, 'login', 'Already have an account? Login here')
+
+    field_names = list(fields.keys())
+
+    while True:
+
+        # Draws background
+        wallpaper(screen, size)
+
+        # Resets mouse vars
+        click = False
+        release = False
+
+        # Var to pass the event to text field
+        pass_event = None
+
+        for e in event.get():
+
+            pass_event = e
+
+            if e.type == QUIT:
+                return 'exit'
+
+            if e.type == MOUSEBUTTONDOWN and e.button == 1:
+                click = True
+
+            if e.type == MOUSEBUTTONUP and e.button == 1:
+                release = True
+
+            if e.type == KEYDOWN:
+                # Shift enter to bypass auth
+                if key.get_mods() & KMOD_CTRL and key.get_mods() & KMOD_SHIFT:
+                    if e.key == K_RETURN and username:
+                        return 'menu'
+
+                # Enter to auth with credentials
+                elif e.key == K_RETURN and fields['Username'][1] and fields['Password1'][1] and fields['Password2'][1]:
+
+                    if fields['Password1'][1] != fields['Password2'][1]:
+                        return "information", 'Passwords do not match.', "login"
+
+                    else:
+                        username, password = fields['Username'][1], flame.hash(fields['Password1'][1], fields['Username'][1])
+
+                        return 'register_service'
+
+                # Tab to alternate between fields
+                if e.key == K_TAB:
+
+                    field_selected = field_names[(field_names.index(field_selected) + 1) % len(field_names)]
+
+            # If resize, recall the function to redraw
+            if e.type == VIDEORESIZE:
+                screen = display.set_mode((max(e.w, 500), max(e.h, 400)), DOUBLEBUF + RESIZABLE)
+                return 'register'
+
+        mx, my = mouse.get_pos()
+        m_press = mouse.get_pressed()
+
+        # Get values from textfields
+        fields[field_selected][1] = fields[field_selected][0].update(pass_event)
+
+        # Draws and updates textfields
+        for field in fields:
+            fields[field][0].draw(screen, field_selected)
+
+            if fields[field][0].rect.collidepoint(mx, my) and click:
+                field_selected = field
+
+        # Create account, redirect to website
+        if login_button.update(screen, mx, my, m_press, 15, release):
+            return 'login'
+
+        # Authenticate with credentials
+        nav_update = register_button.update(screen, mx, my, m_press, 15, release)
+        if nav_update and fields['Username'][1] and fields['Password1'][1] and fields['Password2'][1]:
+
+            if fields['Password1'][1] != fields['Password2'][1]:
+                return "information", 'Passwords do not match.', "login"
+
+            else:
+                username, password = fields['Username'][1], flame.hash(fields['Password1'][1], fields['Username'][1])
+
+                return 'register_service'
+
+        # Exit game
+        nav_update = exit_button.update(screen, mx, my, m_press, 15, release)
+        if nav_update:
+            return nav_update
+
+        display.update()
+
+def register_service():
+    global username, password
+
+    # Background
+    wallpaper(screen, size)
+    connecting_text = text("Processing request...", 30)
+    screen.blit(connecting_text,
+                center(0, 0, size[0], size[1], connecting_text.get_width(), connecting_text.get_height()))
+
+    display.update()
+
+    try:  # Try except incase connection fails
+
+        msg = flame.register(username, password)
+
+        print(msg)
+
+        if msg == True:
+            return 'menu'
+
+        # If rejected
+        else:
+            # Clears fields
+            username = ''
+            password = ''
+
+            return "information", msg, "login"
+
+    except:
+        return "information", '\n\n\n\n\nUnable to connect to authentication servers\nTry again later\n\n\nVisit rahmish.com/status.php for help', "login"
+
+
+def authenticate():
+    global username, password
+
+    # Background
+    wallpaper(screen, size)
+    connecting_text = text("Authenticating...", 30)
+    screen.blit(connecting_text,
+                center(0, 0, size[0], size[1], connecting_text.get_width(), connecting_text.get_height()))
+
+    display.update()
+
+    try:  # Try except incase connection fails
+
+        if flame.authenticate(username, password):
+            return 'menu'
+
+        # If rejected
+        else:
+            # Clears fields
+            username = ''
+            password = ''
+
+            return 'reject'
+
+    except:
+        return "information", '\n\n\n\n\nUnable to connect to authentication servers\nTry again later\n\n\nVisit rahmish.com/status.php for help', "login"
+
+
+# Function if credentials are rejected by authentication server
+def reject():
+    global screen  # Global variable to make resizing easier
+
+    # Creates button object
+    back_button = menu.Button(size[0] // 4, size[1] - 130, size[0] // 2, 40, 'login', "Back")
+
+    normal_font = font.Font("fonts/UndertaleSans.ttf", 14)
+
+    # Text contents
+    auth_list = ['',
+                 '',
+                 '',
+                 'AUTHENTICATION FAILED',
+                 '',
+                 'Username or Password is invalid',
+                 'Ensure capslock is disabled and credentials',
+                 'match those provided at time of account creation',
+                 '',
+                 'If you forget your password, reset it at',
+                 'rahmish.com/management.php',
+                 '',
+                 '',
+                 'RahCraft (C) Rahmish Empire, All Rahs Reserved',
+                 '',
+                 'Developed by: Henry Tu, Ryan Zhang, Syed Safwaan',
+                 'ICS3U 2017'
+                 ]
+
+    while True:
+        # Mouse state
+        release = False
+
+        # Background
+        wallpaper(screen, size)
+
+        for e in event.get():
+            if e.type == QUIT:
+                return 'exit'
+
+            # Updates mouse state
+            if e.type == MOUSEBUTTONUP and e.button == 1:
+                release = True
+
+            # Recall function on resize to redraw everything
+            if e.type == VIDEORESIZE:
+                screen = display.set_mode((max(e.w, 500), max(e.h, 400)), DOUBLEBUF + RESIZABLE)
+
+                return 'reject'
+
+        mx, my = mouse.get_pos()
+        m_press = mouse.get_pressed()
+
+        # Draws text on screen
+        for y in range(0, len(auth_list)):
+            about_text = normal_font.render(auth_list[y], True, (255, 255, 255))
+            screen.blit(about_text, (size[0] // 2 - about_text.get_width() // 2, 50 + y * 20))
+
+        # Updates buttons
+        nav_update = back_button.update(screen, mx, my, m_press, 15, release)
+
+        # Redirects if needed
+        if nav_update is not None:
+            return nav_update
+
+        # Updates screen
+        display.update()
 
 # Function to display a formatted crash screen instead of stopping entire program
 def crash(error, previous):
@@ -291,7 +642,7 @@ def menu_screen():
 
     global screen
 
-    display.set_caption("RahCraft")
+    display.set_caption("Astro Physics for Gamers in a Hurry")
 
     #Params of buttons
     menu_list = [[0, 'game', "Attack Gary"],
@@ -332,14 +683,14 @@ def menu_screen():
         #Renders all text elements
         normal_font = font.Font("fonts/UndertaleSans.ttf", 14)
 
-        #version_text = normal_font.render("RahCraft v%s" % current_build, True, (255, 255, 255))
+        #version_text = normal_font.render("Astro Physics for Gamers in a Hurry v%s" % current_build, True, (255, 255, 255))
         #screen.blit(version_text, (10, size[1] - 20))
 
         about_text = normal_font.render("Copyright (C) Rahmish Empire. All Rahs Reserved!", True, (255, 255, 255))
         screen.blit(about_text, (size[0] - about_text.get_width(), size[1] - 20))
 
-        #user_text = normal_font.render("Logged in as: %s" % username, True, (255, 255, 255))
-        #screen.blit(user_text, (20, 20))
+        user_text = normal_font.render("Logged in as: %s" % username, True, (255, 255, 255))
+        screen.blit(user_text, (20, 20))
 
         #if token:
         #    user_text = normal_font.render("AUTH ID: %s" % token, True, (255, 255, 255))
@@ -371,13 +722,7 @@ def menu_screen():
             #Logout
             if nav_update == 'logout':
 
-                #Clear session
-                username = ''
-                token = ''
-
-                #Erases session file
-                with open('user_data/session.json', 'w') as session_file:
-                    session_file.write('')
+                flame.logout()
 
                 return 'login'
 
@@ -451,16 +796,20 @@ if __name__ == '__main__':
 
     meh_screen(screen)
 
-    load_wallpaper()
+    init_stars(size)
 
-    navigation = 'menu'
+    navigation = 'login'
 
     UI = {
         'login': login,
         'menu': menu_screen,
         'about': about,
         'assistance': assistance,
-        'options': options
+        'options': options,
+        'auth': authenticate,
+        'reject': reject,
+        'register': register,
+        'register_service': register_service
     }
 
     while navigation != 'exit':
@@ -485,11 +834,11 @@ if __name__ == '__main__':
             if not navigation:
                 raise Exception('You broke something')
             elif navigation == 'game':
-                pass
                 #music_object.stop()
-                #game_nav = Game.game(screen, username, token, host, port, size)
 
-                #navigation = game_nav
+                game_nav = game.game(screen)
+
+                navigation = game_nav
 
             elif navigation[0] == 'crash':
                 navigation = crash(navigation[1], navigation[2])
@@ -498,10 +847,11 @@ if __name__ == '__main__':
                 navigation = information(navigation[1], navigation[2])
 
             else:
-                navigation = transition(screen, UI[navigation])
+                #navigation = transition(screen, UI[navigation])
+                navigation = UI[navigation]()
 
         except:
-            navigation = 'menu'
+            navigation = 'menu' if flame.authenticated() else 'login'
 
             crash(traceback.format_exc(), 'menu')
 
