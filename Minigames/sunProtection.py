@@ -47,8 +47,8 @@ def sunProtection(screen, health):
             return True
         else:
             timer -= 1
-            if timer % 100 == 0 and randint(1, 100) < 80:
-                lightList.append(lightBeam(randint(0, WIDTH), HEIGHT, WIDTH//2, HEIGHT//4, randint(0, 4), 100))
+            if timer % 50 == 0 and randint(1, 100) < 70:
+                lightList.append(lightBeam(randint(0, WIDTH), HEIGHT, WIDTH//2, HEIGHT//4, randint(0, 4), 50))
 
         for l in lightList:
             l.update(screen)

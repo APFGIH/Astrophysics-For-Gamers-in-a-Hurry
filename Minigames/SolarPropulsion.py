@@ -35,8 +35,8 @@ def solarPropulsion(screen, health):
             return False
         else:
             timer -= 1
-            if timer % 10 == 0 and randint(1, 100) < 15:
-                lightList.append(lightBeam(randint(0, WIDTH), HEIGHT, WIDTH//2, HEIGHT//2, randint(0, 4), 100))
+            if timer % 50 == 0 and randint(1, 100) < 80:
+                lightList.append(lightBeam(randint(WIDTH*-0.4, WIDTH*1.4), HEIGHT, WIDTH//2, HEIGHT//2, randint(0, 4), 100))
         if lightGathered >= maxLight:
             return True
 
