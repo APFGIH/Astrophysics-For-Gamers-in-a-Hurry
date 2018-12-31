@@ -9,7 +9,7 @@ WIDTH, HEIGHT = 1080, 720
 screen = display.set_mode((WIDTH, HEIGHT))
 
 def asteroidDodge(screen, health):
-
+    WIDTH, HEIGHT = 1080, 720
     FPS = 100
     clock = time.Clock()
     shipx, shipy = WIDTH // 2, HEIGHT * 0.9
@@ -32,6 +32,7 @@ def asteroidDodge(screen, health):
                 running = False
                 break
 
+
         screen.fill((0, 0, 0))
 
         if timer == 0:
@@ -39,7 +40,7 @@ def asteroidDodge(screen, health):
         else:
             timer -= 1
             if timer % 2 == 0 and randint(1, timer + 5000) <= 2500 and timer > 250:
-                asteroidList.append(fallingStone(randint(WIDTH*0.05, WIDTH*0.95), 0, 0, (11000-timer)*randint(80, 120)*0.000009, 30, drawAst1))
+                asteroidList.append(fallingStone(randint(int(WIDTH*0.05), int(WIDTH*0.95)), 0, 0, (11000-timer)*randint(80, 120)*0.000009, 30, drawAst1))
             if any([a.collide([shipx, shipy]) for a in asteroidList]):
                 return False
 
