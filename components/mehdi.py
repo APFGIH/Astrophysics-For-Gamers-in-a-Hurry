@@ -15,6 +15,33 @@ import time as t
 # x, y, vx, vy
 stars = []
 prev_size = (0, 0)
+screen = None
+
+def set_screen(s):
+    global screen
+    screen = s
+
+def center_frame(a, b):
+
+    sw = a.get_width()
+    sh = a.get_height()
+
+    w = b.get_width()
+    h = b.get_height()
+
+    return (sw // 2 - w // 2, sh // 2 - h //2)
+
+def resizeStuff(w, h):
+    global screen
+    screen = display.set_mode((max(w, 500), max(h, 400)), DOUBLEBUF + RESIZABLE)
+
+def drawStuff(surface):
+    global screen
+    screen.fill((255, 255, 0))
+    screen.blit(surface, center_frame(screen, surface))
+
+    display.flip()
+
 
 def init_stars(size):
     for _ in range(100 - len(stars)):

@@ -33,6 +33,7 @@ def asteroidDodge(screen, health):
                 break
 
 
+
         screen.fill((0, 0, 0))
 
         if timer == 0:
@@ -61,4 +62,4 @@ def asteroidDodge(screen, health):
         clock.tick(FPS)
     quit()
 
-asteroidDodge(screen, 1)
+print(asteroidDodge(screen, 1))

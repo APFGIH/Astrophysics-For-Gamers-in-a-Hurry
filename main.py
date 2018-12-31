@@ -6,6 +6,7 @@ import game
 import traceback
 import glob
 
+from Minigames.SolarPropulsion import *
 
 # This function logs the user into the game
 def login():
@@ -797,6 +798,7 @@ if __name__ == '__main__':
     meh_screen(screen)
 
     init_stars(size)
+    set_screen(screen)
 
     navigation = 'login'
 
@@ -836,9 +838,11 @@ if __name__ == '__main__':
             elif navigation == 'game':
                 #music_object.stop()
 
-                game_nav = game.game(screen)
+                #game_nav = game.game(screen)
 
-                navigation = game_nav
+                #navigation = game_nav
+
+                solarPropulsion(1, drawStuff, resizeStuff)
 
             elif navigation[0] == 'crash':
                 navigation = crash(navigation[1], navigation[2])

@@ -1,12 +1,14 @@
 from pygame import *
 from math import *
 from random import *
-from SpaceObjects import *
+from Minigames.SpaceObjects import *
 
 WIDTH, HEIGHT = 1080, 720
-screen = display.set_mode((WIDTH, HEIGHT))
+screen = display.set_mode((1366, 768))
 
-def solarPropulsion(screen, health):
+def solarPropulsion(health, drawScreen, resizeScreen):
+
+    screen = Surface((WIDTH, HEIGHT))
 
     FPS = 100
     clock = time.Clock()
@@ -30,6 +32,10 @@ def solarPropulsion(screen, health):
             if action.type == QUIT:
                 running = False
                 break
+
+            if action.type == VIDEORESIZE:
+                resizeScreen(action.w, action.h)
+
         screen.fill((0, 0, 0))
         if timer == 0:
             return False
@@ -63,8 +69,27 @@ def solarPropulsion(screen, health):
 
         drawPanel(WIDTH // 2, HEIGHT // 2, theta)
 
-        display.flip()
+        drawScreen(screen)
+        #display.flip()
         clock.tick(FPS)
     quit()
 
-solarPropulsion(screen, 1)
+
+if __name__ == '__main__':
+    def center(a, b):
+        sw = a.get_width()
+        sh = a.get_height()
+
+        w = b.get_width()
+        h = b.get_height()
+
+        return (sw // 2 - w // 2, sh // 2 - h // 2)
+
+
+    def drawStuff(surface):
+        screen.fill((255, 255, 0))
+        screen.blit(surface, center(screen, surface))
+
+        display.flip()
+
+    print(solarPropulsion(1, drawStuff))
