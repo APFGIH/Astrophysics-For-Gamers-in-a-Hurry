@@ -6,8 +6,6 @@ from Map.Map import *
 class game:
 
     def __init__(self, screen):
-        self.map = Map()
-
         self.mainScreen = screen
         self.gameClock = time.Clock()
         self.playerSize = 100
@@ -18,6 +16,7 @@ class game:
         self.aspect_ratio = self.init_display_size[0] / self.init_display_size[1]
 
         self.gameScreen = Surface(self.current_display)
+        self.map = Map(self.gameScreen)
 
         self.medhi = components.mehdi.medhi(self.map, self.gameScreen)
 
@@ -25,7 +24,7 @@ class game:
         # Draw World
         self.map.make_map(self.gameScreen, (self.medhi.cam_x, self.medhi.cam_y))
         # Player
-        self.medhi.update(self.multiplier)
+        self.medhi.update()
         draw.rect(self.gameScreen, (255, 255, 255), (self.medhi.x - self.medhi.cam_x, self.medhi.y - self.medhi.cam_y, self.playerSize, self.playerSize))
 
         # Update Game Screen

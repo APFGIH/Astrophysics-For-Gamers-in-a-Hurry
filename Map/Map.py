@@ -4,10 +4,11 @@ import math
 
 
 class Map:
-    def __init__(self):
+    def __init__(self, gameScreen):
         self.gameMap = pytmx.load_pygame("Map/tileMaps/Testmap1.tmx", pixelalpha=True)
         self.width = self.gameMap.width
         self.height = self.gameMap.height
+        self.screenSize = gameScreen.get_size()
         self.tileSize = 80
         self.collisionRects = []
 
@@ -18,8 +19,8 @@ class Map:
         print(self.width, self.height)
 
     def render(self, surface, sx, sy, hx, hy, offsetx=0, offsety=0):
-        for x in range(sx, 20):
-            for y in range(sy, 20):
+        for x in range(sx, hx):
+            for y in range(sy, hy):
                 tile = self.gameMap.get_tile_image(x, y, 0)
                 if tile:
                     surface.blit(pygame.transform.scale(tile, (self.tileSize, self.tileSize)), ((x-sx) * self.tileSize - offsetx, (y-sy) * self.tileSize - offsety))
@@ -31,6 +32,4 @@ class Map:
         offsetx = cameralocation[0] % self.tileSize
         offsety = cameralocation[1] % self.tileSize
 
-        print(cameralocation)
-
-        self.render(surface, max(0, cameralocation[0] // self.tileSize), max(0, cameralocation[1] // self.tileSize), 960 // 80, 540 // 80, offsetx, offsety)
+        self.render(surface, max(0, cameralocation[0] // self.tileSize), max(0, cameralocation[1] // self.tileSize), math.ceil((cameralocation[0] + self.screenSize[0]) / self.tileSize), math.ceil((cameralocation[1] + self.screenSize[1]) / self.tileSize), offsetx, offsety)

@@ -182,6 +182,8 @@ class medhi:
         self.facing = 0
         self.map = map
         self.gameSurface = gameSurface
+        self.playerSize = 100
+        self.playerRect = Rect(self.x, self.y, self.playerSize, self.playerSize)
 
     def keyDown(self, key):
         if key == K_LEFT:
@@ -203,9 +205,29 @@ class medhi:
         if key == K_DOWN:
             self.vy -= 10
 
-    def update(self, multiplier):
-        self.x = max(0, self.vx + self.x)
-        self.y = max(0, self.vy + self.y)
+    def update(self):
+        self.playerRect.x = max(0, self.vx + self.x)
+
+        for block in self.map.collisionRects:  # for every block in the block list
+            if self.playerRect.colliderect(block):
+
+                if self.vx < 0:
+                    self.playerRect.left = block.right
+                elif self.vx > 0:
+                    self.playerRect.right = block.left
+
+        self.x = self.playerRect.x
+        self.playerRect.y = max(0, self.vy + self.y)
+
+        for block in self.map.collisionRects:
+            if self.playerRect.colliderect(block):
+
+                if self.vy >= 0:
+                    self.playerRect.bottom = block.top
+                elif self.vy < 0:
+                    self.playerRect.top = block.bottom
+
+        self.y = self.playerRect.y
 
         self.draw()
 

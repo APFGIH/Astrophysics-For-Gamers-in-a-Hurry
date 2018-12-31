@@ -115,7 +115,7 @@ class lightBeam:
         self.ang = atan2(y2-y, x2-x)
 
     def getFocus(self, theta):
-        return self.strength*sin((theta-self.ang))
+        return 75*sin((theta-self.ang))**6
 
     def update(self, screen):
         self.time -= 1
