@@ -13,9 +13,9 @@ def solarPropulsion(screen, health):
     shipx, shipy = WIDTH // 2, HEIGHT * 0.9
     lightList = []
     running = True
-    timer = 6000
+    timer = 3000
     lightGathered = 0
-    maxLight = 200000
+    maxLight = 100000
 
 
     def drawPanel(x, y, theta):
@@ -37,6 +37,8 @@ def solarPropulsion(screen, health):
             timer -= 1
             if timer % 10 == 0 and randint(1, 100) < 15:
                 lightList.append(lightBeam(randint(0, WIDTH), HEIGHT, WIDTH//2, HEIGHT//2, randint(0, 4), 100))
+        if lightGathered >= maxLight:
+            return True
 
         for l in lightList:
             l.update(screen)
@@ -48,7 +50,8 @@ def solarPropulsion(screen, health):
 
         draw.rect(screen, (255, 255, 255), (int(WIDTH*0.2), int(HEIGHT*0.08), int(WIDTH*0.6), int(HEIGHT*0.07)))
         draw.rect(screen, (255, 200, 0), (int(WIDTH * 0.21), int(HEIGHT * 0.09), int(WIDTH * 0.58 * lightGathered / maxLight), int(HEIGHT * 0.05)))
-
+        draw.rect(screen, (255, 255, 255), (int(WIDTH * 0.2), int(HEIGHT * 0.01), int(WIDTH * 0.6), int(HEIGHT * 0.07)))
+        draw.rect(screen, (255, 200, 0), (int(WIDTH * 0.21), int(HEIGHT * 0.02), int(WIDTH * 0.58 * timer / 3000), int(HEIGHT * 0.05)))
         if keys[K_LEFT]:
             theta = min(pi//2, theta + 0.01)
         if keys[K_RIGHT]:

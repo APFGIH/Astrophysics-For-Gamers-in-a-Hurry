@@ -25,6 +25,9 @@ def asteroidDodge(screen, health):
         draw.polygon(screen, (250, 250, 250), [p[0], p[1], p[2], p[4]], 0)
         draw.polygon(screen, (0, 0, 255), [p[2], p[3], p[4]], 0)
 
+    hp = 100
+    theta = 0
+
     while running:
         keys = key.get_pressed()
         for action in event.get():
@@ -34,30 +37,6 @@ def asteroidDodge(screen, health):
 
         screen.fill((0, 0, 0))
 
-        if timer == 0:
-            return True
-        else:
-            timer -= 1
-            if timer % 2 == 0 and randint(1, timer + 5000) <= 2500 and timer > 250:
-                asteroidList.append(fallingStone(randint(WIDTH*0.05, WIDTH*0.95), 0, 0, (11000-timer)*randint(80, 120)*0.000009, 30, drawAst1))
-            if any([a.collide([shipx, shipy]) for a in asteroidList]):
-                return False
-
-        for a in asteroidList:
-            a.update(screen)
-            a.move()
-        for i in range(len(asteroidList)-1, -1, -1):
-            if asteroidList[i].y > HEIGHT*1.2:
-                del asteroidList[i]
-
-        drawShip(shipx, shipy)
-        if keys[K_LEFT]:
-            shipx = max(WIDTH*0.05, shipx-5)
-        if keys[K_RIGHT]:
-            shipx = min(WIDTH*0.95, shipx+5)
-
         display.flip()
         clock.tick(FPS)
     quit()
-
-asteroidDodge(screen, 1)

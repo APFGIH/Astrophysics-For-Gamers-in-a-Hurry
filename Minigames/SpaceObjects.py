@@ -111,7 +111,7 @@ class lightBeam:
         self.power = power
         self.time = time
         self.col = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 0, 255), (100, 0, 100)][power]
-        self.strength = (1+power)**3
+        self.strength = (5+power)**2
         self.ang = atan2(y2-y, x2-x)
 
     def getFocus(self, theta):

@@ -109,6 +109,7 @@ def moonLaunch(screen, health):
             if spaceShip.collide(moon):
                 print(2)#return True
 
+
         if launching:
             draw.line(screen, (255, 255, 255), (int(startx), int(starty)), (mx, my), 3)
 
