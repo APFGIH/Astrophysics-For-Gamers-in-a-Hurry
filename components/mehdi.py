@@ -33,6 +33,8 @@ def center_frame(a, b):
 
 def resizeStuff(w, h):
     global screen
+
+    print('I wanna resize!', w, h)
     screen = display.set_mode((max(w, 500), max(h, 400)), DOUBLEBUF + RESIZABLE)
 
 def drawStuff(surface):
