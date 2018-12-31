@@ -8,8 +8,6 @@ class game:
     def __init__(self, screen):
         self.map = Map()
 
-        self.medhi = components.mehdi.medhi(self.map.tileSize)
-
         self.mainScreen = screen
         self.gameClock = time.Clock()
         self.playerSize = 100
@@ -21,12 +19,14 @@ class game:
 
         self.gameScreen = Surface(self.current_display)
 
+        self.medhi = components.mehdi.medhi(self.map, self.gameScreen)
+
     def update(self):
         # Draw World
-        self.map.make_map(self.gameScreen, (self.medhi.x, self.medhi.y))
+        self.map.make_map(self.gameScreen, (self.medhi.cam_x, self.medhi.cam_y))
         # Player
         self.medhi.update(self.multiplier)
-        draw.rect(self.gameScreen, (255, 255, 255), (960 // 2 - self.playerSize // 2, 540 // 2 - self.playerSize // 2, self.playerSize, self.playerSize))
+        draw.rect(self.gameScreen, (255, 255, 255), (self.medhi.x - self.medhi.cam_x, self.medhi.y - self.medhi.cam_y, self.playerSize, self.playerSize))
 
         # Update Game Screen
         self.mainScreen.blit(transform.scale(self.gameScreen, self.display_surface), (int(self.current_display[0]/2-self.display_surface[0]/2), int(int(self.current_display[1]/2-self.display_surface[1]/2))))
@@ -37,7 +37,7 @@ class game:
         running = True
 
         while running:
-            self.gameClock.tick(60)
+            self.gameClock.tick(120)
             for e in event.get():
                 if e.type == QUIT:
                     running = False

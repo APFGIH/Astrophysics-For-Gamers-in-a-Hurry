@@ -9,6 +9,12 @@ class Map:
         self.width = self.gameMap.width
         self.height = self.gameMap.height
         self.tileSize = 80
+        self.collisionRects = []
+
+        for r in self.gameMap.get_layer_by_name("CollisionMap"):
+            self.collisionRects.append(pygame.Rect(r.x*4, r.y*4, r.width*4, r.height*4))
+
+        print(self.collisionRects)
         print(self.width, self.height)
 
     def render(self, surface, sx, sy, hx, hy, offsetx=0, offsety=0):
@@ -18,10 +24,13 @@ class Map:
                 if tile:
                     surface.blit(pygame.transform.scale(tile, (self.tileSize, self.tileSize)), ((x-sx) * self.tileSize - offsetx, (y-sy) * self.tileSize - offsety))
 
-    def make_map(self, surface, playerlocation):
-        offsetx = playerlocation[0] % self.tileSize
-        offsety = playerlocation[1] % self.tileSize
+        for rect in self.collisionRects:
+            pygame.draw.rect(surface, (0, 0, 0), (rect[0] - sx * self.tileSize - offsetx, rect[1] - sy * self.tileSize - offsety, rect[2], rect[3]), 3)
 
-        print(playerlocation)
+    def make_map(self, surface, cameralocation):
+        offsetx = cameralocation[0] % self.tileSize
+        offsety = cameralocation[1] % self.tileSize
 
-        self.render(surface, max(0, playerlocation[0] // self.tileSize - 1), max(0, playerlocation[1] // self.tileSize - 1), 960 // 80, 540 // 80, offsetx, offsety)
+        print(cameralocation)
+
+        self.render(surface, max(0, cameralocation[0] // self.tileSize), max(0, cameralocation[1] // self.tileSize), 960 // 80, 540 // 80, offsetx, offsety)
