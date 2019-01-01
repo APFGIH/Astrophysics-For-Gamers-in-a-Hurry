@@ -34,13 +34,17 @@ def center_frame(a, b):
 def resizeStuff(w, h):
     global screen
 
-    print('I wanna resize!', w, h)
     screen = display.set_mode((max(w, 500), max(h, 400)), DOUBLEBUF + RESIZABLE)
 
 def drawStuff(surface):
     global screen
-    screen.fill((255, 255, 0))
-    screen.blit(surface, center_frame(screen, surface))
+
+    wallpaper(screen)
+
+    x, y = center_frame(screen, surface)
+
+    draw.rect(screen, (255, 255, 255), (x - 1, y - 1, surface.get_width() + 2, surface.get_height() + 2))
+    screen.blit(surface, (x, y))
 
     display.flip()
 
@@ -104,8 +108,10 @@ def meh_screen(screen):
 
 
 # Function to size wallpaper in background
-def wallpaper(screen, size):
+def wallpaper(screen):
     global stars, prev_size
+
+    size = (screen.get_width(), screen.get_height())
 
     if size != prev_size:
         prev_size = size

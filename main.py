@@ -36,7 +36,7 @@ def login():
     while True:
 
         # Draws background
-        wallpaper(screen, size)
+        wallpaper(screen)
 
         # Resets mouse vars
         click = False
@@ -146,7 +146,7 @@ def register():
     while True:
 
         # Draws background
-        wallpaper(screen, size)
+        wallpaper(screen)
 
         # Resets mouse vars
         click = False
@@ -235,7 +235,7 @@ def register_service():
     global username, password
 
     # Background
-    wallpaper(screen, size)
+    wallpaper(screen)
     connecting_text = text("Processing request...", 30)
     screen.blit(connecting_text,
                 center(0, 0, size[0], size[1], connecting_text.get_width(), connecting_text.get_height()))
@@ -266,7 +266,7 @@ def token_authenticate():
     global username, password
 
     # Background
-    wallpaper(screen, size)
+    wallpaper(screen)
     connecting_text = text("Authenticating...", 30)
 
     if flame.cucumber():
@@ -280,7 +280,7 @@ def authenticate():
     global username, password
 
     # Background
-    wallpaper(screen, size)
+    wallpaper(screen)
     connecting_text = text("Authenticating...", 30)
     screen.blit(connecting_text,
                 center(0, 0, size[0], size[1], connecting_text.get_width(), connecting_text.get_height()))
@@ -338,7 +338,7 @@ def reject():
         release = False
 
         # Background
-        wallpaper(screen, size)
+        wallpaper(screen)
 
         for e in event.get():
             if e.type == QUIT:
@@ -451,7 +451,7 @@ def information(message, previous):
     while True:
 
         # Background
-        wallpaper(screen, size)
+        wallpaper(screen)
 
         release = False  # MOuse state
 
@@ -560,7 +560,7 @@ def assistance():
     while True:
 
         # Background
-        wallpaper(screen, size)
+        wallpaper(screen)
 
         release = False #Mouse state
 
@@ -599,7 +599,7 @@ def options():
     global screen #Global screen to make resizing easier
 
     #Background
-    wallpaper(screen, size)
+    wallpaper(screen)
 
     #UI Objects
     back_button = menu.Button(size[0] // 4, size[1] - 130, size[0] // 2, 40, 'menu', "Back")
@@ -640,7 +640,7 @@ def options():
 
 #Display message while waiting for server to ping back
 def status_screen(status, size, screen):
-    wallpaper(screen, size)
+    wallpaper(screen)
 
     #Display text
     connecting_text = text("Updating servers...", 30)
@@ -674,7 +674,7 @@ def menu_screen():
 
     while True:
         #Resets wallpaper and graphics
-        wallpaper(screen, size)
+        wallpaper(screen)
 
         #text_surface_final = Surface((text_surface.get_width() + 4, text_surface.get_height() + 4), SRCALPHA)
 
@@ -767,7 +767,7 @@ def about():
     while True:
         release = False #Mouse state
 
-        wallpaper(screen, size)
+        wallpaper(screen)
 
         for e in event.get():
             if e.type == QUIT:
@@ -856,7 +856,7 @@ if __name__ == '__main__':
 
                 #navigation = game_nav
 
-                solarPropulsion(1, drawStuff, resizeStuff)
+                print('Outcome:', solarPropulsion(1, drawStuff, resizeStuff))
 
             elif navigation[0] == 'crash':
                 navigation = crash(navigation[1], navigation[2])
