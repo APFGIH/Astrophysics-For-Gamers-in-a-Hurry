@@ -1,6 +1,8 @@
 from firebase_admin import credentials, firestore, auth
 import firebase_admin
 import hashlib
+import pickle
+import os
 
 # Very super secure authentication library
 # Jk this is very insecure
@@ -42,9 +44,27 @@ def authenticate(username, password):
         master_user = user['master_user']
         master_user['username'] = username
 
+        jar()
+
         return True
     else:
         print('Rejected.')
+        return False
+
+def jar():
+    global master_user
+
+    with open('s00pers3cuuret0k3n', 'wb') as file:
+        pickle.dump(master_user, file)
+
+def cucumber():
+    global master_user
+
+    try:
+        with open('s00pers3cuuret0k3n', 'rb') as file:
+            master_user = pickle.load(file)
+            return True
+    except:
         return False
 
 def authenticated():
@@ -54,6 +74,8 @@ def save():
     if authenticated():
         firebase_admin.firestore.client(app=None).collection('users').document(master_user['username']).update(
                         {'master_user': master_user})
+
+        jar()
 
         return True
     return False
@@ -66,11 +88,18 @@ def update():
 
         master_user = user['master_user']
 
+        jar()
+
         return True
     return False
 
 def logout():
     global master_user
+
+    try:
+        os.remove('s00pers3cuuret0k3n')
+    except:
+        pass
 
     master_user = {}
 

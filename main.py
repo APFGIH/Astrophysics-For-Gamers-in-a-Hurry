@@ -262,6 +262,19 @@ def register_service():
     except:
         return "information", '\n\n\n\n\nUnable to connect to authentication servers\nTry again later\n\n\nVisit rahmish.com/status.php for help', "login"
 
+def token_authenticate():
+    global username, password
+
+    # Background
+    wallpaper(screen, size)
+    connecting_text = text("Authenticating...", 30)
+
+    if flame.cucumber():
+        return 'menu'
+
+    else:
+        return 'login'
+
 
 def authenticate():
     global username, password
@@ -690,7 +703,7 @@ def menu_screen():
         about_text = normal_font.render("Copyright (C) Rahmish Empire. All Rahs Reserved!", True, (255, 255, 255))
         screen.blit(about_text, (size[0] - about_text.get_width(), size[1] - 20))
 
-        user_text = normal_font.render("Logged in as: %s" % username, True, (255, 255, 255))
+        user_text = normal_font.render("Logged in as: %s" % flame.master_user['username'], True, (255, 255, 255))
         screen.blit(user_text, (20, 20))
 
         #if token:
@@ -800,10 +813,11 @@ if __name__ == '__main__':
     init_stars(size)
     set_screen(screen)
 
-    navigation = 'login'
+    navigation = 'token'
 
     UI = {
         'login': login,
+        'token': token_authenticate,
         'menu': menu_screen,
         'about': about,
         'assistance': assistance,
