@@ -38,7 +38,8 @@ class game:
         self.map.make_map(self.gameScreen, (self.medhi.cam_x, self.medhi.cam_y))
         # Player
         self.medhi.update()
-        draw.rect(self.gameScreen, (255, 255, 255), (self.medhi.x - self.medhi.cam_x, self.medhi.y - self.medhi.cam_y, self.playerSize, self.playerSize))
+        draw.rect(self.gameScreen, (255, 255, 255), (self.medhi.x - self.medhi.cam_x, self.medhi.y - self.medhi.cam_y, self.playerSize, self.playerSize), 3)
+        self.gameScreen.blit(self.medhi.currentFrame, (self.medhi.x - self.medhi.cam_x, self.medhi.y - self.medhi.cam_y))
 
         # Update Game Screen
         self.mainScreen.blit(transform.scale(self.gameScreen, self.display_surface), (int(self.current_display[0]/2-self.display_surface[0]/2), int(int(self.current_display[1]/2-self.display_surface[1]/2))))

@@ -212,9 +212,9 @@ class medhi:
     def __init__(self, map, gameSurface):
         self.tileSize = map.tileSize
         self.x = map.start[0]
-        self.vx = self.cam_x = 0
+        self.vx = self.cam_x = self.ovx = 0
         self.y = map.start[1]
-        self.vy = self.cam_y = 0
+        self.vy = self.cam_y = self.ovy = 0
         self.screenWidth, self.screenHeight = gameSurface.get_size()
         self.currentKey = -1
         self.facing = 0
@@ -225,7 +225,21 @@ class medhi:
 
         self.klist = [False, False, False, False]
 
+        self.animations = {'d': [transform.scale2x(image.load('textures/PlayerAnimation/d (' + str(x) + ').png')).convert_alpha() for x in range(1, 5)],
+                           'l': [transform.scale2x(image.load('textures/PlayerAnimation/l (' + str(x) + ').png')).convert_alpha() for x in range(1, 3)],
+                           'r': [transform.scale2x(image.load('textures/PlayerAnimation/r (' + str(x) + ').png')).convert_alpha() for x in range(1, 3)],
+                           'u': [transform.scale2x(image.load('textures/PlayerAnimation/u (' + str(x) + ').png')).convert_alpha() for x in range(1, 5)]}
+
+        self.currentPosition = 'd'
+        self.currentAnimation = self.animations['d'][:]
+        self.currentFrame = self.animations[self.currentPosition][0]
+        self.animationTick = 30
+        self.currentTick = 0
+        self.animationLock = False
+
     def keyDown(self, key):
+        self.ovx = self.vx
+        self.ovy = self.vy
         if key == K_LEFT:
             self.vx -= 10
             self.klist[0] = True
@@ -240,6 +254,8 @@ class medhi:
             self.klist[3] = True
 
     def keyUp(self, key):
+        self.ovx = self.vx
+        self.ovy = self.vy
         if key == K_LEFT and self.klist[0]:
             self.vx += 10
             self.klist[0] = False
@@ -254,10 +270,15 @@ class medhi:
             self.klist[3] = False
 
     def update(self):
+        self.currentTick += 1
+
         thiccRects = self.map.collisionRects[:]
 
-        legitX =  self.playerRect.x // self.map.tileSize
-        legitY =  self.playerRect.y // self.map.tileSize
+        legitX = self.playerRect.x // self.map.tileSize
+        legitY = self.playerRect.y // self.map.tileSize
+
+        animationvy = self.vy
+        animationvx = self.vx
 
         for x in range(legitX - 2, legitX + 3):
             for y in range(legitY - 2, legitY + 3):
@@ -278,10 +299,13 @@ class medhi:
 
                 if self.vx < 0:
                     self.playerRect.left = block.right
+                    animationvx = 0
                 elif self.vx > 0:
                     self.playerRect.right = block.left
+                    animationvx = 0
 
         self.x = self.playerRect.x
+
         self.playerRect.y = max(0, self.vy + self.y)
 
         for block in thiccRects:
@@ -289,10 +313,68 @@ class medhi:
 
                 if self.vy >= 0:
                     self.playerRect.bottom = block.top
+                    animationvy = 0
                 elif self.vy < 0:
                     self.playerRect.top = block.bottom
+                    animationvy = 0
 
+        print(animationvy, animationvx)
         self.y = self.playerRect.y
+
+        if self.animationLock == 'x' and self.ovx != self.vx:
+            self.animationLock = ''
+            self.ovx = self.vx
+
+        if self.animationLock == 'y' and self.ovy != self.vy:
+            self.animationLock = ''
+            self.ovy = self.vy
+
+        if animationvx > 0:
+            if self.currentPosition == 'r' and self.currentTick >= self.animationTick:
+                self.currentTick = 0
+                self.currentFrame = self.currentAnimation[0]
+                self.currentAnimation.append(self.currentAnimation.pop(0))
+            elif not self.animationLock:
+                self.animationLock = 'x'
+                self.currentPosition = 'r'
+                self.currentAnimation = self.animations['r'][:]
+                self.currentFrame = self.currentAnimation[0]
+
+        elif animationvx < 0:
+            if self.currentPosition == 'l' and self.currentTick >= self.animationTick:
+                self.currentTick = 0
+                self.currentFrame = self.currentAnimation[0]
+                self.currentAnimation.append(self.currentAnimation.pop(0))
+            elif not self.animationLock:
+                self.animationLock = 'x'
+                self.currentPosition = 'l'
+                self.currentAnimation = self.animations['l'][:]
+                self.currentFrame = self.currentAnimation[0]
+
+        if animationvy < 0:
+            if self.currentPosition == 'u' and self.currentTick >= self.animationTick:
+                self.currentTick = 0
+                self.currentFrame = self.currentAnimation[0]
+                self.currentAnimation.append(self.currentAnimation.pop(0))
+            elif not self.animationLock:
+                self.animationLock = 'y'
+                self.currentPosition = 'u'
+                self.currentAnimation = self.animations['u'][:]
+                self.currentFrame = self.currentAnimation[0]
+
+        elif animationvy > 0:
+            if self.currentPosition == 'd' and self.currentTick >= self.animationTick:
+                self.currentTick = 0
+                self.currentFrame = self.currentAnimation[0]
+                self.currentAnimation.append(self.currentAnimation.pop(0))
+            elif not self.animationLock:
+                self.animationLock = 'y'
+                self.currentPosition = 'd'
+                self.currentAnimation = self.animations['d'][:]
+                self.currentFrame = self.currentAnimation[0]
+
+        if animationvx == 0 and animationvy == 0:
+            self.currentFrame = self.animations[self.currentPosition][0]
 
         self.draw()
 
