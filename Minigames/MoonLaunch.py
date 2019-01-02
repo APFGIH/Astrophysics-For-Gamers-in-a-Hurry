@@ -49,7 +49,59 @@ def moonLaunch(screen, health):
             p[i] = [int(j) for j in rotateC(p[i][0], p[i][1], x, y, r)]
         draw.polygon(screen, (180, 180, 180),
                      p, 0)
-    Ast2 = Asteroid(Ast2Pol, Ast2x, Ast2y, 0, 0, drawAst2, -0.005)
+    Ast2 = Asteroid(Ast2Pol, Ast2x, Ast2y, 0, 0, drawAst2, -0.006)
+
+    #Asteroid 3
+    Ast3x, Ast3y = int(WIDTH*0.6), int(HEIGHT*0.4)
+    Ast3Pol = [(Ast3x + -5, Ast3y - 20), (Ast2x, Ast3y - 30), (Ast3x + 15, Ast3y - 15), (Ast3x + 5, Ast3y),
+               (Ast3x + 9, Ast3y + 15), (Ast3x - 5, Ast3y + 25), (Ast3x - 20, Ast3y + 10), (Ast3x + -5, Ast3y + 15)]
+    def drawAst3(screen, x, y, r):
+        p = [(x + -5, y - 20), (x, y - 30), (x + 15, y - 15), (x + 5, y),
+               (x + 9, y + 15), (x - 5, y + 25), (x - 20, y + 10), (x + -5, y + 15)]
+        for i in range(len(p)):
+            p[i] = [int(j) for j in rotateC(p[i][0], p[i][1], x, y, r)]
+        draw.polygon(screen, (180, 180, 180),
+                     p, 0)
+    Ast3 = Asteroid(Ast3Pol, Ast3x, Ast3y, 0, 0, drawAst3, -0.007)
+
+    #Asteroid 4
+    Ast4x, Ast4y = int(WIDTH*0.5), int(HEIGHT*0.7)
+    Ast4Pol = [(Ast4x + -5, Ast4y - 20), (Ast4x, Ast4y - 30), (Ast4x + 15, Ast4y - 15), (Ast4x + 5, Ast4y),
+               (Ast4x + 9, Ast4y + 15), (Ast4x - 5, Ast4y + 25), (Ast4x - 20, Ast4y + 10), (Ast4x + -5, Ast4y + 15)]
+    def drawAst4(screen, x, y, r):
+        p = [(x + -5, y - 20), (x, y - 30), (x + 15, y - 15), (x + 5, y),
+               (x + 9, y + 15), (x - 5, y + 25), (x - 20, y + 10), (x + -5, y + 15)]
+        for i in range(len(p)):
+            p[i] = [int(j) for j in rotateC(p[i][0], p[i][1], x, y, r)]
+        draw.polygon(screen, (180, 180, 180),
+                     p, 0)
+    Ast4 = Asteroid(Ast4Pol, Ast4x, Ast4y, 0, 0, drawAst4, -0.008)
+
+    #Asteroid 5
+    Ast5x, Ast5y = int(WIDTH*0.3), int(HEIGHT*0.44)
+    Ast5Pol = [(Ast5x + -5, Ast5y - 20), (Ast5x, Ast5y - 30), (Ast5x + 15, Ast5y - 15), (Ast5x + 5, Ast5y),
+               (Ast5x + 9, Ast5y + 15), (Ast5x - 5, Ast5y + 25), (Ast5x - 20, Ast5y + 10), (Ast5x + -5, Ast5y + 15)]
+    def drawAst5(screen, x, y, r):
+        p = [(x + -5, y - 20), (x, y - 30), (x + 15, y - 15), (x + 5, y),
+               (x + 9, y + 15), (x - 5, y + 25), (x - 20, y + 10), (x + -5, y + 15)]
+        for i in range(len(p)):
+            p[i] = [int(j) for j in rotateC(p[i][0], p[i][1], x, y, r)]
+        draw.polygon(screen, (180, 180, 180),
+                     p, 0)
+    Ast5 = Asteroid(Ast5Pol, Ast5x, Ast5y, 0, 0, drawAst5, -0.009)
+
+    #Asteroid 6
+    Ast6x, Ast6y = int(WIDTH*0.78), int(HEIGHT*0.31)
+    Ast6Pol = [(Ast6x + -5, Ast6y - 20), (Ast6x, Ast6y - 30), (Ast6x + 15, Ast6y - 15), (Ast6x + 5, Ast6y),
+               (Ast6x + 9, Ast6y + 15), (Ast6x - 5, Ast6y + 25), (Ast6x - 20, Ast6y + 10), (Ast6x + -5, Ast6y + 15)]
+    def drawAst6(screen, x, y, r):
+        p = [(x + -5, y - 20), (x, y - 30), (x + 15, y - 15), (x + 5, y),
+               (x + 9, y + 15), (x - 5, y + 25), (x - 20, y + 10), (x + -5, y + 15)]
+        for i in range(len(p)):
+            p[i] = [int(j) for j in rotateC(p[i][0], p[i][1], x, y, r)]
+        draw.polygon(screen, (180, 180, 180),
+                     p, 0)
+    Ast6 = Asteroid(Ast6Pol, Ast6x, Ast6y, 0, 0, drawAst6, 0.011)
 
     #Spaceship being launched
     def drawShip(screen, x, y, r):
@@ -58,7 +110,7 @@ def moonLaunch(screen, health):
             p[i] = [int(j) for j in rotateC(p[i][0], p[i][1], x, y, r)]
         draw.polygon(screen, (250, 250, 250), [p[0], p[1], p[2], p[4]], 0)
         draw.polygon(screen, (0, 0, 255), [p[2], p[3], p[4]], 0)
-    asteroids = [Ast1, Ast2]
+    asteroids = [Ast1, Ast2, Ast3, Ast4, Ast5, Ast6]
 
 
     #Actual spaceship
