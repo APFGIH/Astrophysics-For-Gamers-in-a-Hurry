@@ -268,6 +268,8 @@ def token_authenticate():
     # Background
     wallpaper(screen)
     connecting_text = text("Authenticating...", 30)
+    screen.blit(connecting_text,
+                center(0, 0, size[0], size[1], connecting_text.get_width(), connecting_text.get_height()))
 
     if flame.cucumber():
         return 'menu'

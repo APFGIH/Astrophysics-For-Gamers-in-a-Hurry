@@ -2,12 +2,22 @@ import components.mehdi
 from pygame import *
 from Map.Map import *
 import Minigames.AsteroidDodge
-
+import traceback
 
 class game:
 
     def __init__(self, screen):
         self.mainScreen = screen
+
+        self.mainScreen.fill((0, 0, 0))
+
+        loading_text = components.mehdi.text("Loading...", 30)
+
+        self.mainScreen.blit(loading_text,
+                             components.mehdi.center(0, 0, self.mainScreen.get_width(), self.mainScreen.get_height(), loading_text.get_width(), loading_text.get_height()))
+
+        display.flip()
+
         self.gameClock = time.Clock()
         self.playerSize = 100
         self.multiplier = 1
@@ -68,9 +78,10 @@ class game:
                     print(p, self.medhi.playerRect)
                     if self.medhi.playerRect.colliderect(p[0]):
                         try:
-                            self.medhigames[int(p[1])](screen, 100)
+                            self.medhigames[int(p[1])](self.mainScreen, 100)
                         except:
-                            print(p[1])
+                            print('it broke!', p[1])
+                            traceback.print_exc()
 
             # mx, my = mouse.get_pressed()[:2]
 
