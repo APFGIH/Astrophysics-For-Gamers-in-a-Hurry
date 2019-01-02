@@ -219,7 +219,7 @@ class medhi:
         self.facing = 0
         self.map = map
         self.gameSurface = gameSurface
-        self.playerSize = 100
+        self.playerSize = 40
         self.playerRect = Rect(self.x, self.y, self.playerSize, self.playerSize)
 
     def keyDown(self, key):

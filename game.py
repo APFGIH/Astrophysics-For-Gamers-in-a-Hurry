@@ -19,7 +19,7 @@ class game:
         display.flip()
 
         self.gameClock = time.Clock()
-        self.playerSize = 100
+        self.playerSize = 40
         self.multiplier = 1
         self.init_display_size = (1080, 720)
         self.current_display = (1080, 720)
@@ -53,6 +53,8 @@ class game:
             for e in event.get():
                 if e.type == QUIT:
                     running = False
+
+                    return 'exit'
                     break
                 elif e.type == KEYDOWN:
                     self.medhi.keyDown(e.key)
