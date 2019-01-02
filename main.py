@@ -1,4 +1,5 @@
 from pygame import *
+from datetime import datetime
 from components.mehdi import *
 import components.menu as menu
 import components.flame as flame
@@ -567,7 +568,7 @@ def leaderboard():
     about_list = ['(btw i\'m too lazy to get this formatted properly... so deal with it)', 'Nerds that don\' have a life:','|        Name       |       High Score       |       Last Login       |']
 
     for user in flame.getLeaderboard():
-        about_list.append('| %19s | %24i | %25s |' % (user['name'], user['score'], user['lastLogin']))
+        about_list.append('| %19s | %24i | %25s |' % (user['name'], user['score'], datetime.utcfromtimestamp(user['lastLogin']).strftime('%Y-%m-%d %H:%M:%S')))
 
 
     while True:
@@ -826,6 +827,8 @@ if __name__ == '__main__':
             navigation = 'menu' if flame.authenticated() else 'login'
 
             crash(traceback.format_exc(), 'menu')
+
+    flame.save()
 
     mixer.music.stop()
     display.quit()
