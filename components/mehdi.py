@@ -13,8 +13,6 @@ import random
 import traceback
 import time as t
 
-thiccRects = []
-
 # x, y, vx, vy
 stars = []
 prev_size = (0, 0)
@@ -256,21 +254,6 @@ class medhi:
             self.klist[3] = False
 
     def update(self):
-        global thiccRects
-
-        self.playerRect.x = max(0, self.vx + self.x)
-
-        for block in self.map.collisionRects:  # for every block in the block list
-            if self.playerRect.colliderect(block):
-
-                if self.vx < 0:
-                    self.playerRect.left = block.right
-                elif self.vx > 0:
-                    self.playerRect.right = block.left
-
-        self.x = self.playerRect.x
-        self.playerRect.y = max(0, self.vy + self.y)
-
         thiccRects = self.map.collisionRects[:]
 
         legitX =  self.playerRect.x // self.map.tileSize
@@ -282,13 +265,24 @@ class medhi:
                 try:
                     tileID = self.map.gameMap.get_tile_gid(x, y, 0)
 
-                    print(x, y, tileID)
-
                     if tileID == 1:
                         thiccRects.append(Rect(x * self.map.tileSize, y * self.map.tileSize, self.map.tileSize, self.map.tileSize))
 
                 except:
                     traceback.print_exc()
+
+        self.playerRect.x = max(0, self.vx + self.x)
+
+        for block in thiccRects:  # for every block in the block list
+            if self.playerRect.colliderect(block):
+
+                if self.vx < 0:
+                    self.playerRect.left = block.right
+                elif self.vx > 0:
+                    self.playerRect.right = block.left
+
+        self.x = self.playerRect.x
+        self.playerRect.y = max(0, self.vy + self.y)
 
         for block in thiccRects:
             if self.playerRect.colliderect(block):

@@ -1,7 +1,7 @@
 import pytmx
 import pygame
 import math
-import components.mehdi
+
 
 class Map:
     def __init__(self, gameScreen):
@@ -28,8 +28,8 @@ class Map:
                 if tile:
                     surface.blit(pygame.transform.scale(tile, (self.tileSize, self.tileSize)), ((x-sx) * self.tileSize - offsetx, (y-sy) * self.tileSize - offsety))
 
-        for rect in components.mehdi.thiccRects:
-            pygame.draw.rect(surface, (255, 0, 0), (rect[0] - sx * self.tileSize - offsetx, rect[1] - sy * self.tileSize - offsety, rect[2], rect[3]), 3)
+        for rect in self.collisionRects:
+            pygame.draw.rect(surface, (0, 0, 0), (rect[0] - sx * self.tileSize - offsetx, rect[1] - sy * self.tileSize - offsety, rect[2], rect[3]), 3)
 
     def make_map(self, surface, cameralocation):
         offsetx = cameralocation[0] % self.tileSize
