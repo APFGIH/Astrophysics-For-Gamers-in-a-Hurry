@@ -804,9 +804,9 @@ if __name__ == '__main__':
             elif navigation == 'game':
                 #music_object.stop()
 
-                game_nav = game.game(screen)
+                g = game.game(screen)
 
-                navigation = game_nav
+                navigation = g.game()
 
                 #print('Outcome:', solarPropulsion(1, drawStuff, resizeStuff))
 

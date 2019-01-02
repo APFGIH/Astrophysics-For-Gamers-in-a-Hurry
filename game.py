@@ -56,7 +56,7 @@ class game:
 
                     print(e, self.aspect_ratio)
 
-            screen.fill((0, 0, 0))
+            #screen.fill((0, 0, 0))
 
             keys = key.get_pressed()
             # mx, my = mouse.get_pressed()[:2]
