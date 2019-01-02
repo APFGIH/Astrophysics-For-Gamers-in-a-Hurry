@@ -14,13 +14,19 @@ def moonLaunch(screen, health):
     FPS = 100
     clock = time.Clock()
     lives = 3
+
+    moonPic = transform.scale(image.load("../textures/moon.png"), (80, 60))
+
     def drawEarth(screen, x, y):
         draw.circle(screen, (255, 0, 0), (int(x), int(y)), 30, 0)
+
+    def drawMoon(screen, x, y):
+        screen.blit(moonPic, (int(x-40), int(y-30)))
     running = True
 
     #Start and end point
     earth = Planet(int(WIDTH*0.2), int(HEIGHT*0.75), 0, 0, 30, 1000, drawEarth)
-    moon = Planet(int(WIDTH * 0.9), int(HEIGHT * 0.2), 0, 0, 30, 1000, drawEarth)
+    moon = Planet(int(WIDTH * 0.9), int(HEIGHT * 0.2), 0, 0, 30, 1000, drawMoon)
 
 
 
@@ -121,6 +127,9 @@ def moonLaunch(screen, health):
     shipping = False
     startx, starty = WIDTH * 0.2, HEIGHT * 0.75
     planets = [earth, moon]
+
+
+
     while running:
         mx, my = mouse.get_pos()
 

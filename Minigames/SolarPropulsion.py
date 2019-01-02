@@ -3,7 +3,7 @@ from math import *
 from random import *
 from Minigames.SpaceObjects import *
 from Minigames.Technicals import *
-
+from components.mehdi import *
 
 
 def solarPropulsion(health, drawScreen, resizeScreen):
@@ -23,6 +23,7 @@ def solarPropulsion(health, drawScreen, resizeScreen):
         draw.line(screen, (255, 255, 0), (x - 250 * cos(theta), y -10- 250 * sin(theta)), (x + 250 * cos(theta), y -10+ 250 * sin(theta)), 10)
         draw.line(screen, (255, 255, 255), (x - 250*cos(theta), y - 250*sin(theta)), (x + 250*cos(theta), y + 250*sin(theta)), 10)
     theta = pi//4
+
 
 
     while running:
