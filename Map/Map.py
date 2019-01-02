@@ -5,18 +5,21 @@ import math
 
 class Map:
     def __init__(self, gameScreen):
-        self.gameMap = pytmx.load_pygame("Map/tileMaps/Testmap1.tmx", pixelalpha=True)
+        self.gameMap = pytmx.load_pygame("Map/tileMaps/world.tmx", pixelalpha=True)
         self.width = self.gameMap.width
         self.height = self.gameMap.height
         self.screenSize = gameScreen.get_size()
-        self.tileSize = 80
+        self.tileSize = 48
         self.collisionRects = []
+        self.portals = []
 
-        for r in self.gameMap.get_layer_by_name("CollisionMap"):
-            self.collisionRects.append(pygame.Rect(r.x*4, r.y*4, r.width*4, r.height*4))
+        for r in self.gameMap.get_layer_by_name("Collision"):
+            self.collisionRects.append(pygame.Rect(r.x, r.y, r.width, r.height))
 
-        print(self.collisionRects)
-        print(self.width, self.height)
+        self.start = (self.gameMap.get_layer_by_name("Start")[0].x, self.gameMap.get_layer_by_name("Start")[0].y)
+
+        for p in self.gameMap.get_layer_by_name("Portal"):
+            self.portals.append((pygame.Rect(p.x, p.y, p.width, p.height), p.name))
 
     def render(self, surface, sx, sy, hx, hy, offsetx=0, offsety=0):
         for x in range(sx, hx):

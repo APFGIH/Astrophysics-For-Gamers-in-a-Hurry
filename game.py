@@ -1,6 +1,7 @@
 import components.mehdi
 from pygame import *
 from Map.Map import *
+import Minigames.AsteroidDodge
 
 
 class game:
@@ -10,15 +11,17 @@ class game:
         self.gameClock = time.Clock()
         self.playerSize = 100
         self.multiplier = 1
-        self.init_display_size = (960, 540)
-        self.current_display = (960, 540)
-        self.display_surface = (960, 540)
+        self.init_display_size = (1080, 720)
+        self.current_display = (1080, 720)
+        self.display_surface = (1080, 720)
         self.aspect_ratio = self.init_display_size[0] / self.init_display_size[1]
 
         self.gameScreen = Surface(self.current_display)
         self.map = Map(self.gameScreen)
 
         self.medhi = components.mehdi.medhi(self.map, self.gameScreen)
+
+        self.medhigames = {1: Minigames.AsteroidDodge.asteroidDodge}
 
     def update(self):
         # Draw World
@@ -59,6 +62,16 @@ class game:
             screen.fill((0, 0, 0))
 
             keys = key.get_pressed()
+
+            if keys[K_p]:
+                for p in self.map.portals:
+                    print(p, self.medhi.playerRect)
+                    if self.medhi.playerRect.colliderect(p[0]):
+                        try:
+                            self.medhigames[int(p[1])](screen, 100)
+                        except:
+                            print(p[1])
+
             # mx, my = mouse.get_pressed()[:2]
 
             self.update()
@@ -66,7 +79,7 @@ class game:
 
 if __name__ == "__main__":
     init()
-    screen = display.set_mode((960, 540), RESIZABLE | HWSURFACE)
+    screen = display.set_mode((1080, 720), RESIZABLE | HWSURFACE)
     g = game(screen)
 
     g.game()

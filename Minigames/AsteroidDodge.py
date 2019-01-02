@@ -1,12 +1,9 @@
 from pygame import *
-from SpaceObjects import *
-from Technicals import *
+from Minigames.SpaceObjects import *
+from Minigames.Technicals import *
 from random import *
 from math import *
 init()
-
-WIDTH, HEIGHT = 1080, 720
-screen = display.set_mode((WIDTH, HEIGHT))
 
 def asteroidDodge(screen, health):
     WIDTH, HEIGHT = 1080, 720
@@ -61,5 +58,3 @@ def asteroidDodge(screen, health):
         display.flip()
         clock.tick(FPS)
     quit()
-
-print(asteroidDodge(screen, 1))

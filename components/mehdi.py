@@ -210,8 +210,10 @@ def joint_rotate(surf, angle):
 class medhi:
     def __init__(self, map, gameSurface):
         self.tileSize = map.tileSize
-        self.x = self.vx = self.cam_x = 0
-        self.y = self.vy = self.cam_y = 0
+        self.x = map.start[0]
+        self.vx = self.cam_x = 0
+        self.y = map.start[1]
+        self.vy = self.cam_y = 0
         self.screenWidth, self.screenHeight = gameSurface.get_size()
         self.currentKey = -1
         self.facing = 0
