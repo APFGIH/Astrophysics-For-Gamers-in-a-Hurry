@@ -10,7 +10,10 @@ from pygame import *  # to allow use of graphics
 from random import *  # to allow use of random generators
 from math import *  # to allow use of trigonometric functions
 import random
+import traceback
 import time as t
+
+thiccRects = []
 
 # x, y, vx, vy
 stars = []
@@ -221,6 +224,7 @@ class medhi:
         self.gameSurface = gameSurface
         self.playerSize = 40
         self.playerRect = Rect(self.x, self.y, self.playerSize, self.playerSize)
+
         self.klist = [False, False, False, False]
 
     def keyDown(self, key):
@@ -252,6 +256,8 @@ class medhi:
             self.klist[3] = False
 
     def update(self):
+        global thiccRects
+
         self.playerRect.x = max(0, self.vx + self.x)
 
         for block in self.map.collisionRects:  # for every block in the block list
@@ -265,7 +271,26 @@ class medhi:
         self.x = self.playerRect.x
         self.playerRect.y = max(0, self.vy + self.y)
 
-        for block in self.map.collisionRects:
+        thiccRects = self.map.collisionRects[:]
+
+        legitX =  self.playerRect.x // self.map.tileSize
+        legitY =  self.playerRect.y // self.map.tileSize
+
+        for x in range(legitX - 2, legitX + 3):
+            for y in range(legitY - 2, legitY + 3):
+
+                try:
+                    tileID = self.map.gameMap.get_tile_gid(x, y, 0)
+
+                    print(x, y, tileID)
+
+                    if tileID == 1:
+                        thiccRects.append(Rect(x * self.map.tileSize, y * self.map.tileSize, self.map.tileSize, self.map.tileSize))
+
+                except:
+                    traceback.print_exc()
+
+        for block in thiccRects:
             if self.playerRect.colliderect(block):
 
                 if self.vy >= 0:
