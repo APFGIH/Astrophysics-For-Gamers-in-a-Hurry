@@ -38,7 +38,8 @@ class game:
         self.map.make_map(self.gameScreen, (self.medhi.cam_x, self.medhi.cam_y))
         # Player
         self.medhi.update()
-        draw.rect(self.gameScreen, (255, 255, 255), (self.medhi.x - self.medhi.cam_x, self.medhi.y - self.medhi.cam_y, self.playerSize, self.playerSize))
+        draw.rect(self.gameScreen, (255, 255, 255), (self.medhi.x - self.medhi.cam_x, self.medhi.y - self.medhi.cam_y, self.playerSize, self.playerSize), 3)
+        self.gameScreen.blit(self.medhi.currentFrame, (self.medhi.x - self.medhi.cam_x, self.medhi.y - self.medhi.cam_y))
 
         # Update Game Screen
         self.mainScreen.blit(transform.scale(self.gameScreen, self.display_surface), (int(self.current_display[0]/2-self.display_surface[0]/2), int(int(self.current_display[1]/2-self.display_surface[1]/2))))
@@ -68,10 +69,9 @@ class game:
                     else:
                         self.display_surface = (int(e.h * self.aspect_ratio), e.h)
                     self.mainScreen = display.set_mode((e.w, e.h), RESIZABLE | HWSURFACE)
+                    self.mainScreen.fill((0, 0, 0))
 
                     print(e, self.aspect_ratio)
-
-            #screen.fill((0, 0, 0))
 
             keys = key.get_pressed()
 
