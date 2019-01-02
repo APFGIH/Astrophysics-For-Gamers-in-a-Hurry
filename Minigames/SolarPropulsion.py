@@ -2,6 +2,7 @@ from pygame import *
 from math import *
 from random import *
 from Minigames.SpaceObjects import *
+from Minigames.Technicals import *
 
 WIDTH, HEIGHT = 1080, 720
 screen = display.set_mode((1366, 768))
@@ -18,7 +19,6 @@ def solarPropulsion(health, drawScreen, resizeScreen):
     timer = 3000
     lightGathered = 0
     maxLight = 100000
-
 
     def drawPanel(x, y, theta):
         draw.line(screen, (255, 255, 0), (x - 250 * cos(theta), y -10- 250 * sin(theta)), (x + 250 * cos(theta), y -10+ 250 * sin(theta)), 10)
@@ -54,6 +54,8 @@ def solarPropulsion(health, drawScreen, resizeScreen):
             if lightList[i].time <= 0:
                 del lightList[i]
 
+
+
         draw.rect(screen, (255, 255, 255), (int(WIDTH*0.2), int(HEIGHT*0.08), int(WIDTH*0.6), int(HEIGHT*0.07)))
         draw.rect(screen, (255, 200, 0), (int(WIDTH * 0.21), int(HEIGHT * 0.09), int(WIDTH * 0.58 * lightGathered / maxLight), int(HEIGHT * 0.05)))
         draw.rect(screen, (255, 255, 255), (int(WIDTH * 0.2), int(HEIGHT * 0.01), int(WIDTH * 0.6), int(HEIGHT * 0.07)))
@@ -64,13 +66,11 @@ def solarPropulsion(health, drawScreen, resizeScreen):
             theta = max(-pi//4, theta - 0.01)
 
 
-
-
-
         drawPanel(WIDTH // 2, HEIGHT // 2, theta)
 
         drawScreen(screen)
         #display.flip()
+
         clock.tick(FPS)
     quit()
 

@@ -281,3 +281,42 @@ class medhi:
         else:
             self.cam_y = self.y - self.screenHeight // 2
 
+
+#Animated textboxes
+class TextBox:
+    def __init__(self, text, delay, width, size, col, x, y):
+        self.text = text
+        self.delay = delay
+        self.width = width
+        self.fnt = font.Font("fonts/UndertaleSans.ttf", size)
+        self.col = col
+        self.text_surface = self.fnt.render("I", True, col)  # surface text
+        self.h = self.text_surface.get_height()
+        self.text_surface = self.fnt.render("", True, col)  # surface text
+        self.lines = [self.text_surface]
+        self.cur = 0
+        self.curline = ""
+        self.size = size
+        self.t = 0
+        self.x = x
+        self.y = y
+
+    def animate(self):
+        if self.cur != len(self.text)-1 and self.t % self.delay == 0:
+            if self.text_surface.get_width() + self.size < self.width:
+                self.curline += self.text[self.cur]
+                self.text_surface = self.fnt.render(self.curline, True, self.col)
+                self.cur += 1
+            else:
+                self.curline = ""
+                self.lines.append(None)
+                self.curline += self.text[self.cur]
+                self.text_surface = self.fnt.render(self.curline, True, self.col)
+                self.cur += 1
+            self.lines[-1] = self.text_surface
+        self.t += 1
+
+
+    def update(self, screen):
+        for i in range(len(self.lines)):
+            screen.blit(self.lines[i], (self.x, self.y+self.h*i))
