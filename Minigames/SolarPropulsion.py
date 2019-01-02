@@ -4,8 +4,7 @@ from random import *
 from Minigames.SpaceObjects import *
 from Minigames.Technicals import *
 
-WIDTH, HEIGHT = 1080, 720
-screen = display.set_mode((1366, 768))
+
 
 def solarPropulsion(health, drawScreen, resizeScreen):
 
@@ -76,6 +75,10 @@ def solarPropulsion(health, drawScreen, resizeScreen):
 
 
 if __name__ == '__main__':
+
+    WIDTH, HEIGHT = 1080, 720
+    screen = display.set_mode((1366, 768))
+
     def center(a, b):
         sw = a.get_width()
         sh = a.get_height()

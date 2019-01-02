@@ -44,6 +44,11 @@ def lineIntersect(l1, l2):
         return max(min(l1[0][0], l1[1][0]), min(l2[0][0], l2[1][0])) <= x <= min(max(l1[0][0], l1[1][0]),
                                                                                  max(l2[0][0], l2[1][0]))
 
+def getBoundingBox(pointList):
+    xp, yp = [x for x, y in pointList], [y for x, y in pointList]
+    return Rect(min(xp), min(yp), max(xp)-min(xp), max(yp)-min(yp))
+
+
 
 def rotateC(x, y, cx, cy, theta):
     return [cx + (x-cx)*cos(theta) - (y-cy)*sin(theta), cy + (x-cx)*sin(theta) + (y-cy)*cos(theta)]

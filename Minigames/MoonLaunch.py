@@ -13,7 +13,7 @@ def moonLaunch(screen, health):
 
     FPS = 100
     clock = time.Clock()
-
+    lives = 3
     def drawEarth(screen, x, y):
         draw.circle(screen, (255, 0, 0), (int(x), int(y)), 30, 0)
     running = True
@@ -40,8 +40,8 @@ def moonLaunch(screen, health):
 
     #Asteroid 2
     Ast2x, Ast2y = int(WIDTH*0.6), int(HEIGHT*0.3)
-    Ast2Pol = [(Ast1x + -5, Ast1y - 20), (Ast1x, Ast1y - 30), (Ast1x + 15, Ast1y - 15), (Ast1x + 5, Ast1y),
-               (Ast1x + 9, Ast1y + 15), (Ast1x - 5, Ast1y + 25), (Ast1x - 20, Ast1y + 10), (Ast1x + -5, Ast1y + 15)]
+    Ast2Pol = [(Ast2x + -5, Ast2y - 20), (Ast2x, Ast2y - 30), (Ast2x + 15, Ast2y - 15), (Ast2x + 5, Ast2y),
+               (Ast2x + 9, Ast2y + 15), (Ast2x - 5, Ast2y + 25), (Ast2x - 20, Ast2y + 10), (Ast2x + -5, Ast2y + 15)]
     def drawAst2(screen, x, y, r):
         p = [(x + -5, y - 20), (x, y - 30), (x + 15, y - 15), (x + 5, y),
                (x + 9, y + 15), (x - 5, y + 25), (x - 20, y + 10), (x + -5, y + 15)]
@@ -105,10 +105,13 @@ def moonLaunch(screen, health):
             spaceShip.move(planets)
             spaceShip.rotate(-spaceShip.rot+atan2(-spaceShip.xvel, spaceShip.yvel))
             if any([spaceShip.collide(a) for a in asteroids]):
-                print(1)
+                lives -= 1
+                shipping = False
             if spaceShip.collide(moon):
-                print(2)#return True
+                return True
 
+        if lives == 0:
+            return False
 
         if launching:
             draw.line(screen, (255, 255, 255), (int(startx), int(starty)), (mx, my), 3)

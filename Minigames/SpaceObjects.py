@@ -76,7 +76,8 @@ class Asteroid:
             
 
     def collide(self, obj):
-        return polCollide(self.polygon, obj.polygon)
+        return getBoundingBox(self.polygon).colliderect(getBoundingBox(obj.polygon))
+        #return polCollide(self.polygon, obj.polygon)
 
     def update(self, screen):
         self.pic(screen, self.x, self.y, self.rot)
