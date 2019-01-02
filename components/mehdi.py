@@ -415,7 +415,7 @@ class TextBox:
 
     def animate(self):
         if self.cur != len(self.text)-1 and self.t % self.delay == 0:
-            if self.text_surface.get_width() + self.size < self.width:
+            if self.text_surface.get_width() + self.size < self.width or not (self.text[self.cur] == " " and self.text_surface.get_width()+6*self.size > self.width):
                 self.curline += self.text[self.cur]
                 self.text_surface = self.fnt.render(self.curline, True, self.col)
                 self.cur += 1
@@ -427,8 +427,37 @@ class TextBox:
                 self.cur += 1
             self.lines[-1] = self.text_surface
         self.t += 1
+        if self.cur == len(self.text)-1:
+            return True
+
+    def finish(self):
+        a = self.animate()
+        if not a:
+            self.finish()
 
 
     def update(self, screen):
         for i in range(len(self.lines)):
             screen.blit(self.lines[i], (self.x, self.y+self.h*i))
+
+
+def txtScreen(tb, screen):
+    running = True
+    clock = time.Clock()
+    while running:
+        screen.fill((0, 0, 0))
+        keys = key.get_pressed()
+        for action in event.get():
+            if action.type == QUIT:
+                running = False
+                break
+        a = tb.animate()
+        tb.update(screen)
+        if a and keys[K_a]:
+            return
+        elif keys[K_b]:
+            tb.finish()
+        display.flip()
+        clock.tick(100)
+    quit()
+
