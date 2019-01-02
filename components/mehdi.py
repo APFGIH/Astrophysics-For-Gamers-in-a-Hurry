@@ -221,26 +221,35 @@ class medhi:
         self.gameSurface = gameSurface
         self.playerSize = 40
         self.playerRect = Rect(self.x, self.y, self.playerSize, self.playerSize)
+        self.klist = [False, False, False, False]
 
     def keyDown(self, key):
         if key == K_LEFT:
             self.vx -= 10
+            self.klist[0] = True
         if key == K_RIGHT:
             self.vx += 10
+            self.klist[1] = True
         if key == K_UP:
             self.vy -= 10
+            self.klist[2] = True
         if key == K_DOWN:
             self.vy += 10
+            self.klist[3] = True
 
     def keyUp(self, key):
-        if key == K_LEFT:
+        if key == K_LEFT and self.klist[0]:
             self.vx += 10
-        if key == K_RIGHT:
+            self.klist[0] = False
+        if key == K_RIGHT and self.klist[1]:
             self.vx -= 10
-        if key == K_UP:
+            self.klist[1] = False
+        if key == K_UP and self.klist[2]:
             self.vy += 10
-        if key == K_DOWN:
+            self.klist[2] = False
+        if key == K_DOWN and self.klist[3]:
             self.vy -= 10
+            self.klist[3] = False
 
     def update(self):
         self.playerRect.x = max(0, self.vx + self.x)
