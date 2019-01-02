@@ -3,6 +3,8 @@ import firebase_admin
 import hashlib
 import pickle
 import os
+import time
+import traceback
 
 # Very super secure authentication library
 # Jk this is very insecure
@@ -72,6 +74,9 @@ def authenticated():
 
 def save():
     if authenticated():
+
+        master_user['lastLogin'] = time.time()
+
         firebase_admin.firestore.client(app=None).collection('users').document(master_user['username']).update(
                         {'master_user': master_user})
 
@@ -102,6 +107,38 @@ def logout():
         pass
 
     master_user = {}
+
+def getLeaderboard():
+
+    users = firebase_admin.firestore.client(app=None).collection('users').get()
+
+    leaderboard = {}
+
+    for raw_user in users:
+        try:
+            user = raw_user.to_dict()['master_user']
+
+            if user['score'] not in leaderboard:
+                leaderboard[user['score']] = []
+
+            leaderboard[user['score']].append({
+                'name': raw_user.id,
+                'score': user['score'],
+                'lastLogin': user['lastLogin']
+            })
+
+        except:
+            #traceback.print_exc()
+            pass
+
+    keys = sorted(leaderboard.keys())[::-1]
+
+    out = []
+
+    for score in keys:
+        out += leaderboard[score]
+
+    return out
 
 if __name__ == '__main__':
     #register('henry', hash('password', 'henry'))

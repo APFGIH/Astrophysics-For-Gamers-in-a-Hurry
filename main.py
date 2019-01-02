@@ -546,7 +546,7 @@ def death(message):
         display.update()
 
 #Help screen
-def assistance():
+def leaderboard():
     global screen #Global screen to make resizing easier
 
     #Button object
@@ -555,7 +555,18 @@ def assistance():
     #Font and help page contents
     normal_font = font.Font("fonts/UndertaleSans.ttf", 14)
 
-    about_list = ['this is some really helpful help']
+    # {
+    #   "name": "Karl ZHu",
+    #   "score": 69,
+    #   "lastLogin": 90000
+    # }
+
+
+    about_list = ['(btw i\'m too lazy to get this formatted properly... so deal with it)', 'Nerds that don\' have a life:','|        Name       |       High Score       |       Last Login       |']
+
+    for user in flame.getLeaderboard():
+        about_list.append('| %19s | %24i | %25s |' % (user['name'], user['score'], user['lastLogin']))
+
 
     while True:
 
@@ -575,7 +586,7 @@ def assistance():
             #Update screen
             if e.type == VIDEORESIZE:
                 screen = display.set_mode((max(e.w, 500), max(e.h, 400)), DOUBLEBUF + RESIZABLE)
-                return 'assistance'
+                return 'leaderboard'
 
         mx, my = mouse.get_pos()
         m_press = mouse.get_pressed()
@@ -589,50 +600,6 @@ def assistance():
         nav_update = back_button.update(screen, mx, my, m_press, 15, release)
 
         #Execute function if any
-        if nav_update is not None:
-            return nav_update
-
-        display.update()
-
-#Options screen
-def options():
-    global screen #Global screen to make resizing easier
-
-    #Background
-    wallpaper(screen)
-
-    #UI Objects
-    back_button = menu.Button(size[0] // 4, size[1] - 130, size[0] // 2, 40, 'menu', "Back")
-    life_switch = menu.Switch(size[0] // 4, size[1] // 2 - 20, size[0] // 2, 40, False, 'Dank memes')
-    music_slider = menu.Slider(size[0] // 4, size[1] // 2 - 80, size[0] // 2, 40, music_object.get_volume(), 'Music')
-
-    while True:
-
-        release = False #Resets mouse state
-
-        for e in event.get():
-            if e.type == QUIT:
-                return 'exit'
-
-            #Mouse update
-            if e.type == MOUSEBUTTONUP and e.button == 1:
-                release = True
-
-            #Resize
-            if e.type == VIDEORESIZE:
-                screen = display.set_mode((max(e.w, 500), max(e.h, 400)), DOUBLEBUF + RESIZABLE)
-                return 'assistance'
-
-        mx, my = mouse.get_pos()
-        m_press = mouse.get_pressed()
-
-        #Updates UI buttons
-        nav_update = back_button.update(screen, mx, my, m_press, 15, release)
-        music_slider.update(screen, mx, my, m_press, 15, release)
-        music_object.set_volume(music_slider.pos)
-        life_switch.update(screen, mx, my, m_press, 15, release)
-
-        #Execute functions if any
         if nav_update is not None:
             return nav_update
 
@@ -660,47 +627,29 @@ def menu_screen():
 
     #Params of buttons
     menu_list = [[0, 'game', "Attack Gary"],
-                 [1, 'options', "Options"],
-                 [2, 'about', "About"],
-                 [2, 'assistance', "Help"],
-                 [3, 'exit', "Exit"],
-                 [4, 'logout', "Logout"]]
+                 [1, 'about', "About"],
+                 [1, 'leaderboard', "Leaderboard"],
+                 [2, 'exit', "Exit"],
+                 [3, 'logout', "Logout"]]
 
     #Create menu object
     main_menu = menu.Menu(menu_list, 0, 0, size[0], size[1])
 
-    #Blits logo and UI elements
-    #logo = transform.scale(image.load("textures/menu/logo.png"), (size[0] // 3, int(size[0] // 3 * 51 / 301)))
+    logo = transform.scale(image.load("textures/menu/gamelogo.png"), (size[0] // 2, int(size[0] // 6)))
 
     while True:
         #Resets wallpaper and graphics
         wallpaper(screen)
 
-        #text_surface_final = Surface((text_surface.get_width() + 4, text_surface.get_height() + 4), SRCALPHA)
-
-        #screen.blit(logo, (size[0] // 2 - logo.get_width() // 2, size[1] // 2 - 120 - logo.get_height()))
-        #text_surface_final.blit(text_shadow, (2, 2))
-        #text_surface_final.blit(text_surface, (0, 0))
-
-        #Rotates MOTD
-        #rotation += rotation_v
-
-        #Reverses direction if limit hit
-        #if rotation < 0 or rotation > 10:
-        #    rotation_v *= -1
-
-        #Blits MOTD
-        #text_surface_final = transform.rotate(text_surface_final, rotation)
-        #screen.blit(text_surface_final, (size[0] // 2 - text_surface_final.get_width() // 2 + 100, size[1] // 2 - 170))
-
+        screen.blit(logo, (size[0] // 2 - logo.get_width() // 2, size[1] // 2 - 100 - logo.get_height()))
 
         #Renders all text elements
         normal_font = font.Font("fonts/UndertaleSans.ttf", 14)
 
-        #version_text = normal_font.render("Astro Physics for Gamers in a Hurry v%s" % current_build, True, (255, 255, 255))
-        #screen.blit(version_text, (10, size[1] - 20))
+        version_text = normal_font.render("Astro Physics for Gamers in a Hurry v3.14.15.92.65i", True, (255, 255, 255))
+        screen.blit(version_text, (10, size[1] - 20))
 
-        about_text = normal_font.render("Copyright (C) Rahmish Empire. All Rahs Reserved!", True, (255, 255, 255))
+        about_text = normal_font.render("Copyright (C) APGIH Dev Squad. All Rahs Reserved!", True, (255, 255, 255))
         screen.blit(about_text, (size[0] - about_text.get_width(), size[1] - 20))
 
         user_text = normal_font.render("Logged in as: %s" % flame.master_user['username'], True, (255, 255, 255))
@@ -756,11 +705,15 @@ def about():
     #Font and help page contents
     normal_font = font.Font("fonts/UndertaleSans.ttf", 16)
 
-    about_list = ['Adam really likes astro physics.',
-                  'He is a HUGE nerd.',
-                  'lol. nerd.',
-                  'this is a space game.',
-                  'space is pre good too.']
+    about_list = ['Developed by:',
+                  'Henry Tu (github.com/henrytwo)',
+                  'Yuan Song (Ryan) Zhang (github.com/ryanz34)',
+                  'Adam Mehdi (github.com/AdamMedee)',
+                  'Jason Quan (killerwhale303 on Steam)',
+                  '',
+                  '',
+                  'ENG4U ISU PROJECT',
+                  'Based on github.com/RahCraft/RahCraft (ICS3U FSE)']
 
     clock = time.Clock()
 
@@ -820,8 +773,7 @@ if __name__ == '__main__':
         'token': token_authenticate,
         'menu': menu_screen,
         'about': about,
-        'assistance': assistance,
-        'options': options,
+        'leaderboard': leaderboard,
         'auth': authenticate,
         'reject': reject,
         'register': register,
@@ -852,11 +804,11 @@ if __name__ == '__main__':
             elif navigation == 'game':
                 #music_object.stop()
 
-                #game_nav = game.game(screen)
+                game_nav = game.game(screen)
 
-                #navigation = game_nav
+                navigation = game_nav
 
-                print('Outcome:', solarPropulsion(1, drawStuff, resizeStuff))
+                #print('Outcome:', solarPropulsion(1, drawStuff, resizeStuff))
 
             elif navigation[0] == 'crash':
                 navigation = crash(navigation[1], navigation[2])
