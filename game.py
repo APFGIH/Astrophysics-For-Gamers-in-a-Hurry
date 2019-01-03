@@ -76,14 +76,19 @@ class game:
             keys = key.get_pressed()
 
             if keys[K_p]:
-                for p in self.map.portals:
-                    print(p, self.medhi.playerRect)
+                for p in self.map.minigamePortal:
                     if self.medhi.playerRect.colliderect(p[0]):
                         try:
                             self.medhigames[int(p[1])](self.mainScreen, 100)
                         except:
                             print('it broke!', p[1])
                             traceback.print_exc()
+                        break
+                else:
+                    for p in self.map.teleports:
+                        if self.medhi.playerRect.colliderect(p[0]):
+                            self.medhi.teleport(p[1])
+                            break
 
             # mx, my = mouse.get_pressed()[:2]
 

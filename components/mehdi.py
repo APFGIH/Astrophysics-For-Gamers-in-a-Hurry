@@ -270,6 +270,14 @@ class medhi:
             self.vy -= 30
             self.klist[3] = False
 
+    def teleport(self, location):
+        self.klist = [False, False, False, False]
+        self.vx = 0
+        self.vy = 0
+
+        self.x = location[0]
+        self.y = location[1]
+
     def update(self):
         self.currentTick += 1
 
@@ -319,7 +327,6 @@ class medhi:
                     self.playerRect.top = block.bottom
                     animationvy = 0
 
-        print(animationvy, animationvx)
         self.y = self.playerRect.y
 
         if self.animationLock == 'x' and self.ovx != self.vx:
