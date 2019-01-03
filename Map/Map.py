@@ -11,15 +11,23 @@ class Map:
         self.screenSize = gameScreen.get_size()
         self.tileSize = 48
         self.collisionRects = []
-        self.portals = []
+        self.minigamePortal = []
+        self.destinations = {}
+        self.teleports = []
 
         for r in self.gameMap.get_layer_by_name("Collision"):
             self.collisionRects.append(pygame.Rect(r.x, r.y, r.width, r.height))
 
         self.start = (self.gameMap.get_layer_by_name("Start")[0].x, self.gameMap.get_layer_by_name("Start")[0].y)
 
+        for p in self.gameMap.get_layer_by_name("Destination"):
+            self.destinations[p.name] = (p.x, p.y)
+
         for p in self.gameMap.get_layer_by_name("Portal"):
-            self.portals.append((pygame.Rect(p.x, p.y, p.width, p.height), p.name))
+            if p.type == "Minigame":
+                self.minigamePortal.append((pygame.Rect(p.x, p.y, p.width, p.height), p.name))
+            elif p.type == "Teleport":
+                self.teleports.append((pygame.Rect(p.x, p.y, p.width, p.height), self.destinations[p.name]))
 
     def render(self, surface, sx, sy, hx, hy, offsetx=0, offsety=0):
         for x in range(sx, hx):

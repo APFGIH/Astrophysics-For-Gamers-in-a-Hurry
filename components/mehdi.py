@@ -270,6 +270,14 @@ class medhi:
             self.vy -= 30
             self.klist[3] = False
 
+    def teleport(self, location):
+        self.klist = [False, False, False, False]
+        self.vx = 0
+        self.vy = 0
+
+        self.x = location[0]
+        self.y = location[1]
+
     def update(self):
         self.currentTick += 1
 
@@ -319,7 +327,6 @@ class medhi:
                     self.playerRect.top = block.bottom
                     animationvy = 0
 
-        print(animationvy, animationvx)
         self.y = self.playerRect.y
 
         if self.animationLock == 'x' and self.ovx != self.vx:
@@ -442,7 +449,12 @@ class TextBox:
             screen.blit(self.lines[i], (self.x, self.y+self.h*i))
 
 
-def txtScreen(tb, screen):
+def txtScreen(tb):
+
+    WIDTH, HEIGHT = 1080, 720
+
+    screen = Surface((WIDTH, HEIGHT))
+
     running = True
     clock = time.Clock()
     while running:
@@ -452,13 +464,16 @@ def txtScreen(tb, screen):
             if action.type == QUIT:
                 running = False
                 break
+            if action.type == VIDEORESIZE:
+                resizeStuff(action.w, action.h)
+
         a = tb.animate()
         tb.update(screen)
         if a and keys[K_a]:
             return
         elif keys[K_s]:
             tb.finish()
-        display.flip()
+        drawStuff(screen)
         clock.tick(100)
     quit()
 
