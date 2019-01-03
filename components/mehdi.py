@@ -442,7 +442,12 @@ class TextBox:
             screen.blit(self.lines[i], (self.x, self.y+self.h*i))
 
 
-def txtScreen(tb, screen):
+def txtScreen(tb):
+
+    WIDTH, HEIGHT = 1080, 720
+
+    screen = Surface((WIDTH, HEIGHT))
+
     running = True
     clock = time.Clock()
     while running:
@@ -452,13 +457,16 @@ def txtScreen(tb, screen):
             if action.type == QUIT:
                 running = False
                 break
+            if action.type == VIDEORESIZE:
+                resizeStuff(action.w, action.h)
+
         a = tb.animate()
         tb.update(screen)
         if a and keys[K_a]:
             return
         elif keys[K_b]:
             tb.finish()
-        display.flip()
+        drawStuff(screen)
         clock.tick(100)
     quit()
 

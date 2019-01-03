@@ -33,6 +33,8 @@ class game:
 
         self.medhigames = {1: Minigames.AsteroidDodge.asteroidDodge}
 
+        self.resize(Rect(0, 0, screen.get_width(), screen.get_height()))
+
     def update(self):
         # Draw World
         self.map.make_map(self.gameScreen, (self.medhi.cam_x, self.medhi.cam_y))
@@ -45,6 +47,18 @@ class game:
         self.mainScreen.blit(transform.scale(self.gameScreen, self.display_surface), (int(self.current_display[0]/2-self.display_surface[0]/2), int(int(self.current_display[1]/2-self.display_surface[1]/2))))
         display.update()
         self.gameScreen.fill((200, 200, 200))
+
+    def resize(self, e):
+        self.multiplier = min(e.w / self.init_display_size[0], e.h / self.init_display_size[1])
+        self.current_display = (e.w, e.h)
+        if e.w / self.aspect_ratio <= e.h:
+            self.display_surface = (e.w, int(e.w / self.aspect_ratio))
+        else:
+            self.display_surface = (int(e.h * self.aspect_ratio), e.h)
+        self.mainScreen = display.set_mode((e.w, e.h), RESIZABLE | HWSURFACE)
+        self.mainScreen.fill((0, 0, 0))
+
+        print(e, self.aspect_ratio)
 
     def game(self):
         running = True
@@ -62,16 +76,7 @@ class game:
                 elif e.type == KEYUP:
                     self.medhi.keyUp(e.key)
                 elif e.type == VIDEORESIZE:
-                    self.multiplier = min(e.w / self.init_display_size[0], e.h / self.init_display_size[1])
-                    self.current_display = (e.w, e.h)
-                    if e.w / self.aspect_ratio <= e.h:
-                        self.display_surface = (e.w, int(e.w / self.aspect_ratio))
-                    else:
-                        self.display_surface = (int(e.h * self.aspect_ratio), e.h)
-                    self.mainScreen = display.set_mode((e.w, e.h), RESIZABLE | HWSURFACE)
-                    self.mainScreen.fill((0, 0, 0))
-
-                    print(e, self.aspect_ratio)
+                    self.resize(e)
 
             keys = key.get_pressed()
 
@@ -80,7 +85,7 @@ class game:
                     print(p, self.medhi.playerRect)
                     if self.medhi.playerRect.colliderect(p[0]):
                         try:
-                            self.medhigames[int(p[1])](self.mainScreen, 100)
+                            self.medhigames[int(p[1])](100, components.mehdi.drawStuff, components.mehdi.resizeStuff)
                         except:
                             print('it broke!', p[1])
                             traceback.print_exc()
