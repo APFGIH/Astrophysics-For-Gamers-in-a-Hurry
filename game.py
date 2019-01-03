@@ -22,7 +22,6 @@ class game:
         display.flip()
 
         self.gameClock = time.Clock()
-        self.playerSize = 40
         self.multiplier = 1
         self.init_display_size = (self.WIDTH, self.HEIGHT)
         self.current_display = (self.WIDTH, self.HEIGHT)
@@ -43,7 +42,7 @@ class game:
         self.map.make_map(self.gameScreen, (self.medhi.cam_x, self.medhi.cam_y))
         # Player
         self.medhi.update()
-        draw.rect(self.gameScreen, (255, 255, 255), (self.medhi.x - self.medhi.cam_x, self.medhi.y - self.medhi.cam_y, self.playerSize, self.playerSize), 3)
+        draw.rect(self.gameScreen, (255, 255, 255), (self.medhi.x - self.medhi.cam_x, self.medhi.y - self.medhi.cam_y, self.medhi.width, self.medhi.height), 3)
         self.gameScreen.blit(self.medhi.currentFrame, (self.medhi.x - self.medhi.cam_x, self.medhi.y - self.medhi.cam_y))
 
         # Update Game Screen
