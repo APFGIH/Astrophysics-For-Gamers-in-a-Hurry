@@ -476,6 +476,6 @@ def txtScreen(tb):
         elif keys[K_s]:
             tb.finish()
         drawStuff(screen)
-        clock.tick(100)
+        clock.tick(500)
     quit()
 

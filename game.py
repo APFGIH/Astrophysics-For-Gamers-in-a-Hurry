@@ -1,4 +1,5 @@
 import components.mehdi
+import components.flame as flame
 from pygame import *
 from Map.Map import *
 import Minigames.AsteroidDodge
@@ -7,6 +8,8 @@ import traceback
 class game:
 
     def __init__(self, screen):
+
+        self.WIDTH, self.HEIGHT = 1080, 720
         self.mainScreen = screen
 
         self.mainScreen.fill((0, 0, 0))
@@ -21,9 +24,9 @@ class game:
         self.gameClock = time.Clock()
         self.playerSize = 40
         self.multiplier = 1
-        self.init_display_size = (1080, 720)
-        self.current_display = (1080, 720)
-        self.display_surface = (1080, 720)
+        self.init_display_size = (self.WIDTH, self.HEIGHT)
+        self.current_display = (self.WIDTH, self.HEIGHT)
+        self.display_surface = (self.WIDTH, self.HEIGHT)
         self.aspect_ratio = self.init_display_size[0] / self.init_display_size[1]
 
         self.gameScreen = Surface(self.current_display)
@@ -62,6 +65,14 @@ class game:
 
     def game(self):
         running = True
+
+        if 'introDone' not in flame.master_user or not flame.master_user['introDone']:
+            howto = "NASA Guy: We have received strange readings from the sensors on the moon, it is a cause for concern, we’re sending you, our lead scientist to investigate. Refresh yourself on how these spacecrafts work and then head on your way.~~~PC: hmmm, i dont need the full lesson, lets read the crash course lesson."
+            intro = components.mehdi.TextBox(howto, 2, int(self.WIDTH * 0.7), 20, (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1)
+            components.mehdi.txtScreen(intro)
+
+            if not flame.DEV:
+                flame.master_user['introDone'] = True
 
         while running:
             self.gameClock.tick(120)

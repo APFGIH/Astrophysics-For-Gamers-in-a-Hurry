@@ -760,7 +760,7 @@ def about():
         clock.tick(30)
 
 if __name__ == '__main__':
-    size = (960, 540)
+    size = (1080, 720)
     screen = display.set_mode(size, DOUBLEBUF + RESIZABLE)
 
     mixer.pre_init(44100, -16, 1, 4096)
