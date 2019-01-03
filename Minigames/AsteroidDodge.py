@@ -1,13 +1,18 @@
 from pygame import *
+from math import *
+from random import *
 from Minigames.SpaceObjects import *
 from Minigames.Technicals import *
-from random import *
-from math import *
 from components.mehdi import *
+
 init()
 
-def asteroidDodge(screen, health):
+def asteroidDodge(health, drawScreen, resizeScreen):
+
     WIDTH, HEIGHT = 1080, 720
+
+    screen = Surface((WIDTH, HEIGHT))
+
     FPS = 100
     clock = time.Clock()
     shipx, shipy = WIDTH // 2, HEIGHT * 0.9
@@ -25,7 +30,7 @@ def asteroidDodge(screen, health):
 
     howto = "To exit the moon and go to Jupiter, there's an obstacle in the way. We must make it through the asteroid belt that lies between Mars and Jupiter. It's filled with giant lumps of rock and metal, over 200000 of them! It's your job to make it through without getting hit on your way there. The actual asteroid belt isn't as densely packed as this, in fact it's actually very spread out, but that wouldn't be fun, now would it?"
     intro = TextBox(howto, 2, int(WIDTH*0.7), 20, (255, 255, 255), WIDTH*0.1, HEIGHT*0.1)
-    txtScreen(intro, screen)
+    txtScreen(intro)
 
     while running:
         keys = key.get_pressed()
@@ -33,7 +38,8 @@ def asteroidDodge(screen, health):
             if action.type == QUIT:
                 running = False
                 break
-
+            if action.type == VIDEORESIZE:
+                resizeScreen(action.w, action.h)
 
 
         screen.fill((0, 0, 0))
@@ -60,6 +66,7 @@ def asteroidDodge(screen, health):
         if keys[K_RIGHT]:
             shipx = min(WIDTH*0.95, shipx+5)
 
-        display.flip()
+        drawScreen(screen)
+        #display.flip()
         clock.tick(FPS)
     quit()
