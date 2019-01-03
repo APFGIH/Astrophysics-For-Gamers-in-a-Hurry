@@ -428,7 +428,7 @@ class TextBox:
                 self.cur += 1
             self.lines[-1] = self.text_surface
         self.t += 1
-        if self.cur == len(self.text)-1:
+        if self.cur == len(self.text):
             return True
 
     def finish(self):
@@ -456,7 +456,7 @@ def txtScreen(tb, screen):
         tb.update(screen)
         if a and keys[K_a]:
             return
-        elif keys[K_b]:
+        elif keys[K_s]:
             tb.finish()
         display.flip()
         clock.tick(100)
