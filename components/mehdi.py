@@ -173,8 +173,6 @@ def text(text, size):
 def load_sound(sound_list):
     """ Loads and plays a sound instantly. """
 
-    pass
-
     # Load the sound as a Sound object
     #sound_object = mixer.Sound(choice(sound_list))
 

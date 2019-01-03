@@ -715,6 +715,9 @@ def about():
                   'Jason Quan (killerwhale303 on Steam)',
                   '',
                   '',
+                  'Music: Undertale Megalovania remix by SayMaxWell',
+                  '',
+                  '',
                   'ENG4U ISU PROJECT',
                   'Based on github.com/RahCraft/RahCraft (ICS3U FSE)']
 
@@ -760,6 +763,7 @@ if __name__ == '__main__':
     size = (960, 540)
     screen = display.set_mode(size, DOUBLEBUF + RESIZABLE)
 
+    mixer.pre_init(44100, -16, 1, 4096)
     init()
 
     display.set_caption("Astro Physics for Gamers in a Hurry")
@@ -782,6 +786,9 @@ if __name__ == '__main__':
         'register': register,
         'register_service': register_service
     }
+
+    music_object = mixer.Sound('sounds/menu.ogg')
+    music_object.play(-1, 0)
 
     while navigation != 'exit':
         # Ensures display is within min size to prevent overlap

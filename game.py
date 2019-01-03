@@ -55,7 +55,7 @@ class game:
                 if e.type == QUIT:
                     running = False
 
-                    return 'exit'
+                    return 'menu'
                     break
                 elif e.type == KEYDOWN:
                     self.medhi.keyDown(e.key)
