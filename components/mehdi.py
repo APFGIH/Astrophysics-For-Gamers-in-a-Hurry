@@ -423,12 +423,14 @@ class TextBox:
 
     def animate(self):
         if self.cur != len(self.text) and self.t % self.delay == 0:
-            if self.text_surface.get_width() + self.size < self.width or not (self.text[self.cur] == " " and self.text_surface.get_width()+6*self.size > self.width):
+            if self.text[self.cur] != "~" and self.text_surface.get_width() + self.size < self.width or not (self.text[self.cur] == " " and self.text_surface.get_width()+6*self.size > self.width):
                 self.curline += self.text[self.cur]
                 self.text_surface = self.fnt.render(self.curline, True, self.col)
                 self.cur += 1
             else:
                 self.curline = ""
+                if self.text[self.cur] == "~":
+                    self.cur += 1
                 self.lines.append(None)
                 self.curline += self.text[self.cur]
                 self.text_surface = self.fnt.render(self.curline, True, self.col)
