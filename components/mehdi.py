@@ -415,7 +415,7 @@ class TextBox:
         self.text_surface = self.fnt.render("", True, col)  # surface text
         self.lines = [self.text_surface]
         self.cur = 0
-        self.curline = ""
+        self.curline = " "
         self.size = size
         self.t = 0
         self.x = x
@@ -428,7 +428,7 @@ class TextBox:
                 self.text_surface = self.fnt.render(self.curline, True, self.col)
                 self.cur += 1
             else:
-                self.curline = ""
+                self.curline = " "
                 if self.text[self.cur] == "~":
                     self.cur += 1
                 self.lines.append(None)
