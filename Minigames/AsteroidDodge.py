@@ -28,7 +28,7 @@ def asteroidDodge(health, drawScreen, resizeScreen):
         draw.polygon(screen, (250, 250, 250), [p[0], p[1], p[2], p[4]], 0)
         draw.polygon(screen, (0, 0, 255), [p[2], p[3], p[4]], 0)
 
-    howto = "To exit the moon and go to Jupiter, there's an obstacle in the way. We must make it through the asteroid belt that lies between Mars and Jupiter. It's filled with giant lumps of rock and metal, over 200000 of them! It's your job to make it through without getting hit on your way there. The actual asteroid belt isn't as densely packed as this, in fact it's actually very spread out, but that wouldn't be fun, now would it?"
+    howto = "To exit the moon and ~go to Jupiter, there's an obstacle in the way. We must make it through the asteroid belt that lies between Mars and Jupiter. It's filled with giant lumps of rock and metal, over 200000 of them! It's your job to make it through without getting hit on your way there. The actual asteroid belt isn't as densely packed as this, in fact it's actually very spread out, but that wouldn't be fun, now would it?"
     intro = TextBox(howto, 2, int(WIDTH*0.7), 20, (255, 255, 255), WIDTH*0.1, HEIGHT*0.1)
     txtScreen(intro)
 
