@@ -219,8 +219,9 @@ class medhi:
         self.map = map
         self.multiplier = 1
         self.gameSurface = gameSurface
-        self.playerSize = 40
-        self.playerRect = Rect(self.x, self.y, self.playerSize, self.playerSize)
+        self.width = 40
+        self.height = 60
+        self.playerRect = Rect(self.x, self.y, self.width, self.height)
 
         self.klist = [False, False, False, False]
 
