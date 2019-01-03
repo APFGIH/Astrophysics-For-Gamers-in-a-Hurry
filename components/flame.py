@@ -16,6 +16,8 @@ firebase_admin.initialize_app(cred)
 
 master_user = {}
 
+DEV = True
+
 def hash(password, salt):
     return hashlib.sha512(str.encode(password + salt)).hexdigest()
 
