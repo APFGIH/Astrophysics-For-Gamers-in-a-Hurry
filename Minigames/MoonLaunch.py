@@ -169,10 +169,10 @@ def moonLaunch(screen, health):
                 lives -= 1
                 shipping = False
             if spaceShip.collide(moon):
-                return True
+                return lives*33+1
 
         if lives == 0:
-            return False
+            return 0
 
         if launching:
             draw.line(screen, (255, 255, 255), (int(startx), int(starty)), (mx, my), 3)

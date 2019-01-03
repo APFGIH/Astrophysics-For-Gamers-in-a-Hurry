@@ -38,13 +38,13 @@ def solarPropulsion(health, drawScreen, resizeScreen):
 
         screen.fill((0, 0, 0))
         if timer == 0:
-            return False
+            return 0
         else:
             timer -= 1
             if timer % 50 == 0 and randint(1, 100) < 80:
                 lightList.append(lightBeam(randint(WIDTH*-0.4, WIDTH*1.4), HEIGHT, WIDTH//2, HEIGHT//2, randint(0, 4), 100))
         if lightGathered >= maxLight:
-            return True
+            return int(timer/3000)*99+1
 
         for l in lightList:
             l.update(screen)

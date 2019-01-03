@@ -39,13 +39,13 @@ def asteroidDodge(screen, health):
         screen.fill((0, 0, 0))
 
         if timer == 0:
-            return True
+            return 100
         else:
             timer -= 1
             if timer % 2 == 0 and randint(1, timer + 5000) <= 2500 and timer > 250:
                 asteroidList.append(fallingStone(randint(int(WIDTH*0.05), int(WIDTH*0.95)), 0, 0, (11000-timer)*randint(80, 120)*0.000009, 30, drawAst1))
             if any([a.collide([shipx, shipy]) for a in asteroidList]):
-                return False
+                return 0
 
         for a in asteroidList:
             a.update(screen)

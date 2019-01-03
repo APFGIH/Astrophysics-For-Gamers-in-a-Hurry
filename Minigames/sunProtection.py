@@ -44,7 +44,7 @@ def sunProtection(screen, health):
             theta = max(0, theta - 0.05)
 
         if timer == 0:
-            return True
+            return int(hp/2000)*99+1
         else:
             timer -= 1
             if timer % 50 == 0 and randint(1, 100) < 70:
@@ -60,7 +60,7 @@ def sunProtection(screen, health):
                 l.x2, l.y2 = int(l.x+mag*cos(l.ang)), (l.y+mag*sin(l.ang))
 
         if hp <= 0:
-            return False
+            return 0
 
         draw.rect(screen, (255, 255, 255), (int(WIDTH * 0.2), int(HEIGHT * 0.08), int(WIDTH * 0.6), int(HEIGHT * 0.07)))
         draw.rect(screen, (255, 200, 0), (
