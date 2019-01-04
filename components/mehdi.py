@@ -10,6 +10,7 @@ from pygame import *  # to allow use of graphics
 from random import *  # to allow use of random generators
 from math import *  # to allow use of trigonometric functions
 import random
+import json
 import traceback
 import components.flame as flame
 import time as t
@@ -18,6 +19,18 @@ import time as t
 stars = []
 prev_size = (0, 0)
 screen = None
+dialog = {}
+quiz = {}
+
+def init_dialog():
+    global dialog, quiz
+
+    with open('dialog.json') as file:
+        dialog = json.loads(file.read())
+
+    with open('quiz.json') as file:
+        quiz = json.loads(file.read())
+
 
 def set_screen(s):
     global screen

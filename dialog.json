@@ -1,0 +1,11 @@
+{
+  "intro" : {
+    "dialog" : "NASA Guy: We have received strange readings from the sensors on the moon, it is a cause for concern, we’re sending you, our lead scientist to investigate. Refresh yourself on how these spacecrafts work and then head on your way.~~~PC: hmmm, i dont need the full lesson, lets read the crash course lesson.",
+    "automatic": true,
+    "singleTrigger": true
+  },
+  "asteriodDodge" : {
+    "dialog" : "To exit the moon and ~go to Jupiter, there's an obstacle in the way. We must make it through the asteroid belt that lies between Mars and Jupiter. It's filled with giant lumps of rock and metal, over 200000 of them! It's your job to make it through without getting hit on your way there. The actual asteroid belt isn't as densely packed as this, in fact it's actually very spread out, but that wouldn't be fun, now would it?"
+
+  }
+}

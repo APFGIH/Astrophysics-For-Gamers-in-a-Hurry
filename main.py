@@ -770,6 +770,7 @@ if __name__ == '__main__':
 
     meh_screen(screen)
 
+    init_dialog()
     init_stars(size)
     set_screen(screen)
 
@@ -812,7 +813,7 @@ if __name__ == '__main__':
             if not navigation:
                 raise Exception('You broke something')
             elif navigation == 'game':
-                #music_object.stop()
+                music_object.stop()
 
                 g = game.game(screen)
 

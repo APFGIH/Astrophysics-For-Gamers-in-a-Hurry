@@ -1,4 +1,4 @@
-import components.mehdi
+import components.mehdi as mehdi
 import components.flame as flame
 from pygame import *
 from Map.Map import *
@@ -14,10 +14,10 @@ class game:
 
         self.mainScreen.fill((0, 0, 0))
 
-        loading_text = components.mehdi.text("Loading...", 30)
+        loading_text = mehdi.text("Loading...", 30)
 
         self.mainScreen.blit(loading_text,
-                             components.mehdi.center(0, 0, self.mainScreen.get_width(), self.mainScreen.get_height(), loading_text.get_width(), loading_text.get_height()))
+                             mehdi.center(0, 0, self.mainScreen.get_width(), self.mainScreen.get_height(), loading_text.get_width(), loading_text.get_height()))
 
         display.flip()
 
@@ -31,7 +31,7 @@ class game:
         self.gameScreen = Surface(self.current_display)
         self.map = Map(self.gameScreen)
 
-        self.medhi = components.mehdi.medhi(self.map, self.gameScreen, (self.map.start[0], self.map.start[1]) if 'position' not in flame.master_user else flame.master_user['position'])
+        self.medhi = mehdi.medhi(self.map, self.gameScreen, (self.map.start[0], self.map.start[1]) if 'position' not in flame.master_user else flame.master_user['position'])
 
         self.medhigames = {1: Minigames.AsteroidDodge.asteroidDodge}
 
@@ -67,13 +67,8 @@ class game:
     def game(self):
         running = True
 
-        if 'introDone' not in flame.master_user or not flame.master_user['introDone']:
-            howto = "NASA Guy: We have received strange readings from the sensors on the moon, it is a cause for concern, we’re sending you, our lead scientist to investigate. Refresh yourself on how these spacecrafts work and then head on your way.~~~PC: hmmm, i dont need the full lesson, lets read the crash course lesson."
-            intro = components.mehdi.TextBox(howto, 2, int(self.WIDTH * 0.7), 20, (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1)
-            components.mehdi.txtScreen(intro)
 
-            if not flame.DEV:
-                flame.master_user['introDone'] = True
+        #mehdi.txtScreen(mehdi.TextBox(mehdi.dialog['intro']['dialog'], 2, int(self.WIDTH * 0.7), 20, (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
 
         while running:
             self.gameClock.tick(120)
@@ -96,7 +91,7 @@ class game:
                 for p in self.map.minigamePortal:
                     if self.medhi.playerRect.colliderect(p[0]):
                         try:
-                            self.medhigames[int(p[1])](100, components.mehdi.drawStuff, components.mehdi.resizeStuff)
+                            self.medhigames[int(p[1])](100, mehdi.drawStuff, mehdi.resizeStuff)
                         except:
                             print('it broke!', p[1])
                             traceback.print_exc()
@@ -107,6 +102,19 @@ class game:
                             self.medhi.teleport(p[1])
                             break
 
+            for p in self.map.informationTiles:
+                if self.medhi.playerRect.colliderect(p[0]):
+
+                    info = mehdi.dialog[p[1]]
+
+                    if (info['automatic'] or keys[K_p]) and p[1] not in flame.master_user['dialogCompleted']:
+                        mehdi.txtScreen(mehdi.TextBox(mehdi.dialog[p[1]]['dialog'], 2, int(self.WIDTH * 0.7), 20,
+                                                      (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+
+                        if info['singleTrigger']:
+                            flame.master_user['dialogCompleted'].append(p[1])
+
+                    break
             # mx, my = mouse.get_pressed()[:2]
 
             self.update()

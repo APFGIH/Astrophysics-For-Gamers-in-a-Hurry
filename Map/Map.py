@@ -12,6 +12,7 @@ class Map:
         self.tileSize = 48
         self.collisionRects = []
         self.minigamePortal = []
+        self.informationTiles = []
         self.destinations = {}
         self.teleports = []
 
@@ -22,6 +23,9 @@ class Map:
 
         for p in self.gameMap.get_layer_by_name("Destination"):
             self.destinations[p.name] = (p.x, p.y)
+
+        for p in self.gameMap.get_layer_by_name("InformationTiles"):
+            self.informationTiles.append((pygame.Rect(p.x, p.y, p.width, p.height), p.name))
 
         for p in self.gameMap.get_layer_by_name("Portal"):
             if p.type == "Minigame":
