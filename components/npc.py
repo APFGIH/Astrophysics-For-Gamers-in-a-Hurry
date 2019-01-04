@@ -1,4 +1,5 @@
 import pygame
+import math
 
 class npc:
 
@@ -10,7 +11,7 @@ class npc:
         self.imageRect = rect
 
     def interact(self, player):
-        if player.currentPosition == self.direction and self.collide.colliderect(player.playerRect):
+        if math.hypot(player.playerRect.center[0] - self.collide.center[0], player.playerRect.center[1] - self.collide.center[1]) < 150:
             return self.statement
         else:
             return False

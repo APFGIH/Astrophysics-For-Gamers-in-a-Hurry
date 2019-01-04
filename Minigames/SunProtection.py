@@ -1,14 +1,14 @@
 from pygame import *
-from SpaceObjects import *
-from Technicals import *
-from random import *
 from math import *
-init()
+from random import *
+from Minigames.spaceObjects import *
+from Minigames.technicals import *
+from components.mehdi import *
 
-WIDTH, HEIGHT = 1080, 720
-screen = display.set_mode((WIDTH, HEIGHT))
 
-def sunProtection(screen, health):
+def SunProtection(screen):
+
+    screen = Surface((WIDTH, HEIGHT))
 
     FPS = 100
     clock = time.Clock()
@@ -36,6 +36,9 @@ def sunProtection(screen, health):
             if action.type == QUIT:
                 running = False
                 break
+            if action.type == VIDEORESIZE:
+                resizeStuff(action.w, action.h)
+
         screen.fill((0, 0, 0))
         draw.line(screen, (150, 150, 150), (WIDTH//2+200*cos(theta-0.2), HEIGHT//4+200*sin(theta-0.2)), (WIDTH//2+200*cos(theta+0.2), HEIGHT//4+200*sin(theta+0.2)), 15)
         if keys[K_LEFT]:
@@ -73,8 +76,8 @@ def sunProtection(screen, health):
             if lightList[i].time == 0:
                 del lightList[i]
 
-        display.flip()
+        drawStuff(screen)
         clock.tick(FPS)
     quit()
 
-sunProtection(screen, 1)
+#SunProtection(screen, 1)

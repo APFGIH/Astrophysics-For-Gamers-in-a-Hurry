@@ -1,13 +1,12 @@
 from pygame import *
 from math import *
 from random import *
-from Minigames.SpaceObjects import *
-from Minigames.Technicals import *
+from Minigames.spaceObjects import *
+from Minigames.technicals import *
 from components.mehdi import *
 
 
 def solarPropulsion(health):
-
     screen = Surface((WIDTH, HEIGHT))
 
     FPS = 100

@@ -1,15 +1,16 @@
 from pygame import *
-from SpaceObjects import *
-from Technicals import *
-from random import *
 from math import *
-init()
+from random import *
+from Minigames.spaceObjects import *
+from Minigames.technicals import *
+from components.mehdi import *
 
-WIDTH, HEIGHT = 1080, 720
-screen = display.set_mode((WIDTH, HEIGHT))
 
+def moonLaunch(health):
 
-def moonLaunch(screen, health):
+    WIDTH, HEIGHT = 1080, 720
+
+    screen = Surface((WIDTH, HEIGHT))
 
     FPS = 100
     clock = time.Clock()
@@ -27,8 +28,6 @@ def moonLaunch(screen, health):
     #Start and end point
     earth = Planet(int(WIDTH*0.2), int(HEIGHT*0.75), 0, 0, 30, 1000, drawEarth)
     moon = Planet(int(WIDTH * 0.9), int(HEIGHT * 0.2), 0, 0, 30, 1000, drawMoon)
-
-
 
     #All asteroids.obstacles
     #Asteroid 1
@@ -137,10 +136,13 @@ def moonLaunch(screen, health):
             if action.type == QUIT:
                 running = False
                 break
-            if action.type == MOUSEBUTTONDOWN:
+            elif action.type == MOUSEBUTTONDOWN:
                 if action.button == 1:
                     if hypot(mx - WIDTH*0.2, my - HEIGHT*0.75) <= 30:
                         launching = True
+            elif action.type == VIDEORESIZE:
+                resizeStuff(action.w, action.h)
+
 
             elif action.type == MOUSEBUTTONUP and launching:
                 if action.button == 1:
@@ -183,14 +185,17 @@ def moonLaunch(screen, health):
         for a in planets+asteroids:
             a.update(screen)
 
-
-
-        display.flip()
+        drawStuff(screen)
         clock.tick(FPS)
     quit()
 
+if __name__ == '__main__':
+    init()
 
-moonLaunch(screen, 1)
+    WIDTH, HEIGHT = 1080, 720
+    screen = display.set_mode((WIDTH, HEIGHT))
+
+    moonLaunch(screen, 1)
 
 
 

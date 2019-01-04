@@ -23,6 +23,8 @@ screen = None
 dialog = {}
 lessons = []
 
+WIDTH, HEIGHT = 1080, 720
+
 def init_dialog():
     global dialog, quiz, lessons
 

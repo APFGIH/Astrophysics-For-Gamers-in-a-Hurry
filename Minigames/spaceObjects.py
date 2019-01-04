@@ -1,7 +1,7 @@
 from pygame import *
 from math import *
 from cmath import *
-from Minigames.Technicals import *
+from Minigames.technicals import *
 
 class Planet:
     def __init__(self, x, y, xvel, yvel, size, mass, pic):

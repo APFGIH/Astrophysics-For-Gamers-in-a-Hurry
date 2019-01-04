@@ -1,8 +1,8 @@
 from pygame import *
 from math import *
 from random import *
-from Minigames.SpaceObjects import *
-from Minigames.Technicals import *
+from Minigames.spaceObjects import *
+from Minigames.technicals import *
 from components.mehdi import *
 
 init()
