@@ -26,7 +26,7 @@ lessons = []
 WIDTH, HEIGHT = 1080, 720
 
 def init_dialog():
-    global dialog, quiz, lessons
+    global dialog, lessons
 
     with open('dialog.json') as file:
         dialog = json.loads(file.read())
@@ -514,8 +514,6 @@ class TextBox:
 
 def txtScreen(tb):
 
-    WIDTH, HEIGHT = 1080, 720
-
     screen = Surface((WIDTH, HEIGHT))
 
     running = True
@@ -543,7 +541,6 @@ def txtScreen(tb):
 
 
 def multipleChoice(dict):
-    WIDTH, HEIGHT = 1080, 720
 
     screen = Surface((WIDTH, HEIGHT))
     ans = dict["correctAnswer"]

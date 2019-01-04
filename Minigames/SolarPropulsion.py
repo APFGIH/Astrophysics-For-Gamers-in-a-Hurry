@@ -3,15 +3,14 @@ from math import *
 from random import *
 from Minigames.spaceObjects import *
 from Minigames.technicals import *
-from components.mehdi import *
+import components.mehdi as mehdi
 
-
-def solarPropulsion(health):
-    screen = Surface((WIDTH, HEIGHT))
+def solarPropulsion():
+    screen = Surface((mehdi.WIDTH, mehdi.HEIGHT))
 
     FPS = 100
     clock = time.Clock()
-    shipx, shipy = WIDTH // 2, HEIGHT * 0.9
+    shipx, shipy = mehdi.WIDTH // 2, mehdi.HEIGHT * 0.9
     lightList = []
     running = True
     timer = 3000
@@ -33,7 +32,7 @@ def solarPropulsion(health):
                 break
 
             if action.type == VIDEORESIZE:
-                resizeStuff(action.w, action.h)
+                mehdi.resizeStuff(action.w, action.h)
 
         screen.fill((0, 0, 0))
         if timer == 0:
@@ -41,7 +40,7 @@ def solarPropulsion(health):
         else:
             timer -= 1
             if timer % 50 == 0 and randint(1, 100) < 80:
-                lightList.append(lightBeam(randint(WIDTH*-0.4, WIDTH*1.4), HEIGHT, WIDTH//2, HEIGHT//2, randint(0, 4), 100))
+                lightList.append(lightBeam(randint(mehdi.WIDTH*-0.4, mehdi.WIDTH*1.4), mehdi.HEIGHT, mehdi.WIDTH//2, mehdi.HEIGHT//2, randint(0, 4), 100))
         if lightGathered >= maxLight:
             return int(timer/3000)*99+1
 
@@ -53,21 +52,19 @@ def solarPropulsion(health):
             if lightList[i].time <= 0:
                 del lightList[i]
 
-
-
-        draw.rect(screen, (255, 255, 255), (int(WIDTH*0.2), int(HEIGHT*0.08), int(WIDTH*0.6), int(HEIGHT*0.07)))
-        draw.rect(screen, (255, 200, 0), (int(WIDTH * 0.21), int(HEIGHT * 0.09), int(WIDTH * 0.58 * lightGathered / maxLight), int(HEIGHT * 0.05)))
-        draw.rect(screen, (255, 255, 255), (int(WIDTH * 0.2), int(HEIGHT * 0.01), int(WIDTH * 0.6), int(HEIGHT * 0.07)))
-        draw.rect(screen, (255, 200, 0), (int(WIDTH * 0.21), int(HEIGHT * 0.02), int(WIDTH * 0.58 * timer / 3000), int(HEIGHT * 0.05)))
+        draw.rect(screen, (255, 255, 255), (int(mehdi.WIDTH*0.2), int(mehdi.HEIGHT*0.08), int(mehdi.WIDTH*0.6), int(mehdi.HEIGHT*0.07)))
+        draw.rect(screen, (255, 200, 0), (int(mehdi.WIDTH * 0.21), int(mehdi.HEIGHT * 0.09), int(mehdi.WIDTH * 0.58 * lightGathered / maxLight), int(mehdi.HEIGHT * 0.05)))
+        draw.rect(screen, (255, 255, 255), (int(mehdi.WIDTH * 0.2), int(mehdi.HEIGHT * 0.01), int(mehdi.WIDTH * 0.6), int(mehdi.HEIGHT * 0.07)))
+        draw.rect(screen, (255, 200, 0), (int(mehdi.WIDTH * 0.21), int(mehdi.HEIGHT * 0.02), int(mehdi.WIDTH * 0.58 * timer / 3000), int(mehdi.HEIGHT * 0.05)))
         if keys[K_LEFT]:
             theta = min(pi//2, theta + 0.01)
         if keys[K_RIGHT]:
             theta = max(-pi//4, theta - 0.01)
 
 
-        drawPanel(WIDTH // 2, HEIGHT // 2, theta)
+        drawPanel(mehdi.WIDTH // 2, mehdi.HEIGHT // 2, theta)
 
-        drawStuff(screen)
+        mehdi.drawStuff(screen)
         #display.flip()
 
         clock.tick(FPS)
@@ -76,7 +73,6 @@ def solarPropulsion(health):
 
 if __name__ == '__main__':
 
-    WIDTH, HEIGHT = 1080, 720
     screen = display.set_mode((1366, 768))
 
     def center(a, b):

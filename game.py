@@ -2,7 +2,12 @@ import components.mehdi as mehdi
 import components.flame as flame
 from pygame import *
 from Map.Map import *
+
 import Minigames.AsteroidDodge
+import Minigames.MoonLaunch
+import Minigames.SunProtection
+import Minigames.SolarPropulsion
+
 import traceback
 
 class game:
@@ -33,7 +38,12 @@ class game:
 
         self.medhi = mehdi.medhi(self.map, self.gameScreen, (self.map.start[0], self.map.start[1]) if 'position' not in flame.master_user else flame.master_user['position'])
 
-        self.medhigames = {1: Minigames.AsteroidDodge.asteroidDodge}
+        self.medhigames = {
+            'AsteroidDodge': Minigames.AsteroidDodge.asteroidDodge,
+            'MoonLaunch': Minigames.MoonLaunch.moonLaunch,
+            'SunProtection': Minigames.SunProtection.sunProtection,
+            'SolarPropulsion': Minigames.SolarPropulsion.solarPropulsion
+        }
 
         self.resize(Rect(0, 0, screen.get_width(), screen.get_height()))
 
@@ -97,7 +107,7 @@ class game:
                 for p in self.map.minigamePortal:
                     if self.medhi.playerRect.colliderect(p[0]):
                         try:
-                            self.medhigames[int(p[1])](100)
+                            self.medhigames[p[1]]()
                         except:
                             print('it broke!', p[1])
                             traceback.print_exc()

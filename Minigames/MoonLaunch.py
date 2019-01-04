@@ -3,20 +3,18 @@ from math import *
 from random import *
 from Minigames.spaceObjects import *
 from Minigames.technicals import *
-from components.mehdi import *
+import components.mehdi as mehdi
 
 
-def moonLaunch(health):
+def moonLaunch():
 
-    WIDTH, HEIGHT = 1080, 720
-
-    screen = Surface((WIDTH, HEIGHT))
+    screen = Surface((mehdi.WIDTH, mehdi.HEIGHT))
 
     FPS = 100
     clock = time.Clock()
     lives = 3
 
-    moonPic = transform.scale(image.load("../textures/moon.png"), (80, 60))
+    moonPic = transform.scale(image.load("textures/splash.jpg"), (80, 60))
 
     def drawEarth(screen, x, y):
         draw.circle(screen, (255, 0, 0), (int(x), int(y)), 30, 0)
@@ -26,12 +24,12 @@ def moonLaunch(health):
     running = True
 
     #Start and end point
-    earth = Planet(int(WIDTH*0.2), int(HEIGHT*0.75), 0, 0, 30, 1000, drawEarth)
-    moon = Planet(int(WIDTH * 0.9), int(HEIGHT * 0.2), 0, 0, 30, 1000, drawMoon)
+    earth = Planet(int(mehdi.WIDTH*0.2), int(mehdi.HEIGHT*0.75), 0, 0, 30, 1000, drawEarth)
+    moon = Planet(int(mehdi.WIDTH * 0.9), int(mehdi.HEIGHT * 0.2), 0, 0, 30, 1000, drawMoon)
 
     #All asteroids.obstacles
     #Asteroid 1
-    Ast1x, Ast1y = int(WIDTH * 0.4), int(HEIGHT * 0.4)
+    Ast1x, Ast1y = int(mehdi.WIDTH * 0.4), int(mehdi.HEIGHT * 0.4)
     Ast1Pol = [(Ast1x + -5, Ast1y - 20), (Ast1x, Ast1y-25), (Ast1x + 15, Ast1y - 21), (Ast1x + 5, Ast1y), (Ast1x + 9, Ast1y + 15),
                       (Ast1x - 5, Ast1y + 25), (Ast1x-15, Ast1y + 10), (Ast1x - 5, Ast1y + 15)]
     def drawAst1(screen, x, y, r):
@@ -44,7 +42,7 @@ def moonLaunch(health):
     Ast1 = Asteroid(Ast1Pol, Ast1x, Ast1y, 0, 0, drawAst1, 0.01)
 
     #Asteroid 2
-    Ast2x, Ast2y = int(WIDTH*0.6), int(HEIGHT*0.3)
+    Ast2x, Ast2y = int(mehdi.WIDTH*0.6), int(mehdi.HEIGHT*0.3)
     Ast2Pol = [(Ast2x + -5, Ast2y - 20), (Ast2x, Ast2y - 30), (Ast2x + 15, Ast2y - 15), (Ast2x + 5, Ast2y),
                (Ast2x + 9, Ast2y + 15), (Ast2x - 5, Ast2y + 25), (Ast2x - 20, Ast2y + 10), (Ast2x + -5, Ast2y + 15)]
     def drawAst2(screen, x, y, r):
@@ -57,7 +55,7 @@ def moonLaunch(health):
     Ast2 = Asteroid(Ast2Pol, Ast2x, Ast2y, 0, 0, drawAst2, -0.006)
 
     #Asteroid 3
-    Ast3x, Ast3y = int(WIDTH*0.6), int(HEIGHT*0.4)
+    Ast3x, Ast3y = int(mehdi.WIDTH*0.6), int(mehdi.HEIGHT*0.4)
     Ast3Pol = [(Ast3x + -5, Ast3y - 20), (Ast2x, Ast3y - 30), (Ast3x + 15, Ast3y - 15), (Ast3x + 5, Ast3y),
                (Ast3x + 9, Ast3y + 15), (Ast3x - 5, Ast3y + 25), (Ast3x - 20, Ast3y + 10), (Ast3x + -5, Ast3y + 15)]
     def drawAst3(screen, x, y, r):
@@ -70,7 +68,7 @@ def moonLaunch(health):
     Ast3 = Asteroid(Ast3Pol, Ast3x, Ast3y, 0, 0, drawAst3, -0.007)
 
     #Asteroid 4
-    Ast4x, Ast4y = int(WIDTH*0.5), int(HEIGHT*0.7)
+    Ast4x, Ast4y = int(mehdi.WIDTH*0.5), int(mehdi.HEIGHT*0.7)
     Ast4Pol = [(Ast4x + -5, Ast4y - 20), (Ast4x, Ast4y - 30), (Ast4x + 15, Ast4y - 15), (Ast4x + 5, Ast4y),
                (Ast4x + 9, Ast4y + 15), (Ast4x - 5, Ast4y + 25), (Ast4x - 20, Ast4y + 10), (Ast4x + -5, Ast4y + 15)]
     def drawAst4(screen, x, y, r):
@@ -83,7 +81,7 @@ def moonLaunch(health):
     Ast4 = Asteroid(Ast4Pol, Ast4x, Ast4y, 0, 0, drawAst4, -0.008)
 
     #Asteroid 5
-    Ast5x, Ast5y = int(WIDTH*0.3), int(HEIGHT*0.44)
+    Ast5x, Ast5y = int(mehdi.WIDTH*0.3), int(mehdi.HEIGHT*0.44)
     Ast5Pol = [(Ast5x + -5, Ast5y - 20), (Ast5x, Ast5y - 30), (Ast5x + 15, Ast5y - 15), (Ast5x + 5, Ast5y),
                (Ast5x + 9, Ast5y + 15), (Ast5x - 5, Ast5y + 25), (Ast5x - 20, Ast5y + 10), (Ast5x + -5, Ast5y + 15)]
     def drawAst5(screen, x, y, r):
@@ -96,7 +94,7 @@ def moonLaunch(health):
     Ast5 = Asteroid(Ast5Pol, Ast5x, Ast5y, 0, 0, drawAst5, -0.009)
 
     #Asteroid 6
-    Ast6x, Ast6y = int(WIDTH*0.78), int(HEIGHT*0.31)
+    Ast6x, Ast6y = int(mehdi.WIDTH*0.78), int(mehdi.HEIGHT*0.31)
     Ast6Pol = [(Ast6x + -5, Ast6y - 20), (Ast6x, Ast6y - 30), (Ast6x + 15, Ast6y - 15), (Ast6x + 5, Ast6y),
                (Ast6x + 9, Ast6y + 15), (Ast6x - 5, Ast6y + 25), (Ast6x - 20, Ast6y + 10), (Ast6x + -5, Ast6y + 15)]
     def drawAst6(screen, x, y, r):
@@ -119,12 +117,12 @@ def moonLaunch(health):
 
 
     #Actual spaceship
-    shipx, shipy = int(WIDTH*0.22), int(HEIGHT*0.68)
+    shipx, shipy = int(mehdi.WIDTH*0.22), int(mehdi.HEIGHT*0.68)
     shipPoly = [(shipx-15, shipy-25), (shipx+15, shipy-25), (shipx+15, shipy+15), (shipx, shipy+35), (shipx-15, shipy+15)]
-    spaceShip = Asteroid(shipPoly, int(WIDTH*0.21), int(HEIGHT*0.69), 0, 0, drawShip, 0)
+    spaceShip = Asteroid(shipPoly, int(mehdi.WIDTH*0.21), int(mehdi.HEIGHT*0.69), 0, 0, drawShip, 0)
     launching = False
     shipping = False
-    startx, starty = WIDTH * 0.2, HEIGHT * 0.75
+    startx, starty = mehdi.WIDTH * 0.2, mehdi.HEIGHT * 0.75
     planets = [earth, moon]
 
 
@@ -138,24 +136,24 @@ def moonLaunch(health):
                 break
             elif action.type == MOUSEBUTTONDOWN:
                 if action.button == 1:
-                    if hypot(mx - WIDTH*0.2, my - HEIGHT*0.75) <= 30:
+                    if hypot(mx - mehdi.WIDTH*0.2, my - mehdi.HEIGHT*0.75) <= 30:
                         launching = True
             elif action.type == VIDEORESIZE:
-                resizeStuff(action.w, action.h)
+                mehdi.resizeStuff(action.w, action.h)
 
 
             elif action.type == MOUSEBUTTONUP and launching:
                 if action.button == 1:
                     launching = False
                     shipping = True
-                    ang = atan2(my-HEIGHT*0.75, mx-WIDTH*0.2)+pi
+                    ang = atan2(my-mehdi.HEIGHT*0.75, mx-mehdi.WIDTH*0.2)+pi
                     spaceShip.rot = ang-pi/2
                     spaceShip.x = startx + 90*cos(ang)
                     spaceShip.y = starty + 90*sin(ang)
                     spaceShip.polygon = [(spaceShip.x-15, spaceShip.y-25), (spaceShip.x+15, spaceShip.y-25), (spaceShip.x+15, spaceShip.y+15), (spaceShip.x, spaceShip.y+35), (spaceShip.x-15, spaceShip.y+15)]
                     for i in range(len(spaceShip.polygon)):
                         spaceShip.polygon[i] = [int(j) for j in rotateC(spaceShip.polygon[i][0], spaceShip.polygon[i][1], spaceShip.x, spaceShip.y, spaceShip.rot)]
-                    mag = ((my-HEIGHT*0.75)**2 + (mx-WIDTH*0.2)**2)**0.5
+                    mag = ((my-mehdi.HEIGHT*0.75)**2 + (mx-mehdi.WIDTH*0.2)**2)**0.5
                     spaceShip.xvel = 0.03*mag*cos(ang)
                     spaceShip.yvel = 0.03*mag*sin(ang)
 
@@ -185,15 +183,14 @@ def moonLaunch(health):
         for a in planets+asteroids:
             a.update(screen)
 
-        drawStuff(screen)
+        mehdi.drawStuff(screen)
         clock.tick(FPS)
     quit()
 
 if __name__ == '__main__':
     init()
 
-    WIDTH, HEIGHT = 1080, 720
-    screen = display.set_mode((WIDTH, HEIGHT))
+    screen = display.set_mode((mehdi.WIDTH, mehdi.HEIGHT))
 
     moonLaunch(screen, 1)
 

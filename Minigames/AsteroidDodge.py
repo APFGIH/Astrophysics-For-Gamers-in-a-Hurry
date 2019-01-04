@@ -3,19 +3,17 @@ from math import *
 from random import *
 from Minigames.spaceObjects import *
 from Minigames.technicals import *
-from components.mehdi import *
+import components.mehdi as mehdi
 
 init()
 
-def asteroidDodge(health):
+def asteroidDodge():
 
-    WIDTH, HEIGHT = 1080, 720
-
-    screen = Surface((WIDTH, HEIGHT))
+    screen = Surface((mehdi.WIDTH, mehdi.HEIGHT))
 
     FPS = 100
     clock = time.Clock()
-    shipx, shipy = WIDTH // 2, HEIGHT * 0.9
+    shipx, shipy = mehdi.WIDTH // 2, mehdi.HEIGHT * 0.9
     asteroidList = []
     running = True
     timer = 6000
@@ -28,7 +26,7 @@ def asteroidDodge(health):
         draw.polygon(screen, (250, 250, 250), [p[0], p[1], p[2], p[4]], 0)
         draw.polygon(screen, (0, 0, 255), [p[2], p[3], p[4]], 0)
 
-    txtScreen(TextBox(dialog['asteroidDodge']['dialogs'], 2, int(WIDTH*0.7), 20, (255, 255, 255), WIDTH*0.1, HEIGHT*0.1))
+    mehdi.txtScreen(mehdi.TextBox(mehdi.dialog['asteroidDodge']['dialog'], 2, int(mehdi.WIDTH*0.7), 20, (255, 255, 255), mehdi.WIDTH*0.1, mehdi.HEIGHT*0.1))
 
     while running:
         keys = key.get_pressed()
@@ -37,8 +35,7 @@ def asteroidDodge(health):
                 running = False
                 break
             if action.type == VIDEORESIZE:
-                resizeStuff(action.w, action.h)
-
+                mehdi.resizeStuff(action.w, action.h)
 
         screen.fill((0, 0, 0))
 
@@ -47,7 +44,7 @@ def asteroidDodge(health):
         else:
             timer -= 1
             if timer % 2 == 0 and randint(1, timer + 5000) <= 2500 and timer > 250:
-                asteroidList.append(fallingStone(randint(int(WIDTH*0.05), int(WIDTH*0.95)), 0, 0, (11000-timer)*randint(80, 120)*0.000009, 30, drawAst1))
+                asteroidList.append(fallingStone(randint(int(mehdi.WIDTH*0.05), int(mehdi.WIDTH*0.95)), 0, 0, (11000-timer)*randint(80, 120)*0.000009, 30, drawAst1))
             if any([a.collide([shipx, shipy]) for a in asteroidList]):
                 return 0
 
@@ -55,16 +52,16 @@ def asteroidDodge(health):
             a.update(screen)
             a.move()
         for i in range(len(asteroidList)-1, -1, -1):
-            if asteroidList[i].y > HEIGHT*1.2:
+            if asteroidList[i].y > mehdi.HEIGHT*1.2:
                 del asteroidList[i]
 
         drawShip(shipx, shipy)
         if keys[K_LEFT]:
-            shipx = max(WIDTH*0.05, shipx-5)
+            shipx = max(mehdi.WIDTH*0.05, shipx-5)
         if keys[K_RIGHT]:
-            shipx = min(WIDTH*0.95, shipx+5)
+            shipx = min(mehdi.WIDTH*0.95, shipx+5)
 
-        drawStuff(screen)
+        mehdi.drawStuff(screen)
         #display.flip()
         clock.tick(FPS)
     quit()
