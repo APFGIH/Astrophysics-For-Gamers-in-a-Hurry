@@ -91,7 +91,7 @@ class game:
                 for p in self.map.minigamePortal:
                     if self.medhi.playerRect.colliderect(p[0]):
                         try:
-                            self.medhigames[int(p[1])](100, mehdi.drawStuff, mehdi.resizeStuff)
+                            self.medhigames[int(p[1])](100)
                         except:
                             print('it broke!', p[1])
                             traceback.print_exc()

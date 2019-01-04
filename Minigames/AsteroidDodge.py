@@ -7,7 +7,7 @@ from components.mehdi import *
 
 init()
 
-def asteroidDodge(health, drawScreen, resizeScreen):
+def asteroidDodge(health):
 
     WIDTH, HEIGHT = 1080, 720
 
@@ -37,7 +37,7 @@ def asteroidDodge(health, drawScreen, resizeScreen):
                 running = False
                 break
             if action.type == VIDEORESIZE:
-                resizeScreen(action.w, action.h)
+                resizeStuff(action.w, action.h)
 
 
         screen.fill((0, 0, 0))
@@ -64,7 +64,7 @@ def asteroidDodge(health, drawScreen, resizeScreen):
         if keys[K_RIGHT]:
             shipx = min(WIDTH*0.95, shipx+5)
 
-        drawScreen(screen)
+        drawStuff(screen)
         #display.flip()
         clock.tick(FPS)
     quit()
