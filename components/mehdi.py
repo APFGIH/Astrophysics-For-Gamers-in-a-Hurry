@@ -421,7 +421,7 @@ class medhi:
 
 #Animated textboxes
 class TextBox:
-    def __init__(self, text, delay, width, size, col, x, y):
+    def __init__(self, text, delay, width, size, col, x, y, prompt=True):
         self.text = text
         self.delay = delay
         self.width = width
@@ -437,6 +437,7 @@ class TextBox:
         self.t = 0
         self.x = x
         self.y = y
+        self.prompt = prompt
 
     def animate(self):
         if self.cur < len(self.text) and self.t % self.delay == 0:
@@ -458,7 +459,10 @@ class TextBox:
             self.text_surface = self.fnt.render(" ", True, self.col)
             self.lines[-1] = self.text_surface
             self.lines.append(0)
-            self.text_surface = self.fnt.render("PRESS [A] TO CONTINUE", True, self.col)
+            if self.prompt:
+                self.text_surface = self.fnt.render("PRESS [A] TO CONTINUE", True, self.col)
+            else:
+                self.text_surface = self.fnt.render(" ", True, self.col)
             self.lines[-1] = self.text_surface
             self.cur += 1
         self.lines[-1] = self.text_surface
@@ -505,3 +509,48 @@ def txtScreen(tb):
         clock.tick(500)
     quit()
 
+
+
+def multipleChoice(dict, screen):
+    WIDTH, HEIGHT = 1080, 720
+
+    screen = Surface((WIDTH, HEIGHT))
+    ans = dict["correctAnswer"]
+    opts = dict["answers"]
+    quest = dict["question"]
+    shuffle(opts)
+    f = font.Font("fonts/UndertaleSans.ttf", 38)
+    screen.fill((255, 255, 255))
+    a = TextBox(quest, 1, 650, 38, (0, 0, 0), 150, 40, False)
+    b = TextBox("1.) "+opts[0], 1, 650, 38, (0, 0, 0), 150, 140, False)
+    c = TextBox("2.) "+opts[1], 1, 650, 38, (0, 0, 0), 150, 280, False)
+    d = TextBox("3.) "+opts[2], 1, 650, 38, (0, 0, 0), 150, 420, False)
+    e = TextBox("4.) "+opts[3], 1, 650, 38, (0, 0, 0), 150, 560, False)
+    n = opts.index(ans)
+    a.finish(); b.finish(); c.finish(); d.finish(); e.finish()
+    a.update(screen); b.update(screen); c.update(screen); d.update(screen); e.update(screen)
+
+
+    running = True
+    clock = time.Clock()
+    while running:
+
+        keys = key.get_pressed()
+        for action in event.get():
+            if action.type == QUIT:
+                running = False
+                break
+            if action.type == VIDEORESIZE:
+                resizeStuff(action.w, action.h)
+        if keys[K_1]:
+            return 0 == n
+        elif keys[K_2]:
+            return 1 == n
+        elif keys[K_3]:
+            return 2 == n
+        elif keys[K_4]:
+            return 3 == n
+
+        drawStuff(screen)
+        clock.tick(500)
+    quit()
