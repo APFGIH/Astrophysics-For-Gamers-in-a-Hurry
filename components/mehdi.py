@@ -11,6 +11,7 @@ from random import *  # to allow use of random generators
 from math import *  # to allow use of trigonometric functions
 import random
 import traceback
+import components.flame as flame
 import time as t
 
 # x, y, vx, vy
@@ -207,11 +208,11 @@ def joint_rotate(surf, angle):
     return transform.rotate(new_surf, -degrees(angle))
 
 class medhi:
-    def __init__(self, map, gameSurface):
+    def __init__(self, map, gameSurface, startPos):
         self.tileSize = map.tileSize
-        self.x = map.start[0]
+        self.x = startPos[0]
         self.vx = self.cam_x = self.ovx = 0
-        self.y = map.start[1]
+        self.y = startPos[1]
         self.vy = self.cam_y = self.ovy = 0
         self.screenWidth, self.screenHeight = gameSurface.get_size()
         self.currentKey = -1
@@ -329,6 +330,8 @@ class medhi:
                     animationvy = 0
 
         self.y = self.playerRect.y
+
+        flame.master_user['position'] = [self.x, self.y]
 
         if self.animationLock == 'x' and self.ovx != self.vx:
             self.animationLock = ''

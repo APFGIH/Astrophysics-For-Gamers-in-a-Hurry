@@ -31,13 +31,15 @@ class game:
         self.gameScreen = Surface(self.current_display)
         self.map = Map(self.gameScreen)
 
-        self.medhi = components.mehdi.medhi(self.map, self.gameScreen)
+        self.medhi = components.mehdi.medhi(self.map, self.gameScreen, (self.map.start[0], self.map.start[1]) if 'position' not in flame.master_user else flame.master_user['position'])
 
         self.medhigames = {1: Minigames.AsteroidDodge.asteroidDodge}
 
         self.resize(Rect(0, 0, screen.get_width(), screen.get_height()))
 
     def update(self):
+        self.mainScreen.fill((0, 0, 0))
+
         # Draw World
         self.map.make_map(self.gameScreen, (self.medhi.cam_x, self.medhi.cam_y))
         # Player

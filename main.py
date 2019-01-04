@@ -818,6 +818,8 @@ if __name__ == '__main__':
 
                 navigation = g.game()
 
+                flame.save()
+
                 #print('Outcome:', solarPropulsion(1, drawStuff, resizeStuff))
 
             elif navigation[0] == 'crash':
