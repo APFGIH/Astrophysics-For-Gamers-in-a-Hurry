@@ -13,6 +13,7 @@ import random
 import json
 import traceback
 import components.flame as flame
+import random
 import time as t
 
 # x, y, vx, vy
@@ -20,16 +21,41 @@ stars = []
 prev_size = (0, 0)
 screen = None
 dialog = {}
-quiz = {}
+lessons = []
 
 def init_dialog():
-    global dialog, quiz
+    global dialog, quiz, lessons
 
     with open('dialog.json') as file:
         dialog = json.loads(file.read())
 
-    with open('quiz.json') as file:
-        quiz = json.loads(file.read())
+    for d in dialog:
+        if 'Lesson' in d:
+            lessons.append(dialog[d]['dialog'])
+
+def generate_quiz():
+    global lessons
+
+    quiz = {}
+
+
+    line = (random.choice(lessons).split('.')[0] + '.').split()
+
+    target = random.choice(range(len(line)))
+
+    quiz['correctAnswer'] = line[target].upper()
+    quiz['answers'] = [line[target].upper()]
+
+    line[target] = '_____'
+
+    quiz['question'] = 'Fill in the blank:~~' + ' '.join(line)
+
+    for _ in range(3):
+        quiz['answers'].append(random.choice(random.choice(lessons).split()).upper())
+
+    random.shuffle(quiz['answers'])
+
+    return quiz
 
 
 def set_screen(s):

@@ -718,6 +718,9 @@ def about():
                   'Music: Undertale Megalovania remix by SayMaxWell',
                   '',
                   '',
+                  'Facts: simple.wikipedia.org',
+                  '',
+                  '',
                   'ENG4U ISU PROJECT',
                   'Based on github.com/RahCraft/RahCraft (ICS3U FSE)']
 
@@ -760,6 +763,7 @@ def about():
         clock.tick(30)
 
 if __name__ == '__main__':
+
     size = (1080, 720)
     screen = display.set_mode(size, DOUBLEBUF + RESIZABLE)
 
@@ -790,6 +794,8 @@ if __name__ == '__main__':
 
     music_object = mixer.Sound('sounds/menu.ogg')
     music_object.play(-1, 0)
+
+    print(generate_quiz())
 
     while navigation != 'exit':
         # Ensures display is within min size to prevent overlap

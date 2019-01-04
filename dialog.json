@@ -4,8 +4,90 @@
     "automatic": true,
     "singleTrigger": true
   },
+
+  "hydrogenLesson" : {
+    "dialog" : "Hydrogen is a chemical element. Its atomic number is 1, which makes it the simplest known element in the entire universe.[4] Hydrogen is the very oldest substance: the first kind of atom produced after the Big Bang. All chemical elements were formed from hydrogen by the processes of nuclear fusion.[5]",
+    "automatic": false,
+    "singleTrigger": false
+  },
+  "radioLesson" : {
+    "dialog" : "A radio telescope is a type of antenna, like a huge satellite television dish. It is used for radio astronomy. Stars shine and the light can be seen with an ordinary telescope, but they also give off radio waves. Scientists with radio telescopes receive these radio waves and use computers to learn about the stars. Other things like black holes also give off radio waves and radio telescopes are useful for learning about them too.",
+    "automatic": false,
+    "singleTrigger": false
+  },
+  "telescopeLesson" : {
+    "dialog": "A telescope is an important tool for astronomy that gathers light and directs it to a single point. Some do this with curved mirrors, some with curved lenses, and some with both. Telescopes make distant things look bigger, brighter and closer. Galileo was the first person to use a telescope for astronomy, but he did not invent them. The first telescope was invented in the Netherlands in 1608. Some telescopes, not mainly used for astronomy, are binoculars, camera lenses, or spyglasses.",
+    "automatic": false,
+    "singleTrigger": false
+  },
+  "infraredTelescopeLesson" : {
+    "dialog": "An infrared telescope is a telescope that detects infrared radiation (heat energy). All objects in the universe that have a temperature above absolute zero give off some form of electromagnetic radiation.[1] Infrared light is one of several types of radiation present in the electromagnetic spectrum.",
+    "automatic": false,
+    "singleTrigger": false
+  },
+  "ultravioleteLesson" : {
+    "dialog": "Ultraviolet is the part of the electromagnetic spectrum shown on the left side of the picture below as black—because humans cannot see light of such short wavelength (or high frequency). Many animals such as some insects, some reptiles, crocodiles, salamanders, and small birds can see things that reflect this light. UV is a common abbreviation of ultraviolet, mainly used in technical contexts.",
+    "automatic": false,
+    "singleTrigger": false
+  },
+  "xrayLesson" : {
+    "dialog": "X-radiation is a kind of electromagnetic radiation. X-rays are waves of X-radiation. X-rays have a shorter wavelength, and therefore more energy, than ultraviolet radiation. They have a much shorter wavelength than visible light (the light that we can see). Radiation with shorter wavelengths (more energy) than the X-ray is called Gamma radiation (γ-rays). These are all parts of the electromagnetic spectrum",
+    "automatic": false,
+    "singleTrigger": false
+  },
+  "gammaRayLesson" : {
+    "dialog": "Gamma rays (γ-rays) are electromagnetic waves with the smallest wavelengths in the electromagnetic spectrum.[1] They were discovered in 1900 by Paul Villard, and named in 1903 by Ernest Rutherford.",
+    "automatic": false,
+    "singleTrigger": false
+  },
+  "cosmologyLesson" : {
+    "dialog": "Cosmology is the branch of astronomy that deals with the origin, structure, evolution and space-time relationships of the universe.[1][2] NASA defines cosmology as \"The study of the structure and changes in the present universe\".[3] Another definition of cosmology is \"the study of the universe, and humanity's place in it\".[4]",
+    "automatic": false,
+    "singleTrigger": false
+  },
+  "observableAstrophysicsLesson" : {
+    "dialog": "Observational astrophysics is like astronomy. Like astronomers, observational astrophysicists use telescopes to study the Universe, but observational astrophysicists study the physics of what they see to explain the Universe.",
+    "automatic": false,
+    "singleTrigger": false
+  },
+  "theoreticalAstrophysicsLesson" : {
+    "dialog": "Theoretical astrophysics uses information from astronomers, theories and mathematics to explain how the Universe works. Cosmology is a type of theoretical astrophysics.",
+    "automatic": false,
+    "singleTrigger": false
+  },
+  "generalRelativityLesson" : {
+    "dialog": "General relativity is a theory of space and time. The theory was published by Albert Einstein in 1915.[1] The central idea of general relativity is that space and time are two aspects of spacetime. Spacetime is curved when there is gravity, matter, energy, and momentum. The links between these forces are shown in the Einstein field equations.",
+    "automatic": false,
+    "singleTrigger": false
+  },
+  "universeLesson" : {
+    "dialog": "Universe is the name that we use to describe the collection of all the things that exist in space. It is made of billions of stars and planets and enormous clouds of gas separated by a gigantic empty space which is called the universe.",
+    "automatic": false,
+    "singleTrigger": false
+  },
+  "matterLesson" : {
+    "dialog": "Matter is the substance of which all material is made. That means objects which have mass. More specifically, they must have rest mass, which is a form of energy that matter has even kinetic energy), is extremely cold (it has no thermal energy), etc. Matter is a word that is sometimes used in varying ways in everyday life, whereas mass is a well-defined concept and quantity at least in physics. They are not the same thing, though they are related.[1]",
+    "automatic": false,
+    "singleTrigger": false
+  },
+  "csLesson" : {
+    "dialog": "Computer science is the theory, experimentation, and engineering that form the basis for the design and use of computers. It involves the study of algorithms that process, store, and communicate digital information. A computer scientist specializes in the theory of computation and the design of computational systems.[1]",
+    "automatic": false,
+    "singleTrigger": false
+  },
+  "integralLesson" : {
+    "dialog": "In mathematics, an integral assigns numbers to functions in a way that can describe displacement, area, volume, and other concepts that arise by combining infinitesimal data. Integration is one of the two main operations of calculus, with its inverse operation, differentiation, being the other. Given a function f of a real variable x and an interval [a, b] of the real line, the definite integral",
+    "automatic": false,
+    "singleTrigger": false
+  },
+  "sovietLesson" : {
+    "dialog": "The Union of Soviet Socialist Republics[b] (USSR),[c] commonly known as the Soviet Union,[d] was a socialist state in Eurasia that existed from 30 December 1922 to 26 December 1991.[8] Nominally a union of multiple national Soviet republics,[e] its government and economy were highly centralized. The country was a one-party state, governed by the Communist Party with Moscow as its capital in its largest republic, the Russian Soviet Federative Socialist Republic (Russian SFSR). Other major urban centres were Leningrad, Kiev, Minsk, Alma-Ata, and Novosibirsk.",
+    "automatic": false,
+    "singleTrigger": false
+  },
+
+
   "asteriodDodge" : {
     "dialog" : "To exit the moon and ~go to Jupiter, there's an obstacle in the way. We must make it through the asteroid belt that lies between Mars and Jupiter. It's filled with giant lumps of rock and metal, over 200000 of them! It's your job to make it through without getting hit on your way there. The actual asteroid belt isn't as densely packed as this, in fact it's actually very spread out, but that wouldn't be fun, now would it?"
-
   }
 }
