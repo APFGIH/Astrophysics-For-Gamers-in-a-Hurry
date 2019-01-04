@@ -568,7 +568,7 @@ def leaderboard():
     about_list = ['(btw i\'m too lazy to get this formatted properly... so deal with it)', 'Nerds that don\' have a life:','|        Name       |       High Score       |       Last Login       |']
 
     for user in flame.getLeaderboard():
-        about_list.append('| %19s | %24i | %25s |' % (user['name'], user['score'], datetime.utcfromtimestamp(user['lastLogin']).strftime('%Y-%m-%d %H:%M:%S')))
+        about_list.append('| %29s | %34s | %35s |' % (user['name'], str(user['score']), datetime.utcfromtimestamp(user['lastLogin']).strftime('%Y-%m-%d %H:%M:%S')))
 
 
     while True:

@@ -439,7 +439,7 @@ class TextBox:
         self.y = y
 
     def animate(self):
-        if self.cur != len(self.text) and self.t % self.delay == 0:
+        if self.cur < len(self.text) and self.t % self.delay == 0:
             if self.text[self.cur] != "~" and (self.text_surface.get_width() + self.size < self.width or not (self.text[self.cur] == " " and self.text_surface.get_width()+6*self.size > self.width)):
                 self.curline += self.text[self.cur]
                 self.text_surface = self.fnt.render(self.curline, True, self.col)
@@ -452,9 +452,18 @@ class TextBox:
 
                 self.text_surface = self.fnt.render(self.curline, True, self.col)
                 self.cur += 1
+
+        elif self.cur == len(self.text):
+            self.lines.append(0)
+            self.text_surface = self.fnt.render(" ", True, self.col)
             self.lines[-1] = self.text_surface
+            self.lines.append(0)
+            self.text_surface = self.fnt.render("PRESS [A] TO CONTINUE", True, self.col)
+            self.lines[-1] = self.text_surface
+            self.cur += 1
+        self.lines[-1] = self.text_surface
         self.t += 1
-        if self.cur == len(self.text):
+        if self.cur > len(self.text):
             return True
 
     def finish(self):
