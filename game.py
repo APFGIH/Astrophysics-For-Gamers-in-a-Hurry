@@ -37,11 +37,15 @@ class game:
 
         self.resize(Rect(0, 0, screen.get_width(), screen.get_height()))
 
+        self.interactionLock = False
+
     def update(self):
         self.mainScreen.fill((0, 0, 0))
 
         # Draw World
         self.map.make_map(self.gameScreen, (self.medhi.cam_x, self.medhi.cam_y))
+        for npc in self.map.npc:
+            npc.draw(self.gameScreen, self.medhi)
         # Player
         self.medhi.update()
         draw.rect(self.gameScreen, (255, 255, 255), (self.medhi.x - self.medhi.cam_x, self.medhi.y - self.medhi.cam_y, self.medhi.width, self.medhi.height), 3)
@@ -79,9 +83,11 @@ class game:
                     return 'menu'
                     break
                 elif e.type == KEYDOWN:
-                    self.medhi.keyDown(e.key)
+                    if not self.interactionLock:
+                        self.medhi.keyDown(e.key)
                 elif e.type == KEYUP:
-                    self.medhi.keyUp(e.key)
+                    if not self.interactionLock:
+                        self.medhi.keyUp(e.key)
                 elif e.type == VIDEORESIZE:
                     self.resize(e)
 
@@ -102,6 +108,7 @@ class game:
                             self.medhi.teleport(p[1])
                             break
 
+
             for p in self.map.informationTiles:
                 if self.medhi.playerRect.colliderect(p[0]):
 
@@ -115,6 +122,14 @@ class game:
                             flame.master_user['dialogCompleted'].append(p[1])
 
                     break
+
+            if keys[K_p]:
+                for npc in self.map.npc:
+                    dialogue = npc.interact(self.medhi)
+                    if dialogue:
+                        mehdi.txtScreen(mehdi.TextBox(dialogue, 2, int(self.WIDTH * 0.7), 20,
+                                                      (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+
             # mx, my = mouse.get_pressed()[:2]
 
             self.update()

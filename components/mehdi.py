@@ -262,6 +262,7 @@ class medhi:
         self.width = 40
         self.height = 60
         self.playerRect = Rect(self.x, self.y, self.width, self.height)
+        self.screenRect = Rect(self.cam_x, self.cam_y, self.screenWidth, self.screenHeight)
 
         self.klist = [False, False, False, False]
 
@@ -443,6 +444,9 @@ class medhi:
             self.cam_y = self.map.height * self.tileSize - self.screenHeight
         else:
             self.cam_y = self.y - self.screenHeight // 2
+
+        self.screenRect.x = self.cam_x
+        self.screenRect.y = self.cam_y
 
 
 #Animated textboxes

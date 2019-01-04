@@ -1,6 +1,7 @@
 import pytmx
 import pygame
 import math
+from components.npc import *
 
 
 class Map:
@@ -15,6 +16,7 @@ class Map:
         self.informationTiles = []
         self.destinations = {}
         self.teleports = []
+        self.npc = []
 
         for r in self.gameMap.get_layer_by_name("Collision"):
             self.collisionRects.append(pygame.Rect(r.x, r.y, r.width, r.height))
@@ -33,12 +35,21 @@ class Map:
             elif p.type == "Teleport":
                 self.teleports.append((pygame.Rect(p.x, p.y, p.width, p.height), self.destinations[p.name]))
 
+        self.npcImages = {}
+
+        for i in self.gameMap.get_layer_by_name("npcLayer"):
+            self.npcImages[i.name] = (self.gameMap.get_tile_image_by_gid(i.gid), pygame.Rect(i.x, i.y, i.width, i.height))
+            self.collisionRects.append(pygame.Rect(i.x, i.y, i.width, i.height))
+
+        for p in self.gameMap.get_layer_by_name("Interaction"):
+            self.npc.append(npc(self.npcImages[p.type][0], self.npcImages[p.type][1], pygame.Rect(p.x, p.y, p.width, p.height), "NICC BROOOOOO", p.name))
+
     def render(self, surface, sx, sy, hx, hy, offsetx=0, offsety=0):
         for x in range(sx, hx):
             for y in range(sy, hy):
                 tile = self.gameMap.get_tile_image(x, y, 0)
                 if tile:
-                    surface.blit(pygame.transform.scale(tile, (self.tileSize, self.tileSize)), ((x-sx) * self.tileSize - offsetx, (y-sy) * self.tileSize - offsety))
+                    surface.blit(tile, ((x-sx) * self.tileSize - offsetx, (y-sy) * self.tileSize - offsety))
 
         for rect in self.collisionRects:
             pygame.draw.rect(surface, (0, 0, 0), (rect[0] - sx * self.tileSize - offsetx, rect[1] - sy * self.tileSize - offsety, rect[2], rect[3]), 3)
