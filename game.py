@@ -68,6 +68,7 @@ class game:
         running = True
 
         if 'introDone' not in flame.master_user or not flame.master_user['introDone']:
+            components.mehdi.multipleChoice({"correctAnswer":["abc"], "question":"here's a question", "answers":["a", "b", "c"]}, self)
             howto = "NASA Guy: We have received strange readings from the sensors on the moon, it is a cause for concern, we’re sending you, our lead scientist to investigate. Refresh yourself on how these spacecrafts work and then head on your way.~~~PC: hmmm, i dont need the full lesson, lets read the crash course lesson."
             intro = components.mehdi.TextBox(howto, 2, int(self.WIDTH * 0.7), 20, (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1)
             components.mehdi.txtScreen(intro)
