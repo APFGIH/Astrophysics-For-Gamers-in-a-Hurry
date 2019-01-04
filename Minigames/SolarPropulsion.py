@@ -6,7 +6,7 @@ from Minigames.Technicals import *
 from components.mehdi import *
 
 
-def solarPropulsion(health, drawScreen, resizeScreen):
+def solarPropulsion(health):
 
     screen = Surface((WIDTH, HEIGHT))
 
@@ -34,7 +34,7 @@ def solarPropulsion(health, drawScreen, resizeScreen):
                 break
 
             if action.type == VIDEORESIZE:
-                resizeScreen(action.w, action.h)
+                resizeStuff(action.w, action.h)
 
         screen.fill((0, 0, 0))
         if timer == 0:
@@ -68,7 +68,7 @@ def solarPropulsion(health, drawScreen, resizeScreen):
 
         drawPanel(WIDTH // 2, HEIGHT // 2, theta)
 
-        drawScreen(screen)
+        drawStuff(screen)
         #display.flip()
 
         clock.tick(FPS)

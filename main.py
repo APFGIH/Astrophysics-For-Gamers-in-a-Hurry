@@ -795,7 +795,7 @@ if __name__ == '__main__':
     music_object = mixer.Sound('sounds/menu.ogg')
     music_object.play(-1, 0)
 
-    print(generate_quiz())
+    print(multipleChoice(generate_quiz()))
 
     while navigation != 'exit':
         # Ensures display is within min size to prevent overlap

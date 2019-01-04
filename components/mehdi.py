@@ -74,8 +74,7 @@ def center_frame(a, b):
 
 def resizeStuff(w, h):
     global screen
-
-    screen = display.set_mode((max(w, 500), max(h, 400)), DOUBLEBUF + RESIZABLE)
+    screen = display.set_mode((max(w, 1080), max(h, 720)), DOUBLEBUF + RESIZABLE)
 
 def drawStuff(surface):
     global screen
@@ -541,7 +540,7 @@ def txtScreen(tb):
 
 
 
-def multipleChoice(dict, screen):
+def multipleChoice(dict):
     WIDTH, HEIGHT = 1080, 720
 
     screen = Surface((WIDTH, HEIGHT))
@@ -550,12 +549,12 @@ def multipleChoice(dict, screen):
     quest = dict["question"]
     shuffle(opts)
     f = font.Font("fonts/UndertaleSans.ttf", 38)
-    screen.fill((255, 255, 255))
-    a = TextBox(quest, 1, 650, 38, (0, 0, 0), 150, 40, False)
-    b = TextBox("1.) "+opts[0], 1, 650, 38, (0, 0, 0), 150, 140, False)
-    c = TextBox("2.) "+opts[1], 1, 650, 38, (0, 0, 0), 150, 280, False)
-    d = TextBox("3.) "+opts[2], 1, 650, 38, (0, 0, 0), 150, 420, False)
-    e = TextBox("4.) "+opts[3], 1, 650, 38, (0, 0, 0), 150, 560, False)
+    screen.fill((0, 0, 0))
+    a = TextBox(quest, 1, 650, 38, (255, 255, 255), 150, 40, False)
+    b = TextBox("1.) "+opts[0], 1, 650, 38, (255, 255, 255), 150, 400, False)
+    c = TextBox("2.) "+opts[1], 1, 650, 38, (255, 255, 255), 150, 460, False)
+    d = TextBox("3.) "+opts[2], 1, 650, 38, (255, 255, 255), 150, 520, False)
+    e = TextBox("4.) "+opts[3], 1, 650, 38, (255, 255, 255), 150, 580, False)
     n = opts.index(ans)
     a.finish(); b.finish(); c.finish(); d.finish(); e.finish()
     a.update(screen); b.update(screen); c.update(screen); d.update(screen); e.update(screen)
