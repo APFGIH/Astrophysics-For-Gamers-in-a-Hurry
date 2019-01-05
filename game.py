@@ -4,6 +4,7 @@ from pygame import *
 from Map.Map import *
 
 import Minigames.AsteroidDodge
+import Minigames.Dvd
 import Minigames.MoonLaunch
 import Minigames.SunProtection
 import Minigames.SolarPropulsion
@@ -39,7 +40,8 @@ class game:
         self.medhi = mehdi.medhi(self.map, self.gameScreen, (self.map.start[0], self.map.start[1]) if 'position' not in flame.master_user else flame.master_user['position'])
 
         self.medhigames = {
-            'AsteroidDodge': Minigames.AsteroidDodge.asteroidDodge,
+            'AsteroidDodge': Minigames.Dvd.dvd,
+            #'AsteroidDodge': Minigames.AsteroidDodge.asteroidDodge,
             'MoonLaunch': Minigames.MoonLaunch.moonLaunch,
             'SunProtection': Minigames.SunProtection.sunProtection,
             'SolarPropulsion': Minigames.SolarPropulsion.solarPropulsion

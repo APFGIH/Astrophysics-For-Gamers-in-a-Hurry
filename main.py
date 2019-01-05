@@ -568,7 +568,7 @@ def leaderboard():
     about_list = [["Name ", "High Score ", "Last Login "]]
 
     for user in flame.getLeaderboard():
-        about_list.append([user['name'] + " ", str(user['score']) + " ", datetime.utcfromtimestamp(user['lastLogin']).strftime('%Y-%m-%d %H:%M:%S') + " "])
+        about_list.append([user['name'] + " ", str(user['score']) + " ", datetime.utcfromtimestamp(user['lastLogin']).strftime('%Y-%m-%d %H:%M:%S') + " UTC "])
 
     bar = normal_font.render("|", True, (255, 255, 255))
     while True:

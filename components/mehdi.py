@@ -284,16 +284,16 @@ class medhi:
         self.ovy = self.vy
 
         if key == K_LEFT:
-            self.vx -= 30
+            self.vx -= 10
             self.klist[0] = True
         if key == K_RIGHT:
-            self.vx += 30
+            self.vx += 10
             self.klist[1] = True
         if key == K_UP:
-            self.vy -= 30
+            self.vy -= 10
             self.klist[2] = True
         if key == K_DOWN:
-            self.vy += 30
+            self.vy += 10
             self.klist[3] = True
 
     def keyUp(self, key):
@@ -301,16 +301,16 @@ class medhi:
         self.ovy = self.vy
 
         if key == K_LEFT and self.klist[0]:
-            self.vx += 30
+            self.vx += 10
             self.klist[0] = False
         if key == K_RIGHT and self.klist[1]:
-            self.vx -= 30
+            self.vx -= 10
             self.klist[1] = False
         if key == K_UP and self.klist[2]:
-            self.vy += 30
+            self.vy += 10
             self.klist[2] = False
         if key == K_DOWN and self.klist[3]:
-            self.vy -= 30
+            self.vy -= 10
             self.klist[3] = False
 
     def teleport(self, location):
