@@ -565,12 +565,12 @@ def leaderboard():
     # }
 
 
-    about_list = ['(btw i\'m too lazy to get this formatted properly... so deal with it)', 'Nerds that don\' have a life:','|        Name       |       High Score       |       Last Login       |']
+    about_list = [["Name ", "High Score ", "Last Login "]]
 
     for user in flame.getLeaderboard():
-        about_list.append('| %29s | %34s | %35s |' % (user['name'], str(user['score']), datetime.utcfromtimestamp(user['lastLogin']).strftime('%Y-%m-%d %H:%M:%S')))
+        about_list.append([user['name'] + " ", str(user['score']) + " ", datetime.utcfromtimestamp(user['lastLogin']).strftime('%Y-%m-%d %H:%M:%S') + " "])
 
-
+    bar = normal_font.render("|", True, (255, 255, 255))
     while True:
 
         # Background
@@ -596,8 +596,16 @@ def leaderboard():
 
         #Draws about screen contents
         for y in range(0, len(about_list)):
-            about_text = normal_font.render(about_list[y], True, (255, 255, 255))
-            screen.blit(about_text, (size[0] // 2 - about_text.get_width() // 2, 50 + y * 20))
+            name = normal_font.render(about_list[y][0], True, (255, 255, 255))
+            score = normal_font.render(about_list[y][1], True, (255, 255, 255))
+            timestamp = normal_font.render(about_list[y][2], True, (255, 255, 255))
+            screen.blit(bar, (size[0] // 2 - 300, 50 + y * 20))
+            screen.blit(name, (size[0] // 2 - 100 - name.get_width(), 50 + y * 20))
+            screen.blit(bar, (size[0] // 2 - 100, 50 + y * 20))
+            screen.blit(score, (size[0] // 2 + 100 - score.get_width(), 50 + y * 20))
+            screen.blit(bar, (size[0] // 2 + 100, 50 + y * 20))
+            screen.blit(timestamp, (size[0] // 2 + 300 - timestamp.get_width(), 50 + y * 20))
+            screen.blit(bar, (size[0] // 2 + 300, 50 + y * 20))
 
         #Updates button
         nav_update = back_button.update(screen, mx, my, m_press, 15, release)
