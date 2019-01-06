@@ -138,6 +138,8 @@ class game:
                                     if result:
                                         self.medhi.teleport(self.map.destinations[self.postmedhigames[p[1]]])
 
+                                        flame.master_user['score'] += result
+
                                         flame.save()
 
                                     else:
@@ -211,6 +213,10 @@ class game:
                                 mehdi.txtScreen(mehdi.TextBox('Congrats! You now have a degree in %s!~~Total of %i degrees.' % (topic.split('Lesson')[0].upper(), len(flame.master_user['education'])), 2,
                                                               int(self.WIDTH * 0.7), 20,
                                                               (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+
+                                self.medhi.klist = [False, False, False, False]
+                                self.mehdi.vx = 0
+                                self.mehdi.vy = 0
 
                                 break
 
