@@ -257,7 +257,7 @@ def joint_rotate(surf, angle):
     # Return the rotated copy to the outer scope
     return transform.rotate(new_surf, -degrees(angle))
 
-class medhi:
+class mehdi:
     def __init__(self, map, gameSurface, startPos):
         self.tileSize = map.tileSize
         self.x = startPos[0]

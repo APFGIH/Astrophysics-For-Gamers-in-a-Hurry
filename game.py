@@ -40,9 +40,9 @@ class game:
         self.gameScreen = Surface(self.current_display)
         self.map = Map(self.gameScreen)
 
-        self.medhi = mehdi.medhi(self.map, self.gameScreen, (self.map.start[0], self.map.start[1]) if 'position' not in flame.master_user else flame.master_user['position'])
+        self.mehdi = mehdi.mehdi(self.map, self.gameScreen, (self.map.start[0], self.map.start[1]) if 'position' not in flame.master_user else flame.master_user['position'])
 
-        self.medhigames = {
+        self.mehdigames = {
             'Dvd': Minigames.Dvd.dvd,
             'AsteroidDodge': Minigames.AsteroidDodge.asteroidDodge,
             'MoonLaunch': Minigames.MoonLaunch.moonLaunch,
@@ -50,7 +50,7 @@ class game:
             'SolarPropulsion': Minigames.SolarPropulsion.solarPropulsion
         }
 
-        self.postmedhigames = {
+        self.postmehdigames = {
             'Dvd': 'exit',
             'AsteroidDodge': 'Jupiter',
             'MoonLaunch': 'ISS',
@@ -74,13 +74,13 @@ class game:
         self.mainScreen.fill((0, 0, 0))
 
         # Draw World
-        self.map.make_map(self.gameScreen, (self.medhi.cam_x, self.medhi.cam_y))
+        self.map.make_map(self.gameScreen, (self.mehdi.cam_x, self.mehdi.cam_y))
         for npc in self.map.npc:
-            npc.draw(self.gameScreen, self.medhi)
+            npc.draw(self.gameScreen, self.mehdi)
         # Player
-        self.medhi.update()
-        draw.rect(self.gameScreen, (255, 255, 255), (self.medhi.x - self.medhi.cam_x, self.medhi.y - self.medhi.cam_y, self.medhi.width, self.medhi.height), 3)
-        self.gameScreen.blit(self.medhi.currentFrame, (self.medhi.x - self.medhi.cam_x, self.medhi.y - self.medhi.cam_y))
+        self.mehdi.update()
+        draw.rect(self.gameScreen, (255, 255, 255), (self.mehdi.x - self.mehdi.cam_x, self.mehdi.y - self.mehdi.cam_y, self.mehdi.width, self.mehdi.height), 3)
+        self.gameScreen.blit(self.mehdi.currentFrame, (self.mehdi.x - self.mehdi.cam_x, self.mehdi.y - self.mehdi.cam_y))
 
         # Update Game Screen
         self.mainScreen.blit(transform.scale(self.gameScreen, self.display_surface), (int(self.current_display[0]/2-self.display_surface[0]/2), int(int(self.current_display[1]/2-self.display_surface[1]/2))))
@@ -115,10 +115,10 @@ class game:
                     break
                 elif e.type == KEYDOWN:
                     if not self.interactionLock:
-                        self.medhi.keyDown(e.key)
+                        self.mehdi.keyDown(e.key)
                 elif e.type == KEYUP:
                     if not self.interactionLock:
-                        self.medhi.keyUp(e.key)
+                        self.mehdi.keyUp(e.key)
                 elif e.type == VIDEORESIZE:
                     self.resize(e)
 
@@ -126,17 +126,17 @@ class game:
 
             if keys[K_p]:
                 for p in self.map.minigamePortal:
-                    if self.medhi.playerRect.colliderect(p[0]):
+                    if self.mehdi.playerRect.colliderect(p[0]):
 
                         if len(flame.master_user['education']) >= self.mehdigameeducation[p[1]]:
 
                             if mehdi.multipleChoice(mehdi.generate_quiz()):
 
                                 try:
-                                    result = self.medhigames[p[1]]()
+                                    result = self.mehdigames[p[1]]()
 
                                     if result:
-                                        self.medhi.teleport(self.map.destinations[self.postmedhigames[p[1]]])
+                                        self.mehdi.teleport(self.map.destinations[self.postmehdigames[p[1]]])
 
                                         flame.master_user['score'] += result
 
@@ -166,13 +166,13 @@ class game:
 
                 #else:
                 #    for p in self.map.teleports:
-                #        if self.medhi.playerRect.colliderect(p[0]):
-                #            self.medhi.teleport(p[1])
+                #        if self.mehdi.playerRect.colliderect(p[0]):
+                #            self.mehdi.teleport(p[1])
                 #            break
 
 
             for p in self.map.informationTiles:
-                if self.medhi.playerRect.colliderect(p[0]):
+                if self.mehdi.playerRect.colliderect(p[0]):
 
                     info = mehdi.dialog[p[1]]
 
@@ -187,14 +187,14 @@ class game:
 
             if keys[K_p]:
                 for npc in self.map.npc:
-                    dialogue = npc.interact(self.medhi)
+                    dialogue = npc.interact(self.mehdi)
                     if dialogue:
                         mehdi.txtScreen(mehdi.TextBox(dialogue, 2, int(self.WIDTH * 0.7), 20,
                                                       (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
 
 
                 for p in self.map.universities:
-                    if self.medhi.playerRect.colliderect(p[0]):
+                    if self.mehdi.playerRect.colliderect(p[0]):
 
                         lessonNames = list(mehdi.fullLessons.keys())
 
@@ -214,7 +214,8 @@ class game:
                                                               int(self.WIDTH * 0.7), 20,
                                                               (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
 
-                                self.medhi.klist = [False, False, False, False]
+                                # Feature
+                                self.mehdi.klist = [False, False, False, False]
                                 self.mehdi.vx = 0
                                 self.mehdi.vy = 0
 
