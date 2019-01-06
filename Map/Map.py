@@ -37,10 +37,10 @@ class Map:
             self.universities.append((pygame.Rect(p.x, p.y, p.width, p.height), p.name))
 
         for p in self.gameMap.get_layer_by_name("Bank"):
-            self.bank.append((pygame.Rect(p.x, p.y, p.width, p.height), p.name))
+            self.bank.append((pygame.Rect(p.x, p.y, p.width, p.height), self.gameMap.get_tile_image_by_gid(p.gid)))
 
         for p in self.gameMap.get_layer_by_name("Slotmachine"):
-            self.slotmachine.append((pygame.Rect(p.x, p.y, p.width, p.height), p.name))
+            self.slotmachine.append((pygame.Rect(p.x, p.y, p.width, p.height), self.gameMap.get_tile_image_by_gid(p.gid)))
 
 
         for p in self.gameMap.get_layer_by_name("Portal"):

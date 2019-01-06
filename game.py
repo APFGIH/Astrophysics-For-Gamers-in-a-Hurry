@@ -85,6 +85,13 @@ class game:
         draw.rect(self.gameScreen, (255, 255, 255), (self.mehdi.x - self.mehdi.cam_x, self.mehdi.y - self.mehdi.cam_y, self.mehdi.width, self.mehdi.height), 3)
         self.gameScreen.blit(self.mehdi.currentFrame, (self.mehdi.x - self.mehdi.cam_x, self.mehdi.y - self.mehdi.cam_y))
 
+        for p in self.map.slotmachine:
+            if p[0].colliderect(self.mehdi.screenRect):
+                screen.blit(p[1], (p[0].x - self.mehdi.cam_x, p[0].y-self.mehdi.cam_y))
+        for p in self.map.bank:
+            if p[0].colliderect(self.mehdi.screenRect):
+                screen.blit(p[1], (p[0].x - self.mehdi.cam_x, p[0].y-self.mehdi.cam_y))
+
         score_text = self.normal_font.render('Score: %i' % flame.master_user['score'], True, (255, 255, 255))
         self.gameScreen.blit(score_text, (20, 20))
 
