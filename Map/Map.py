@@ -19,6 +19,9 @@ class Map:
         self.teleports = []
         self.npc = []
 
+        self.bank = []
+        self.slotmachine = []
+
         for r in self.gameMap.get_layer_by_name("Collision"):
             self.collisionRects.append(pygame.Rect(r.x, r.y, r.width, r.height))
 
@@ -32,6 +35,13 @@ class Map:
 
         for p in self.gameMap.get_layer_by_name("Education"):
             self.universities.append((pygame.Rect(p.x, p.y, p.width, p.height), p.name))
+
+        for p in self.gameMap.get_layer_by_name("Bank"):
+            self.bank.append((pygame.Rect(p.x, p.y, p.width, p.height), p.name))
+
+        for p in self.gameMap.get_layer_by_name("Slotmachine"):
+            self.slotmachine.append((pygame.Rect(p.x, p.y, p.width, p.height), p.name))
+
 
         for p in self.gameMap.get_layer_by_name("Portal"):
             if p.type == "Minigame":

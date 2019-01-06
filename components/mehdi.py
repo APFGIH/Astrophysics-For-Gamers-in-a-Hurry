@@ -257,6 +257,25 @@ def joint_rotate(surf, angle):
     # Return the rotated copy to the outer scope
     return transform.rotate(new_surf, -degrees(angle))
 
+def eat_zhekkos(amount):
+
+    if amount <= flame.master_user['zhekkos']:
+        flame.master_user['zhekkos'] -= amount
+        flame.save()
+
+        txtScreen(TextBox('Bank of Medhi~~Transaction successful!~~%i Zhekkos have been eaten by cookie monster. You have %i Zhekkos remaining.' % (amount, flame.master_user['zhekkos']), 2,
+                                      int(WIDTH * 0.7), 20,
+                                      (255, 255, 255), WIDTH * 0.1, HEIGHT * 0.1))
+
+        return True
+    else:
+
+        txtScreen(TextBox('Bank of Medhi~~Unable to proceed - Transaction failed!~~%i Zhekkos required but only %i Zhekkos available!.' % (amount, flame.master_user['zhekkos']), 2,
+                                      int(WIDTH * 0.7), 20,
+                                      (255, 255, 255), WIDTH * 0.1, HEIGHT * 0.1))
+
+        return False
+
 class mehdi:
     def __init__(self, map, gameSurface, startPos):
         self.tileSize = map.tileSize

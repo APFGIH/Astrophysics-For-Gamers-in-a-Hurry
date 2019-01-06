@@ -1,6 +1,7 @@
 import components.mehdi as mehdi
 import components.flame as flame
 import random
+import time as t
 from pygame import *
 from Map.Map import *
 
@@ -17,6 +18,8 @@ import traceback
 class game:
 
     def __init__(self, screen):
+
+        self.normal_font = font.Font("fonts/UndertaleSans.ttf", 25)
 
         self.WIDTH, self.HEIGHT = 1080, 720
         self.mainScreen = screen
@@ -82,8 +85,16 @@ class game:
         draw.rect(self.gameScreen, (255, 255, 255), (self.mehdi.x - self.mehdi.cam_x, self.mehdi.y - self.mehdi.cam_y, self.mehdi.width, self.mehdi.height), 3)
         self.gameScreen.blit(self.mehdi.currentFrame, (self.mehdi.x - self.mehdi.cam_x, self.mehdi.y - self.mehdi.cam_y))
 
+        score_text = self.normal_font.render('Score: %i' % flame.master_user['score'], True, (255, 255, 255))
+        self.gameScreen.blit(score_text, (20, 20))
+
+        money_text = self.normal_font.render('Money: %i' % flame.master_user['zhekkos'], True, (255, 255, 255))
+        self.gameScreen.blit(money_text, (20, 60))
+
+
         # Update Game Screen
         self.mainScreen.blit(transform.scale(self.gameScreen, self.display_surface), (int(self.current_display[0]/2-self.display_surface[0]/2), int(int(self.current_display[1]/2-self.display_surface[1]/2))))
+
         display.update()
         self.gameScreen.fill((200, 200, 200))
 
@@ -128,31 +139,38 @@ class game:
                 for p in self.map.minigamePortal:
                     if self.mehdi.playerRect.colliderect(p[0]):
 
+
                         if len(flame.master_user['education']) >= self.mehdigameeducation[p[1]]:
 
-                            if mehdi.multipleChoice(mehdi.generate_quiz()):
+                            if mehdi.eat_zhekkos(1000000):
 
-                                try:
-                                    result = self.mehdigames[p[1]]()
-
-                                    if result:
-                                        self.mehdi.teleport(self.map.destinations[self.postmehdigames[p[1]]])
-
-                                        flame.master_user['score'] += result
-
-                                        flame.save()
-
-                                    else:
-
-                                        mehdi.txtScreen(mehdi.TextBox('You failed the mission!', 2,
-                                            int(self.WIDTH * 0.7), 20,
-                                            (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+                                if mehdi.multipleChoice(mehdi.generate_quiz()):
 
 
-                                except:
-                                    print('it broke!', p[1])
-                                    traceback.print_exc()
-                                break
+                                    try:
+                                        result = self.mehdigames[p[1]]()
+
+                                        if result:
+                                            self.mehdi.teleport(self.map.destinations[self.postmehdigames[p[1]]])
+
+                                            flame.master_user['score'] += result
+
+                                            flame.save()
+
+                                        else:
+
+                                            mehdi.txtScreen(mehdi.TextBox('You failed the mission!', 2,
+                                                int(self.WIDTH * 0.7), 20,
+                                                (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+
+
+                                    except:
+                                        print('it broke!', p[1])
+                                        traceback.print_exc()
+                                    break
+
+                                else:
+                                    break
 
                             else:
                                 mehdi.txtScreen(mehdi.TextBox('You failed the test! The rocket was not able to launch.', 2,
@@ -164,11 +182,11 @@ class game:
                             mehdi.txtScreen(mehdi.TextBox('You do not have enough education! To fly to the next location, you must have atleast %i degrees. (You currently have %i degrees)' % (self.mehdigameeducation[p[1]], len(flame.master_user['education'])), 2, int(self.WIDTH * 0.7), 20,
                                                           (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
 
-                #else:
-                #    for p in self.map.teleports:
-                #        if self.mehdi.playerRect.colliderect(p[0]):
-                #            self.mehdi.teleport(p[1])
-                #            break
+                else:
+                    for p in self.map.teleports:
+                        if self.mehdi.playerRect.colliderect(p[0]):
+                            self.mehdi.teleport(p[1])
+                            break
 
 
             for p in self.map.informationTiles:
@@ -193,40 +211,80 @@ class game:
                             mehdi.txtScreen(mehdi.TextBox(d, 2, int(self.WIDTH * 0.7), 20,
                                                           (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
 
+                for p in self.map.bank:
+                    if self.mehdi.playerRect.colliderect(p[0]):
+
+                        if t.time() >= flame.master_user['lastFreeZhekko'] + 86400:
+                            mehdi.txtScreen(mehdi.TextBox('Bank of Mehdi~~Yay! You got 10 000 000 free Zhekkos!', 2, int(self.WIDTH * 0.7), 20,
+                                                          (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+                            flame.master_user['lastFreeZhekko'] = t.time()
+                            flame.master_user['zhekkos'] += 10000000
+
+                            flame.save()
+
+                        else:
+                            mehdi.txtScreen(
+                                mehdi.TextBox('Bank of Mehdi~~Whoa whoa whoa...~~You must wait %i more seconds to get free zhekkos.' % (flame.master_user['lastFreeZhekko'] + 86400 - t.time()), 2, int(self.WIDTH * 0.7), 20,
+                                                          (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+
+                for p in self.map.slotmachine:
+                    if self.mehdi.playerRect.colliderect(p[0]):
+
+                        amount = 5000
+
+                        if mehdi.eat_zhekkos(amount):
+                            if random.randint(0, 10) == 0:
+                                flame.master_user['zhekkos'] = (flame.master_user['zhekkos'] + amount) * 5
+
+                                mehdi.txtScreen(
+                                    mehdi.TextBox('MehdiCasino~~Yay! You won at x5 multiplier !!!!! You now have %i Zhekkos.' % flame.master_user['zhekkos'], 2, int(self.WIDTH * 0.7), 20,
+                                                          (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+
+                                flame.save()
+
+                            else:
+                                mehdi.txtScreen(
+                                    mehdi.TextBox('MehdiCasino~~You lost. You now have %i Zhekkos.' % flame.master_user['zhekkos'], 2, int(self.WIDTH * 0.7), 20,
+                                                          (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+
+
 
                 for p in self.map.universities:
                     if self.mehdi.playerRect.colliderect(p[0]):
 
-                        lessonNames = list(mehdi.fullLessons.keys())
+                        if mehdi.eat_zhekkos(1000):
 
-                        random.shuffle(lessonNames)
+                            lessonNames = list(mehdi.fullLessons.keys())
 
-                        for topic in lessonNames:
-                            if topic not in flame.master_user['education']:
+                            random.shuffle(lessonNames)
 
-
-                                mehdi.txtScreen(mehdi.TextBox('Here\'s your daily dose of education!~~' + mehdi.fullLessons[topic]['dialog'], 2, int(self.WIDTH * 0.7), 20,
-                                                              (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
-
-                                flame.master_user['education'].append(topic)
-                                flame.save()
-
-                                mehdi.txtScreen(mehdi.TextBox('Congrats! You now have a degree in %s!~~Total of %i degrees.' % (topic.split('Lesson')[0].upper(), len(flame.master_user['education'])), 2,
-                                                              int(self.WIDTH * 0.7), 20,
-                                                              (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
-
-                                # Feature
-                                self.mehdi.klist = [False, False, False, False]
-                                self.mehdi.vx = 0
-                                self.mehdi.vy = 0
-
-                                break
+                            for topic in lessonNames:
+                                if topic not in flame.master_user['education']:
 
 
-                        else:
-                            mehdi.txtScreen(mehdi.TextBox('You are a big nerd and have too much education', 2,
-                                int(self.WIDTH * 0.7), 20,
-                                (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+                                    mehdi.txtScreen(mehdi.TextBox('Here\'s your daily dose of education!~~' + mehdi.fullLessons[topic]['dialog'], 2, int(self.WIDTH * 0.7), 20,
+                                                                  (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+
+                                    flame.master_user['score'] += 50
+                                    flame.master_user['education'].append(topic)
+                                    flame.save()
+
+                                    mehdi.txtScreen(mehdi.TextBox('Congrats! You now have a degree in %s!~~The University of Loowater has issued 50 points!~~You now have a total of %i degrees.' % (topic.split('Lesson')[0].upper(), len(flame.master_user['education'])), 2,
+                                                                  int(self.WIDTH * 0.7), 20,
+                                                                  (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+
+                                    # Feature
+                                    self.mehdi.klist = [False, False, False, False]
+                                    self.mehdi.vx = 0
+                                    self.mehdi.vy = 0
+
+                                    break
+
+
+                            else:
+                                mehdi.txtScreen(mehdi.TextBox('You are a big nerd and have too much education', 2,
+                                    int(self.WIDTH * 0.7), 20,
+                                    (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
 
             # mx, my = mouse.get_pressed()[:2]
 

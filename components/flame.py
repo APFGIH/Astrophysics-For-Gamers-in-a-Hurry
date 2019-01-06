@@ -33,7 +33,7 @@ def register(username, password):
     else:
         firebase_admin.firestore.client(app=None).collection('users').document(username).set(
                         {'password': password,
-                         'master_user': {'score': 0, 'lastLogin': time.time(), 'dialogCompleted': [], 'education': []}})
+                         'master_user': {'score': 0, 'zhekkos': 0, 'lastFreeZhekko': 0, 'lastLogin': time.time(), 'dialogCompleted': [], 'education': []}})
 
         return authenticate(username, password)
 
@@ -83,6 +83,8 @@ def save():
                         {'master_user': master_user})
 
         jar()
+
+        print('Process saved!')
 
         return True
     return False
