@@ -285,7 +285,7 @@ class mehdi:
         self.currentPosition = 'd'
         self.currentAnimation = self.animations['d'][:]
         self.currentFrame = self.animations[self.currentPosition][0]
-        self.animationTick = 30
+        self.animationTick = 15
         self.currentTick = 0
         self.animationLock = False
 

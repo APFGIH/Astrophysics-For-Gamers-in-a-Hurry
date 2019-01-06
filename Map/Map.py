@@ -39,14 +39,10 @@ class Map:
             elif p.type == "Teleport":
                 self.teleports.append((pygame.Rect(p.x, p.y, p.width, p.height), self.destinations[p.name]))
 
-        self.npcImages = {}
+        for p in self.gameMap.get_layer_by_name("npcLayer"):
+            self.npc.append(npc(self.gameMap.get_tile_image_by_gid(p.gid), pygame.Rect(p.x, p.y, p.width, p.height), p.type))
+            self.collisionRects.append(pygame.Rect(p.x, p.y, p.width, p.height))
 
-        for i in self.gameMap.get_layer_by_name("npcLayer"):
-            self.npcImages[i.name] = (self.gameMap.get_tile_image_by_gid(i.gid), pygame.Rect(i.x, i.y, i.width, i.height))
-            self.collisionRects.append(pygame.Rect(i.x, i.y, i.width, i.height))
-
-        for p in self.gameMap.get_layer_by_name("Interaction"):
-            self.npc.append(npc(self.npcImages[p.type][0], self.npcImages[p.type][1], pygame.Rect(p.x, p.y, p.width, p.height), "NICC BROOOOOO", p.name))
 
     def render(self, surface, sx, sy, hx, hy, offsetx=0, offsety=0):
         for x in range(sx, hx):

@@ -189,8 +189,9 @@ class game:
                 for npc in self.map.npc:
                     dialogue = npc.interact(self.mehdi)
                     if dialogue:
-                        mehdi.txtScreen(mehdi.TextBox(dialogue, 2, int(self.WIDTH * 0.7), 20,
-                                                      (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+                        for d in dialogue:
+                            mehdi.txtScreen(mehdi.TextBox(d, 2, int(self.WIDTH * 0.7), 20,
+                                                          (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
 
 
                 for p in self.map.universities:

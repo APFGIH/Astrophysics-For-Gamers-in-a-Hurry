@@ -88,5 +88,18 @@
 
   "asteroidDodge" : {
     "dialog" : "To exit the moon and ~go to Jupiter, there's an obstacle in the way. We must make it through the asteroid belt that lies between Mars and Jupiter. It's filled with giant lumps of rock and metal, over 200000 of them! It's your job to make it through without getting hit on your way there. The actual asteroid belt isn't as densely packed as this, in fact it's actually very spread out, but that wouldn't be fun, now would it?"
+  },
+
+  "ISSIntro1": {
+    "dialog" : "Medhi: Gravity acts upon all object within earth's gravitational area. Your spaceship will need to have enough force to push through gravity and escape into outer space. The formula to calculate escape velocity is (2GM/r)**0.5. G is the gravitational constant(6.67x10^-11), M is the mass of the body that we are escaping(kg), r is the radius of the body we are escaping (m).  For NASA specifically we use approximately 11.2 km/s to escape earth.",
+    "singleTrigger" : true
+  },
+  "ISSIntro2": {
+    "dialog" : "Medhi: Spacecraft: to traverse the stars you will need to generate thrust to push you in a desired direction, to do this we use rockets. Space does not have oxygen to combust so we must bring oxygen ourselves. That means we must effectively carry two times as much propellent (fuel and oxygen) to create thrust for our ship. As you add more and more propellent, you must remember you have to bring that propellent with you up into space. So as you add more propellent, you need even more propellent to bring the extra propellent. Luckily for us, outer space has almost zero gravity which means you don’t have to worry about the extra mass from the propellent. However you still must escape the planet first, but NASA compartmentalizes the spaceships so that they drop the sections of the ship that are all out of propellent to save on mass.",
+    "singleTrigger" : true
+  },
+  "ISSIntro3": {
+    "dialog" : "Medhi: Good Luck on your trip to the moon!",
+    "singleTrigger" : false
   }
 }
