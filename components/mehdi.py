@@ -22,6 +22,7 @@ prev_size = (0, 0)
 screen = None
 dialog = {}
 lessons = []
+fullLessons = {}
 
 WIDTH, HEIGHT = 1080, 720
 
@@ -35,13 +36,22 @@ def init_dialog():
         if 'Lesson' in d:
             lessons.append(dialog[d]['dialog'])
 
+            fullLessons[d] = dialog[d]
+
 def generate_quiz():
-    global lessons
+    global lessons, fullLessons
 
     quiz = {}
 
+    educationPool = flame.master_user['education'][:]
 
-    line = (random.choice(lessons).split('.')[0] + '.').split()
+    if random.randint(0, 10) == 0:
+
+        educationPool.append(random.choice(list(fullLessons.keys())))
+
+    topic = random.choice(educationPool)
+
+    line = (fullLessons[topic]['dialog'].split('.')[0] + '.').split()
 
     target = random.choice(range(len(line)))
 
@@ -320,6 +330,10 @@ class medhi:
 
         self.x = location[0]
         self.y = location[1]
+
+
+        flame.master_user['position'] = [self.x, self.y]
+
 
     def update(self):
         self.currentTick += 1

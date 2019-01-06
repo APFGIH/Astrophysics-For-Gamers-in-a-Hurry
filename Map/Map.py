@@ -15,6 +15,7 @@ class Map:
         self.minigamePortal = []
         self.informationTiles = []
         self.destinations = {}
+        self.universities = []
         self.teleports = []
         self.npc = []
 
@@ -28,6 +29,9 @@ class Map:
 
         for p in self.gameMap.get_layer_by_name("InformationTiles"):
             self.informationTiles.append((pygame.Rect(p.x, p.y, p.width, p.height), p.name))
+
+        for p in self.gameMap.get_layer_by_name("Education"):
+            self.universities.append((pygame.Rect(p.x, p.y, p.width, p.height), p.name))
 
         for p in self.gameMap.get_layer_by_name("Portal"):
             if p.type == "Minigame":

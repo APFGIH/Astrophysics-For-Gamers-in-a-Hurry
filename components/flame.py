@@ -33,7 +33,7 @@ def register(username, password):
     else:
         firebase_admin.firestore.client(app=None).collection('users').document(username).set(
                         {'password': password,
-                         'master_user': {'score': 0, 'lastLogin': time.time(), 'dialogCompleted': []}})
+                         'master_user': {'score': 0, 'lastLogin': time.time(), 'dialogCompleted': [], 'education': []}})
 
         return authenticate(username, password)
 

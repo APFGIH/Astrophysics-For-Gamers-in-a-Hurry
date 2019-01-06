@@ -1,5 +1,6 @@
 import components.mehdi as mehdi
 import components.flame as flame
+import random
 from pygame import *
 from Map.Map import *
 
@@ -8,6 +9,8 @@ import Minigames.Dvd
 import Minigames.MoonLaunch
 import Minigames.SunProtection
 import Minigames.SolarPropulsion
+
+import json
 
 import traceback
 
@@ -40,11 +43,27 @@ class game:
         self.medhi = mehdi.medhi(self.map, self.gameScreen, (self.map.start[0], self.map.start[1]) if 'position' not in flame.master_user else flame.master_user['position'])
 
         self.medhigames = {
-            'AsteroidDodge': Minigames.Dvd.dvd,
-            #'AsteroidDodge': Minigames.AsteroidDodge.asteroidDodge,
+            'Dvd': Minigames.Dvd.dvd,
+            'AsteroidDodge': Minigames.AsteroidDodge.asteroidDodge,
             'MoonLaunch': Minigames.MoonLaunch.moonLaunch,
             'SunProtection': Minigames.SunProtection.sunProtection,
             'SolarPropulsion': Minigames.SolarPropulsion.solarPropulsion
+        }
+
+        self.postmedhigames = {
+            'Dvd': 'exit',
+            'AsteroidDodge': 'Jupiter',
+            'MoonLaunch': 'ISS',
+            'SunProtection': 'Sun',
+            'SolarPropulsion': 'Wasteland'
+        }
+
+        self.mehdigameeducation = {
+            'Dvd': 10,
+            'AsteroidDodge': 4,
+            'MoonLaunch': 2,
+            'SunProtection': 6,
+            'SolarPropulsion': 8
         }
 
         self.resize(Rect(0, 0, screen.get_width(), screen.get_height()))
@@ -108,17 +127,46 @@ class game:
             if keys[K_p]:
                 for p in self.map.minigamePortal:
                     if self.medhi.playerRect.colliderect(p[0]):
-                        try:
-                            self.medhigames[p[1]]()
-                        except:
-                            print('it broke!', p[1])
-                            traceback.print_exc()
-                        break
-                else:
-                    for p in self.map.teleports:
-                        if self.medhi.playerRect.colliderect(p[0]):
-                            self.medhi.teleport(p[1])
-                            break
+
+                        if len(flame.master_user['education']) >= self.mehdigameeducation[p[1]]:
+
+                            if mehdi.multipleChoice(mehdi.generate_quiz()):
+
+                                try:
+                                    result = self.medhigames[p[1]]()
+
+                                    if result:
+                                        self.medhi.teleport(self.map.destinations[self.postmedhigames[p[1]]])
+
+                                        flame.save()
+
+                                    else:
+
+                                        mehdi.txtScreen(mehdi.TextBox('You failed the mission!', 2,
+                                            int(self.WIDTH * 0.7), 20,
+                                            (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+
+
+                                except:
+                                    print('it broke!', p[1])
+                                    traceback.print_exc()
+                                break
+
+                            else:
+                                mehdi.txtScreen(mehdi.TextBox('You failed the test! The rocket was not able to launch.', 2,
+                                    int(self.WIDTH * 0.7), 20,
+                                    (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+
+
+                        else:
+                            mehdi.txtScreen(mehdi.TextBox('You do not have enough education! To fly to the next location, you must have atleast %i degrees. (You currently have %i degrees)' % (self.mehdigameeducation[p[1]], len(flame.master_user['education'])), 2, int(self.WIDTH * 0.7), 20,
+                                                          (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+
+                #else:
+                #    for p in self.map.teleports:
+                #        if self.medhi.playerRect.colliderect(p[0]):
+                #            self.medhi.teleport(p[1])
+                #            break
 
 
             for p in self.map.informationTiles:
@@ -141,6 +189,36 @@ class game:
                     if dialogue:
                         mehdi.txtScreen(mehdi.TextBox(dialogue, 2, int(self.WIDTH * 0.7), 20,
                                                       (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+
+
+                for p in self.map.universities:
+                    if self.medhi.playerRect.colliderect(p[0]):
+
+                        lessonNames = list(mehdi.fullLessons.keys())
+
+                        random.shuffle(lessonNames)
+
+                        for topic in lessonNames:
+                            if topic not in flame.master_user['education']:
+
+
+                                mehdi.txtScreen(mehdi.TextBox('Here\'s your daily dose of education!~~' + mehdi.fullLessons[topic]['dialog'], 2, int(self.WIDTH * 0.7), 20,
+                                                              (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+
+                                flame.master_user['education'].append(topic)
+                                flame.save()
+
+                                mehdi.txtScreen(mehdi.TextBox('Congrats! You now have a degree in %s!~~Total of %i degrees.' % (topic.split('Lesson')[0].upper(), len(flame.master_user['education'])), 2,
+                                                              int(self.WIDTH * 0.7), 20,
+                                                              (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+
+                                break
+
+
+                        else:
+                            mehdi.txtScreen(mehdi.TextBox('You are a big nerd and have too much education', 2,
+                                int(self.WIDTH * 0.7), 20,
+                                (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
 
             # mx, my = mouse.get_pressed()[:2]
 
