@@ -58,6 +58,8 @@ def solarPropulsion():
             theta = min(pi//2, theta + 0.01)
         if keys[K_RIGHT]:
             theta = max(-pi//4, theta - 0.01)
+        if keys[K_END]:
+            return 100
 
 
         drawPanel(mehdi.WIDTH // 2, mehdi.HEIGHT // 2, theta)

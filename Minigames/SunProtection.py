@@ -43,6 +43,9 @@ def sunProtection():
             theta = min(pi, theta + 0.05)
         if keys[K_RIGHT]:
             theta = max(0, theta - 0.05)
+        if keys[K_END]:
+            return 100
+
 
         if timer == 0:
             return int(hp/2000)*99+1

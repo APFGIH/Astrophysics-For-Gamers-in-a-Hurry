@@ -128,6 +128,7 @@ def moonLaunch():
 
 
     while running:
+        keys = key.get_pressed()
         mx, my = mouse.get_pos()
 
         for action in event.get():
@@ -157,6 +158,8 @@ def moonLaunch():
                     spaceShip.yvel = 0.03*mag*sin(ang)
 
 
+        if keys[K_END]:
+            return 100
 
         screen.fill((0, 0, 0))
 

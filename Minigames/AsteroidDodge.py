@@ -63,6 +63,8 @@ def asteroidDodge():
             shipx = max(mehdi.WIDTH*0.05, shipx-5)
         if keys[K_RIGHT]:
             shipx = min(mehdi.WIDTH*0.95, shipx+5)
+        if keys[K_END]:
+            return 100
 
         mehdi.drawStuff(screen)
         #display.flip()

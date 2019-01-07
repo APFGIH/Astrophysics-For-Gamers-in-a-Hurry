@@ -52,6 +52,9 @@ def dvd():
             if action.type == VIDEORESIZE:
                 mehdi.resizeStuff(action.w, action.h)
 
+        if keys[K_END]:
+            return 100
+
         screen.fill((0, 0, 0))
 
         if logoRect.top == screenRect.top or logoRect.bottom == screenRect.bottom:
