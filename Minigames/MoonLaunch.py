@@ -132,8 +132,7 @@ def moonLaunch():
 
         for action in event.get():
             if action.type == QUIT:
-                running = False
-                break
+                return False
             elif action.type == MOUSEBUTTONDOWN:
                 if action.button == 1:
                     if hypot(mx - mehdi.WIDTH*0.2, my - mehdi.HEIGHT*0.75) <= 60:

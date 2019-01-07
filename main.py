@@ -800,8 +800,10 @@ if __name__ == '__main__':
         'register_service': register_service
     }
 
-    music_object = mixer.Sound('sounds/menu.ogg')
-    music_object.play(-1, 0)
+    menu_music_object = mixer.Sound('sounds/menu.ogg')
+    game_music_object = mixer.Sound('sounds/game.ogg')
+
+    menu_music_object.play(-1, 0)
 
     while navigation != 'exit':
         # Ensures display is within min size to prevent overlap
@@ -825,14 +827,18 @@ if __name__ == '__main__':
             if not navigation:
                 raise Exception('You broke something')
             elif navigation == 'game':
-                music_object.stop()
+
+                menu_music_object.stop()
+                game_music_object.play(-1, 0)
 
                 g = game.game(screen)
 
                 navigation = g.game()
 
+                game_music_object.stop()
                 flame.save()
 
+                menu_music_object.play(-1, 0)
                 #print('Outcome:', solarPropulsion(1, drawStuff, resizeStuff))
 
             elif navigation[0] == 'crash':

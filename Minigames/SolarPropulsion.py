@@ -28,9 +28,7 @@ def solarPropulsion():
         keys = key.get_pressed()
         for action in event.get():
             if action.type == QUIT:
-                running = False
-                break
-
+                return False
             if action.type == VIDEORESIZE:
                 mehdi.resizeStuff(action.w, action.h)
 
