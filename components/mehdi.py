@@ -14,6 +14,7 @@ import json
 import traceback
 import components.flame as flame
 import random
+import webbrowser
 import time as t
 
 # x, y, vx, vy
@@ -37,6 +38,10 @@ def init_dialog():
             lessons.append(dialog[d]['dialog'])
 
             fullLessons[d] = dialog[d]
+
+def meme():
+    while True:
+        webbrowser.open('https://www.youtube.com/watch?v=Yp7L1GHaZLI')
 
 def generate_quiz():
     global lessons, fullLessons

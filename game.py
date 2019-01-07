@@ -46,6 +46,7 @@ class game:
         self.mehdi = mehdi.mehdi(self.map, self.gameScreen, (self.map.start[0], self.map.start[1]) if 'position' not in flame.master_user else flame.master_user['position'])
 
         self.mehdigames = {
+            'exit': mehdi.meme,
             'Dvd': Minigames.Dvd.dvd,
             'AsteroidDodge': Minigames.AsteroidDodge.asteroidDodge,
             'MoonLaunch': Minigames.MoonLaunch.moonLaunch,
