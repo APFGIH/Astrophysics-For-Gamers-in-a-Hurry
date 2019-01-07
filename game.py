@@ -56,7 +56,7 @@ class game:
         self.postmehdigames = {
             'Dvd': 'exit',
             'AsteroidDodge': 'Jupiter',
-            'MoonLaunch': 'ISS',
+            'MoonLaunch': 'Moon',
             'SunProtection': 'Sun',
             'SolarPropulsion': 'Wasteland'
         }
@@ -186,7 +186,7 @@ class game:
 
 
                         else:
-                            mehdi.txtScreen(mehdi.TextBox('You do not have enough education! To fly to the next location, you must have atleast %i degrees. (You currently have %i degrees)' % (self.mehdigameeducation[p[1]], len(flame.master_user['education'])), 2, int(self.WIDTH * 0.7), 20,
+                            mehdi.txtScreen(mehdi.TextBox('You do not have enough education! To fly to the next location, you must have atleast %i degrees. (You currently have %i degrees)~~Visit the University to obtain a degree!' % (self.mehdigameeducation[p[1]], len(flame.master_user['education'])), 2, int(self.WIDTH * 0.7), 20,
                                                           (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
 
                 else:

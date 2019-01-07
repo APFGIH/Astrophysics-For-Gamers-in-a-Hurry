@@ -1,6 +1,6 @@
 {
   "intro" : {
-    "dialog" : "NASA Guy: We have received strange readings from the sensors on the moon, it is a cause for concern, we’re sending you, our lead scientist to investigate. Refresh yourself on how these spacecrafts work and then head on your way.~~~PC: hmmm, i dont need the full lesson, lets read the crash course lesson.",
+    "dialog" : "NASA Guy: We have received strange readings from the sensors on the moon, it is a cause for concern, we’re sending you, our lead scientist to investigate. Refresh yourself on how these spacecrafts work and then head on your way.~~~PC: hmmm, i dont need the full lesson, lets read the crash course lesson.~~~NASA Guy: Oh, just so you know, everything costs Zhekkos. It's the new universal currency! You can get your daily socialist salary from the nearest ATM. If you're feeling lucky, you can \"Invest\" by visit a slot machine.",
     "automatic": true,
     "singleTrigger": true
   },
