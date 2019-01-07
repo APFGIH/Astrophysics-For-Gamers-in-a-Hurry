@@ -129,6 +129,7 @@ def transition(screen, next):
 
     return next()
 
+
 # Function to control printing in game code (purely for dev purposes)
 def mehprint(*text):
     """ A general convenience print statement used for debugging. """

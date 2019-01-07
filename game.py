@@ -166,7 +166,7 @@ class game:
 
                                         else:
 
-                                            mehdi.txtScreen(mehdi.TextBox('You failed the mission!', 2,
+                                            mehdi.txtScreen(mehdi.TextBox('You failed the mission! Luckily, NASA Software Engineers were able recover your mind from a backup and restore your last position.', 2,
                                                 int(self.WIDTH * 0.7), 20,
                                                 (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
 
@@ -177,12 +177,11 @@ class game:
                                     break
 
                                 else:
-                                    break
+                                    mehdi.txtScreen(mehdi.TextBox('You failed the pre-flight exam! The rocket was not able to launch.', 2,
+                                        int(self.WIDTH * 0.7), 20,
+                                        (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
 
-                            else:
-                                mehdi.txtScreen(mehdi.TextBox('You failed the test! The rocket was not able to launch.', 2,
-                                    int(self.WIDTH * 0.7), 20,
-                                    (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+                                    break
 
 
                         else:

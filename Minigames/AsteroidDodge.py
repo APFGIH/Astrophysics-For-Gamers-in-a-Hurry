@@ -16,7 +16,7 @@ def asteroidDodge():
     shipx, shipy = mehdi.WIDTH // 2, mehdi.HEIGHT * 0.9
     asteroidList = []
     running = True
-    timer = 6000
+    timer = 3000
 
     def drawAst1(screen, x, y):
         draw.circle(screen, (150, 150, 150), (int(x), int(y)), 20, 0)
@@ -45,7 +45,7 @@ def asteroidDodge():
         else:
             timer -= 1
             if timer % 2 == 0 and randint(1, timer + 5000) <= 2500 and timer > 250:
-                asteroidList.append(fallingStone(randint(int(mehdi.WIDTH*0.05), int(mehdi.WIDTH*0.95)), 0, 0, (11000-timer)*randint(80, 120)*0.000008, 30, drawAst1))
+                asteroidList.append(fallingStone(randint(int(mehdi.WIDTH*0.05), int(mehdi.WIDTH*0.95)), 0, 0, (5000-timer)*randint(80, 120)*0.000008, 30, drawAst1))
             if any([a.collide([shipx, shipy]) for a in asteroidList]):
                 return 0
 
@@ -57,7 +57,7 @@ def asteroidDodge():
                 del asteroidList[i]
 
         draw.rect(screen, (255, 255, 255), (int(mehdi.WIDTH * 0.2), int(mehdi.HEIGHT * 0.01), int(mehdi.WIDTH * 0.6), int(mehdi.HEIGHT * 0.07)))
-        draw.rect(screen, (255, 200, 0), (int(mehdi.WIDTH * 0.21), int(mehdi.HEIGHT * 0.02), int(mehdi.WIDTH * 0.58 * timer / 6000), int(mehdi.HEIGHT * 0.05)))
+        draw.rect(screen, (255, 200, 0), (int(mehdi.WIDTH * 0.21), int(mehdi.HEIGHT * 0.02), int(mehdi.WIDTH * 0.58 * timer / 3000), int(mehdi.HEIGHT * 0.05)))
 
         drawShip(shipx, shipy)
         if keys[K_LEFT]:

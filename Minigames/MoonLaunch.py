@@ -136,7 +136,7 @@ def moonLaunch():
                 break
             elif action.type == MOUSEBUTTONDOWN:
                 if action.button == 1:
-                    if hypot(mx - mehdi.WIDTH*0.2, my - mehdi.HEIGHT*0.75) <= 30:
+                    if hypot(mx - mehdi.WIDTH*0.2, my - mehdi.HEIGHT*0.75) <= 60:
                         launching = True
             elif action.type == VIDEORESIZE:
                 mehdi.resizeStuff(action.w, action.h)
