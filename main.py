@@ -6,6 +6,8 @@ import components.flame as flame
 import game
 import traceback
 import glob
+import sys
+sys.setrecursionlimit(10000)
 
 from Minigames.SolarPropulsion import *
 

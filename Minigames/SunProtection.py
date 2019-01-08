@@ -51,7 +51,7 @@ def sunProtection():
             return int(hp/2000)*99+1
         else:
             timer -= 1
-            if timer % 50 == 0 and randint(1, 100) < 70:
+            if timer % 50 == 0 and randint(1, 100) < 50:
                 lightList.append(lightBeam(randint(0, mehdi.WIDTH), mehdi.HEIGHT, mehdi.WIDTH//2, mehdi.HEIGHT//4, randint(0, 4), 50))
 
         for l in lightList:
