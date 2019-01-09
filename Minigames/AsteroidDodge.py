@@ -43,8 +43,8 @@ def asteroidDodge():
             return 100
         else:
             timer -= 1
-            if timer % 2 == 0 and randint(1, timer + 5000) <= 2500 and timer > 250:
-                asteroidList.append(fallingStone(randint(int(mehdi.WIDTH*0.05), int(mehdi.WIDTH*0.95)), 0, 0, (5000-timer)*randint(80, 120)*0.000008, 30, drawAst1))
+            if timer % 6 == 0 and randint(1, timer + 5000) <= 3000 and timer > 250:
+                asteroidList.append(fallingStone(randint(int(mehdi.WIDTH*0.05), int(mehdi.WIDTH*0.95)), 0, 0, (5000-timer)*randint(80, 120)*0.000024, 30, drawAst1))
             if any([a.collide([shipx, shipy]) for a in asteroidList]):
                 return 0
 
