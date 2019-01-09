@@ -85,6 +85,51 @@
     "automatic": false,
     "singleTrigger": false
   },
+  "Albert_EinsteinLesson" : {
+    "dialog": "Albert Einstein (/ˈaɪnstaɪn/;[4] German: [ˈalbɛɐ̯t ˈʔaɪnʃtaɪn] (About this soundlisten); 14 March 1879 – 18 April 1955) was a German-born theoretical physicist[5] who developed the theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics).[3][6]:274 His work is also known for its influence on the philosophy of science.[7][8] He is best known to the general public for his mass–energy equivalence formula E = mc2, which has been dubbed \"the world's most famous equation\".[9] He received the 1921 Nobel Prize in Physics \"for his services to theoretical physics, and especially for his discovery of the law of the photoelectric effect\",[10] a pivotal step in the development of quantum theory.",
+    "automatic": false,
+    "singleTrigger": false
+  },
+  "hysicsLesson" : {
+    "dialog": "Physics (from Ancient Greek: φυσική (ἐπιστήμη), translit. physikḗ (epistḗmē), lit. 'knowledge of nature', from φύσις phýsis \"nature\")[1][2][3] is the natural science that studies matter[4] and its motion and behavior through space and time and that studies the related entities of energy and force.[5] Physics is one of the most fundamental scientific disciplines, and its main goal is to understand how the universe behaves.[a][6][7][8]",
+    "automatic": false,
+    "singleTrigger": false
+  },
+  "Nuclear_WeaponLesson" : {
+    "dialog": "A nuclear weapon is an explosive device that derives its destructive force from nuclear reactions, either fission (fission bomb) or from a combination of fission and fusion reactions (thermonuclear bomb). Both bomb types release large quantities of energy from relatively small amounts of matter. The first test of a fission ("atomic") bomb released an amount of energy approximately equal to 20,000 tons of TNT (84 TJ).[1] The first thermonuclear ("hydrogen") bomb test released energy approximately equal to 10 million tons of TNT (42 PJ). A thermonuclear weapon weighing little more than 2,400 pounds (1,100 kg) can release energy equal to more than 1.2 million tons of TNT (5.0 PJ).[2] A nuclear device no larger than traditional bombs can devastate an entire city by blast, fire, and radiation. Since they are weapons of mass destruction, the proliferation of nuclear weapons is a focus of international relations policy.",
+    "automatic": false,
+    "singleTrigger": false
+  },
+
+  "plutoniumLesson" : {
+    "dialog": "Plutonium is a radioactive chemical element with symbol Pu and atomic number 94. It is an actinide metal of silvery-gray appearance that tarnishes when exposed to air, and forms a dull coating when oxidized. The element normally exhibits six allotropes and four oxidation states. It reacts with carbon, halogens, nitrogen, silicon and hydrogen. When exposed to moist air, it forms oxides and hydrides that can expand the sample up to 70% in volume, which in turn flake off as a powder that is pyrophoric. It is radioactive and can accumulate in bones, which makes the handling of plutonium dangerous.",
+    "automatic": false,
+    "singleTrigger": false
+  },
+
+  "graph_theoryLesson" : {
+    "dialog": "In mathematics, graph theory is the study of graphs, which are mathematical structures used to model pairwise relations between objects. A graph in this context is made up of vertices, nodes, or points which are connected by edges, arcs, or lines. A graph may be undirected, meaning that there is no distinction between the two vertices associated with each edge, or its edges may be directed from one vertex to another; see Graph (discrete mathematics) for more detailed definitions and for other variations in the types of graph that are commonly considered. Graphs are one of the prime objects of study in discrete mathematics.",
+    "automatic": false,
+    "singleTrigger": false
+  },
+
+  "DijkstraLesson" : {
+    "dialog": "Dijkstra's algorithm is an algorithm for finding the shortest paths between nodes in a graph, which may represent, for example, road networks. It was conceived by computer scientist Edsger W. Dijkstra in 1956 and published three years later.[1][2][3]",
+    "automatic": false,
+    "singleTrigger": false
+  },
+
+  "C++Lesson" : {
+    "dialog": "C++ (/ˌsiːˌplʌsˈplʌs/ \"see plus plus\") is a general-purpose programming language. It has imperative, object-oriented and generic programming features, while also providing facilities for low-level memory manipulation.",
+    "automatic": false,
+    "singleTrigger": false
+  },
+
+  "STAR_TREKLesson" : {
+    "dialog": "Star Trek is an American space opera media franchise based on the science fiction television series created by Gene Roddenberry. The first television series, simply called Star Trek and now referred to as \"The Original Series\", debuted in 1966 and aired for three seasons on the television network NBC. It followed the interstellar adventures of Captain James T. Kirk (William Shatner) and his crew aboard the starship USS Enterprise, a space exploration vessel, built by the United Federation of Planets in the twenty-third century. The Star Trek canon of the franchise includes The Original Series, an animated series, five spin-off television series, the film franchise, and further adaptations in several media.",
+    "automatic": false,
+    "singleTrigger": false
+  },
 
   "asteroidDodge" : {
     "dialog" : "To exit the moon and ~go to Jupiter, there's an obstacle in the way. We must make it through the asteroid belt that lies between Mars and Jupiter. It's filled with giant lumps of rock and metal, over 200000 of them! It's your job to make it through without getting hit on your way there. The actual asteroid belt isn't as densely packed as this, in fact it's actually very spread out, but that wouldn't be fun, now would it?"
