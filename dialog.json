@@ -90,13 +90,13 @@
     "automatic": false,
     "singleTrigger": false
   },
-  "hysicsLesson" : {
+  "PhysicsLesson" : {
     "dialog": "Physics (from Ancient Greek: φυσική (ἐπιστήμη), translit. physikḗ (epistḗmē), lit. 'knowledge of nature', from φύσις phýsis \"nature\")[1][2][3] is the natural science that studies matter[4] and its motion and behavior through space and time and that studies the related entities of energy and force.[5] Physics is one of the most fundamental scientific disciplines, and its main goal is to understand how the universe behaves.[a][6][7][8]",
     "automatic": false,
     "singleTrigger": false
   },
   "Nuclear_WeaponLesson" : {
-    "dialog": "A nuclear weapon is an explosive device that derives its destructive force from nuclear reactions, either fission (fission bomb) or from a combination of fission and fusion reactions (thermonuclear bomb). Both bomb types release large quantities of energy from relatively small amounts of matter. The first test of a fission ("atomic") bomb released an amount of energy approximately equal to 20,000 tons of TNT (84 TJ).[1] The first thermonuclear ("hydrogen") bomb test released energy approximately equal to 10 million tons of TNT (42 PJ). A thermonuclear weapon weighing little more than 2,400 pounds (1,100 kg) can release energy equal to more than 1.2 million tons of TNT (5.0 PJ).[2] A nuclear device no larger than traditional bombs can devastate an entire city by blast, fire, and radiation. Since they are weapons of mass destruction, the proliferation of nuclear weapons is a focus of international relations policy.",
+    "dialog": "A nuclear weapon is an explosive device that derives its destructive force from nuclear reactions, either fission (fission bomb) or from a combination of fission and fusion reactions (thermonuclear bomb). Both bomb types release large quantities of energy from relatively small amounts of matter. The first test of a fission (\"atomic\") bomb released an amount of energy approximately equal to 20,000 tons of TNT (84 TJ).[1] The first thermonuclear (\"hydrogen\") bomb test released energy approximately equal to 10 million tons of TNT (42 PJ). A thermonuclear weapon weighing little more than 2,400 pounds (1,100 kg) can release energy equal to more than 1.2 million tons of TNT (5.0 PJ).[2] A nuclear device no larger than traditional bombs can devastate an entire city by blast, fire, and radiation. Since they are weapons of mass destruction, the proliferation of nuclear weapons is a focus of international relations policy.",
     "automatic": false,
     "singleTrigger": false
   },
