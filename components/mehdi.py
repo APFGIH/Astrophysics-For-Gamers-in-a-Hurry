@@ -17,6 +17,12 @@ import random
 import webbrowser
 import time as t
 
+menu_music_object = None
+game_music_object = None
+end_music_object = None
+
+ending = False
+
 # x, y, vx, vy
 stars = []
 prev_size = (0, 0)
@@ -80,6 +86,12 @@ def set_screen(s):
     screen = s
 
 def center_frame(a, b):
+    offsetX = 0
+    offsetY = 0
+
+    if flame.master_user['tremble'] and not ending:
+        offsetX = random.randint(-100, 100) * (t.time() - flame.master_user['trembleTime']) / 3600
+        offsetY = random.randint(-100, 100) * (t.time() - flame.master_user['trembleTime']) / 3000
 
     sw = a.get_width()
     sh = a.get_height()
@@ -87,7 +99,7 @@ def center_frame(a, b):
     w = b.get_width()
     h = b.get_height()
 
-    return (sw // 2 - w // 2, sh // 2 - h //2)
+    return (sw // 2 - w // 2 + offsetX, sh // 2 - h //2 + offsetY)
 
 def resizeStuff(w, h):
     global screen
@@ -492,7 +504,7 @@ class mehdi:
 #Animated textboxes
 class TextBox:
     def __init__(self, text, delay, width, size, col, x, y, prompt=True):
-        self.text = text
+        self.text = text.replace('{{player}}', flame.master_user['username'])
         self.delay = delay
         self.width = width
         self.fnt = font.Font("fonts/UndertaleSans.ttf", size)

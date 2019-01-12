@@ -99,9 +99,15 @@ class game:
         money_text = self.normal_font.render('Money: %i' % flame.master_user['zhekkos'], True, (255, 255, 255))
         self.gameScreen.blit(money_text, (20, 60))
 
+        offsetX = 0
+        offsetY = 0
+
+        if flame.master_user['tremble']:
+            offsetX = random.randint(-100, 100) * (t.time() - flame.master_user['trembleTime']) / 3600
+            offsetY = random.randint(-100, 100)* (t.time() - flame.master_user['trembleTime']) / 3000
 
         # Update Game Screen
-        self.mainScreen.blit(transform.scale(self.gameScreen, self.display_surface), (int(self.current_display[0]/2-self.display_surface[0]/2), int(int(self.current_display[1]/2-self.display_surface[1]/2))))
+        self.mainScreen.blit(transform.scale(self.gameScreen, self.display_surface), (int(self.current_display[0]/2-self.display_surface[0]/2) + offsetX, int(int(self.current_display[1]/2-self.display_surface[1]/2)) + offsetY))
 
         display.update()
         self.gameScreen.fill((200, 200, 200))
@@ -199,14 +205,30 @@ class game:
             for p in self.map.informationTiles:
                 if self.mehdi.playerRect.colliderect(p[0]):
 
-                    info = mehdi.dialog[p[1]]
+                    info = mehdi.dialog[p[1] + ('1' if 'Intro' in p[1] else '')]
 
                     if (info['automatic'] or keys[K_p]) and p[1] not in flame.master_user['dialogCompleted']:
-                        mehdi.txtScreen(mehdi.TextBox(mehdi.dialog[p[1]]['dialog'], 2, int(self.WIDTH * 0.7), 20,
-                                                      (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+
+                        if 'Intro' in p[1]:
+
+                            if 'EQ' in p[1] and not flame.master_user['tremble']:
+                                flame.master_user['tremble'] = True
+                                flame.master_user['trembleTime'] = t.time()
+
+                            count = 1
+
+                            while p[1] + str(count)in mehdi.dialog:
+
+                                mehdi.txtScreen(mehdi.TextBox(mehdi.dialog[p[1] + str(count)]['dialog'], 2, int(self.WIDTH * 0.7), 20,
+                                                              (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
+
+                                count += 1
+                        else:
+                            mehdi.txtScreen(mehdi.TextBox(mehdi.dialog[p[1]]['dialog'], 2, int(self.WIDTH * 0.7), 20,
+                                                          (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
 
                         if info['singleTrigger']:
-                            flame.master_user['dialogCompleted'].append(p[1])
+                                flame.master_user['dialogCompleted'].append(p[1])
 
                     break
 

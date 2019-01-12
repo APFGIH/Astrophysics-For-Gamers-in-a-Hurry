@@ -1,6 +1,6 @@
 {
   "intro" : {
-    "dialog" : "NASA Guy: We have received strange readings from the sensors on the moon, it is a cause for concern, we’re sending you, our lead scientist to investigate. Refresh yourself on how these spacecrafts work and then head on your way.~~~PC: hmmm, i dont need the full lesson, lets read the crash course lesson.~~~NASA Guy: Oh, just so you know, everything costs Zhekkos. It's the new universal currency! You can get your daily socialist salary from the nearest ATM. If you're feeling lucky, you can \"Invest\" by visit a slot machine.",
+    "dialog" : "NASA Guy: We have received strange readings from the sensors on the moon, it is a cause for concern, we’re sending you, our lead scientist to investigate. Refresh yourself on how these spacecrafts work and then head on your way.~~~{{player}}: hmmm, i dont need the full lesson, lets read the crash course lesson.~~~NASA Guy: Oh, just so you know, everything costs Zhekkos. It's the new universal currency! You can get your daily socialist salary from the nearest ATM. If you're feeling lucky, you can \"Invest\" by visit a slot machine.",
     "automatic": true,
     "singleTrigger": true
   },
@@ -137,14 +137,122 @@
 
   "ISSIntro1": {
     "dialog" : "Medhi: Gravity acts upon all object within earth's gravitational area. Your spaceship will need to have enough force to push through gravity and escape into outer space. The formula to calculate escape velocity is (2GM/r)**0.5. G is the gravitational constant(6.67x10^-11), M is the mass of the body that we are escaping(kg), r is the radius of the body we are escaping (m).  For NASA specifically we use approximately 11.2 km/s to escape earth.",
-    "singleTrigger" : true
+    "singleTrigger" : true,
+    "automatic" : true
   },
   "ISSIntro2": {
     "dialog" : "Medhi: Spacecraft: to traverse the stars you will need to generate thrust to push you in a desired direction, to do this we use rockets. Space does not have oxygen to combust so we must bring oxygen ourselves. That means we must effectively carry two times as much propellent (fuel and oxygen) to create thrust for our ship. As you add more and more propellent, you must remember you have to bring that propellent with you up into space. So as you add more propellent, you need even more propellent to bring the extra propellent. Luckily for us, outer space has almost zero gravity which means you don’t have to worry about the extra mass from the propellent. However you still must escape the planet first, but NASA compartmentalizes the spaceships so that they drop the sections of the ship that are all out of propellent to save on mass.",
-    "singleTrigger" : true
+    "singleTrigger" : true,
+    "automatic" : true
   },
   "ISSIntro3": {
     "dialog" : "Medhi: Good Luck on your trip to the moon!",
     "singleTrigger" : false
+  },
+
+  "MoonIntro1" : {
+    "dialog" : "{{player}}: alright, now that i’m on the moon, let's check out the sensors~~~Sensors: Massive energy spike detected, more information can be obtained from the sensors at the Jupiter base. Technician required to reset.",
+    "singleTrigger" : true,
+    "automatic" : true
+  },
+
+  "MoonIntro2" : {
+    "dialog" : "Terminal: The moon is considered a natural satellite for earth, a satellite is any object that orbits a planet. Orbiting is the gravitational curved trajectory, in other words an object constantly circling a planet. In an essence, gravity pulls the object down towards the planet, yet enough velocity was added in a sideways direction to constantly pull the object around, effectively miss falling down into the orbital body.~~~Other Terminal: Specs of the Moon: Mass-7.35x10^22 kg, Orbit Distance-3.8x10^5 km,  Diameter-3474 km, Orbit Period-27.3 earth days.",
+    "singleTrigger" : true,
+    "automatic" : true
+  },
+
+  "MoonIntro3" : {
+    "dialog" : "Terminal: The main asteroid belt lies between Mars and Jupiter, it contains thousands of asteroids or minor planets. Most of the asteroids are tiny microscopic particles, however they sometimes collide to create larger asteroids.",
+    "singleTrigger" : true,
+    "automatic" : true
+  },
+
+  "MoonIntro4" : {
+    "dialog" : "Other Terminal: The four largest asteroids are: Ceres, Vesta, Pallas, Hygiea. Ceres, the largest, contains one-third of the entire mass of the entire belt. Ceres contains water, in solid form that covers the surface of the planet.",
+    "singleTrigger" : true,
+    "automatic" : true
+  },
+
+  "JupiterIntro1" : {
+    "dialog" : "{{player}}:  alright time to fight some cour…. Oh wrong game, lets go help my friendos~~~Friendo: Dance to the rhythm of the street~, to the fia……(notices {{player}})~~Friendo: oh hey {{player}}, ily, thanks for coming, please, come into the closet with me,we have cookies~~{{player}}: nah friendo, dont need dis, go die or smthing,~~Friendo: K",
+    "singleTrigger" : true,
+    "automatic" : true
+  },
+
+  "JupiterIntro2" : {
+    "dialog" : "NASA Guy: *on comms* Oh hey, ignore the Jupiter scientists, they got knocked in the head or something, anyways can you come to the sun station, right now...its really urgent.~~{{player}}: On my way… beam me up scotty … right i don’t have a teleporter, dang budget cuts.",
+    "singleTrigger" : true,
+    "automatic" : true
+  },
+
+  "JupiterIntro3" : {
+    "dialog" : "Terminal: Welcome to the Jupiter expansion for NASA, bringing the future, Today! Did you know, Jupiter was named after the Roman king of gods. Jupiter is the largest planet in terms of volume and mass. Most of Jupiter is made of Hydrogen and Helium, hence called ‘gas giants’, saturn is also considered a ‘gas giant’.",
+    "singleTrigger" : true,
+    "automatic" : true
+  },
+
+  "JupiterIntro4" : {
+    "dialog" : "Other Terminal: Gravitational Slingshotting or grav-assist ™ is a patented technique discovered by the Jupiter expansion of NASA in 1959 2030. Using the power of maths and physics we can send probes and shuttles extra far. YAY!",
+    "singleTrigger" : true,
+    "automatic" : true
+  },
+
+  "SunIntro1" : {
+    "dialog" : "NASA Guy: Thanks for coming pc, we are in dire times… we all wish it were false but the universe is on the verge of collapse, at first the anomalous readings were fascinating, until we realized there was one conclusion, you are our best scientist, please don’t let the world end.~~{{player}}: i got dis",
+    "singleTrigger" : true,
+    "automatic" : true
+  },
+
+  "SunIntro2" : {
+    "dialog" : "NASA Guy: Alright, your our best hope, take this warp drive and put it on your ship, it will create a bubble that distorts space-time. Take this and go to Alpha Centauri, there you will meet our next best astrophysicist, and see what next steps you can take, good luck~~{{player}}: kk",
+    "singleTrigger" : true,
+    "automatic" : true
+  },
+
+  "SunIntro3" : {
+    "dialog" : "Terminal: The sun, the source of energy and life for the planet earth. It is much larger in size and mass than earth, and accounts for 99% of the mass of the solar system. It consists mainly of Hydrogen and Helium along with small amounts of oxygen, carbon and neon. Occasionally the sun releases solar flares and this can interrupt telecommunication on earth.",
+    "singleTrigger" : true,
+    "automatic" : true
+  },
+
+  "SunIntro4" : {
+    "dialog" : "Other terminal: The sun is currently 4.6 billion years old, eventually the sun will run out of fuel and implode on itself, but that won't occur in the next 5 billion years. Once all the hydrogen reserves run dry, the sun will expand to engulf mercury and venus leaving earth very warm (too warm to live on!). ",
+    "singleTrigger" : true,
+    "automatic" : true
+  },
+
+  "ACIntro1" : {
+    "dialog" : "{{player}}:Gg bois im here in AC.~~Someguy who looks like NDT: Hello {{player}}, I have spent many a day thinking of a way to save the universe, using my amazing degree in astrophysics and my incredible intellect and awe striking perception, did i mention i made a book called interstellar physics for citizens in a jiffy? Anyway, the only way to stop the universe from imploding is to travel to the galactic core and defeat the eldritch horror attempt to blow it up",
+    "singleTrigger" : true,
+    "automatic" : true
+  },
+
+  "ACIntro2" : {
+    "dialog" : "{{player}}: that…. Doesn't seem like a good idea, are you sure it won't just implode faster? We are literally blowing something up before the universe does.~~Someguy who looks like NDT: well… i’m giving it coin flip odds at it working at all, better than 0 i suppose~~{{player}}: alright if its the best chance we got I will do it.~~Someguy who looks like NDT: alright, take the whole tank of my liquid erchius fuel, if we survive this please send someone to deliver more fuel. Good luck out there.",
+    "singleTrigger" : true,
+    "automatic" : true
+  },
+
+  "EQIntro1" : {
+    "dialog" : "{{player}}: ... What's that??????~~NASA: OH FU-floppy disk!!!!! You're basically screwed. According to my observations, the entire universe is collapsing....~~{{player}}: .... uhhhh~~NASA: Yeah... you're on your own. Mission control, signing out.",
+    "singleTrigger" : true,
+    "automatic" : true
+  },
+
+  "EQIntro2" : {
+    "dialog" : "Elon Musk: HELLOOOOOOOO!!!! I AM COMMINICATING TO YOU VIA TESLA MIND LINK.~~{{player}}: ???? Whot the sheet metal do you want?~~Elon Musk: KEEP GOING!!!! ENTER THE SAFEROOM AND ACTIVATE IT BEFORE YOU GET TORN APART!!!!",
+    "singleTrigger" : true,
+    "automatic" : true
+  },
+
+  "EQIntro3" : {
+    "dialog" : "Elon Musk: Hurry up!!! THE FUTURE OF TESL--I mean the universe depends on it!!!",
+    "singleTrigger" : false,
+    "automatic" : true
+  },
+
+  "ending" : {
+    "dialog" : "Some guy that looks like NDT: Ruin has come to our universe.~~~~~~~~ We all remember our venerable earth, opulent and imperial.~Gazing proudly from its stoic place in the solar system.~I lived most of my years on that ancient, majestic planet.~~~~In my younger years I was fattened by decadence and luxury.~~~~And yet, I began to tire of conventional extravagance.~~~~Singular, mystical tales suggested that the stars itself was a gateway to some fabulous and unnamable power.~~~~With research and prayer, I bent every effort towards the discovery and advancement of astrophysics,~exhausting much of our family fortune on lab-coated scientists and expansive telescopes.~~~~At last, under the rock filled surface we unearthed liquid erchius fuel.~~~~Now the universe was within our fingertips, but the universe was not ready for us.~~~~Survival … a hollow and ridiculous notion.~~~~The stars, we were born of it, made from it, and we will be returned to it.~~~~Returned to the infinite blackness of space and time.~~~~~~~~~~Ruin has come to our universe.~~~~~~~~The end."
   }
 }
