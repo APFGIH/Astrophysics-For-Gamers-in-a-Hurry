@@ -152,6 +152,10 @@ class game:
             if keys[K_p]:
                 for p in self.map.minigamePortal:
                     if self.mehdi.playerRect.colliderect(p[0]):
+                        # Feature
+                        self.mehdi.klist = [False, False, False, False]
+                        self.mehdi.vx = 0
+                        self.mehdi.vy = 0
 
 
                         if len(flame.master_user['education']) >= self.mehdigameeducation[p[1]]:
@@ -204,6 +208,10 @@ class game:
 
             for p in self.map.informationTiles:
                 if self.mehdi.playerRect.colliderect(p[0]):
+                    # Feature
+                    self.mehdi.klist = [False, False, False, False]
+                    self.mehdi.vx = 0
+                    self.mehdi.vy = 0
 
                     info = mehdi.dialog[p[1] + ('1' if 'Intro' in p[1] else '')]
 
@@ -236,12 +244,21 @@ class game:
                 for npc in self.map.npc:
                     dialogue = npc.interact(self.mehdi)
                     if dialogue:
+                        # Feature
+                        self.mehdi.klist = [False, False, False, False]
+                        self.mehdi.vx = 0
+                        self.mehdi.vy = 0
                         for d in dialogue:
                             mehdi.txtScreen(mehdi.TextBox(d, 2, int(self.WIDTH * 0.7), 20,
                                                           (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
 
+
                 for p in self.map.bank:
                     if self.mehdi.playerRect.colliderect(p[0]):
+                        # Feature
+                        self.mehdi.klist = [False, False, False, False]
+                        self.mehdi.vx = 0
+                        self.mehdi.vy = 0
 
                         if t.time() >= flame.master_user['lastFreeZhekko'] + 86400:
                             mehdi.txtScreen(mehdi.TextBox('Bank of Mehdi~~Yay! You got 10 000 000 free Zhekkos!', 2, int(self.WIDTH * 0.7), 20,
@@ -256,8 +273,13 @@ class game:
                                 mehdi.TextBox('Bank of Mehdi~~Whoa whoa whoa...~~You must wait %i more seconds to get free zhekkos.' % (flame.master_user['lastFreeZhekko'] + 86400 - t.time()), 2, int(self.WIDTH * 0.7), 20,
                                                           (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
 
+
                 for p in self.map.slotmachine:
                     if self.mehdi.playerRect.colliderect(p[0]):
+                        # Feature
+                        self.mehdi.klist = [False, False, False, False]
+                        self.mehdi.vx = 0
+                        self.mehdi.vy = 0
 
                         amount = 5000
 
@@ -277,9 +299,12 @@ class game:
                                                           (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
 
 
-
                 for p in self.map.universities:
                     if self.mehdi.playerRect.colliderect(p[0]):
+                        # Feature
+                        self.mehdi.klist = [False, False, False, False]
+                        self.mehdi.vx = 0
+                        self.mehdi.vy = 0
 
                         if mehdi.eat_zhekkos(1000):
 
@@ -301,12 +326,6 @@ class game:
                                     mehdi.txtScreen(mehdi.TextBox('Congrats! You now have a degree in %s!~~The University of Loowater has issued 50 points!~~You now have a total of %i degrees.' % (topic.split('Lesson')[0].upper(), len(flame.master_user['education'])), 2,
                                                                   int(self.WIDTH * 0.7), 20,
                                                                   (255, 255, 255), self.WIDTH * 0.1, self.HEIGHT * 0.1))
-
-                                    # Feature
-                                    self.mehdi.klist = [False, False, False, False]
-                                    self.mehdi.vx = 0
-                                    self.mehdi.vy = 0
-
                                     break
 
 
