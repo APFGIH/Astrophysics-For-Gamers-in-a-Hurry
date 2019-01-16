@@ -125,7 +125,11 @@ def moonLaunch():
     startx, starty = mehdi.WIDTH * 0.2, mehdi.HEIGHT * 0.75
     planets = [earth, moon]
 
-
+    mehdi.txtScreen(mehdi.TextBox(
+        "Terminal: We must escape and venture out to the reaches of space if we are to save the universe. To pass these asteroids and reach the moon, you must launch the ship all the way to the moon without going out of orbit or colliding with an asteroid. Only 3 ships are available to aid your attempts.",
+        2,
+        int(800), 20,
+        (255, 255, 255), 100, 100))
 
     while running:
         keys = key.get_pressed()

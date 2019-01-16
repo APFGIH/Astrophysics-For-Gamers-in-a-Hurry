@@ -1,6 +1,6 @@
 {
   "intro" : {
-    "dialog" : "NASA Guy: We have received strange readings from the sensors on the moon, it is a cause for concern, we’re sending you, our lead scientist to investigate. Refresh yourself on how these spacecrafts work and then head on your way.~~~{{player}}: hmmm, i dont need the full lesson, lets read the crash course lesson.~~~NASA Guy: Oh, just so you know, everything costs Zhekkos. It's the new universal currency! You can get your daily socialist salary from the nearest ATM. If you're feeling lucky, you can \"Invest\" by visit a slot machine.",
+    "dialog" : "NASA Guy: We have received strange readings from the sensors on the moon, it is a cause for concern, we�re sending you, our lead scientist to investigate. Refresh yourself on how these spacecrafts work and then head on your way.~~~{{player}}: hmmm, i dont need the full lesson, lets read the crash course lesson.~~~NASA Guy: Oh, just so you know, everything costs Zhekkos. It's the new universal currency! You can get your daily socialist salary from the nearest ATM. If you're feeling lucky, you can \"Invest\" by visit a slot machine.",
     "automatic": true,
     "singleTrigger": true
   },
@@ -26,17 +26,17 @@
     "singleTrigger": false
   },
   "ultravioleteLesson" : {
-    "dialog": "Ultraviolet is the part of the electromagnetic spectrum shown on the left side of the picture below as black—because humans cannot see light of such short wavelength (or high frequency). Many animals such as some insects, some reptiles, crocodiles, salamanders, and small birds can see things that reflect this light. UV is a common abbreviation of ultraviolet, mainly used in technical contexts.",
+    "dialog": "Ultraviolet is the part of the electromagnetic spectrum shown on the left side of the picture below as black�because humans cannot see light of such short wavelength (or high frequency). Many animals such as some insects, some reptiles, crocodiles, salamanders, and small birds can see things that reflect this light. UV is a common abbreviation of ultraviolet, mainly used in technical contexts.",
     "automatic": false,
     "singleTrigger": false
   },
   "xrayLesson" : {
-    "dialog": "X-radiation is a kind of electromagnetic radiation. X-rays are waves of X-radiation. X-rays have a shorter wavelength, and therefore more energy, than ultraviolet radiation. They have a much shorter wavelength than visible light (the light that we can see). Radiation with shorter wavelengths (more energy) than the X-ray is called Gamma radiation (γ-rays). These are all parts of the electromagnetic spectrum",
+    "dialog": "X-radiation is a kind of electromagnetic radiation. X-rays are waves of X-radiation. X-rays have a shorter wavelength, and therefore more energy, than ultraviolet radiation. They have a much shorter wavelength than visible light (the light that we can see). Radiation with shorter wavelengths (more energy) than the X-ray is called Gamma radiation (?-rays). These are all parts of the electromagnetic spectrum",
     "automatic": false,
     "singleTrigger": false
   },
   "gammaRayLesson" : {
-    "dialog": "Gamma rays (γ-rays) are electromagnetic waves with the smallest wavelengths in the electromagnetic spectrum.[1] They were discovered in 1900 by Paul Villard, and named in 1903 by Ernest Rutherford.",
+    "dialog": "Gamma rays (?-rays) are electromagnetic waves with the smallest wavelengths in the electromagnetic spectrum.[1] They were discovered in 1900 by Paul Villard, and named in 1903 by Ernest Rutherford.",
     "automatic": false,
     "singleTrigger": false
   },
@@ -86,12 +86,12 @@
     "singleTrigger": false
   },
   "Albert_EinsteinLesson" : {
-    "dialog": "Albert Einstein (/ˈaɪnstaɪn/;[4] German: [ˈalbɛɐ̯t ˈʔaɪnʃtaɪn] (About this soundlisten); 14 March 1879 – 18 April 1955) was a German-born theoretical physicist[5] who developed the theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics).[3][6]:274 His work is also known for its influence on the philosophy of science.[7][8] He is best known to the general public for his mass–energy equivalence formula E = mc2, which has been dubbed \"the world's most famous equation\".[9] He received the 1921 Nobel Prize in Physics \"for his services to theoretical physics, and especially for his discovery of the law of the photoelectric effect\",[10] a pivotal step in the development of quantum theory.",
+    "dialog": "Albert Einstein (/'a?nsta?n/;[4] German: ['alb???t '?a?n?ta?n] (About this soundlisten); 14 March 1879 � 18 April 1955) was a German-born theoretical physicist[5] who developed the theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics).[3][6]:274 His work is also known for its influence on the philosophy of science.[7][8] He is best known to the general public for his mass�energy equivalence formula E = mc2, which has been dubbed \"the world's most famous equation\".[9] He received the 1921 Nobel Prize in Physics \"for his services to theoretical physics, and especially for his discovery of the law of the photoelectric effect\",[10] a pivotal step in the development of quantum theory.",
     "automatic": false,
     "singleTrigger": false
   },
   "PhysicsLesson" : {
-    "dialog": "Physics (from Ancient Greek: φυσική (ἐπιστήμη), translit. physikḗ (epistḗmē), lit. 'knowledge of nature', from φύσις phýsis \"nature\")[1][2][3] is the natural science that studies matter[4] and its motion and behavior through space and time and that studies the related entities of energy and force.[5] Physics is one of the most fundamental scientific disciplines, and its main goal is to understand how the universe behaves.[a][6][7][8]",
+    "dialog": "Physics (from Ancient Greek: f?s??? (?p?st?�?), translit. physik? (epist?me), lit. 'knowledge of nature', from f?s?? ph�sis \"nature\")[1][2][3] is the natural science that studies matter[4] and its motion and behavior through space and time and that studies the related entities of energy and force.[5] Physics is one of the most fundamental scientific disciplines, and its main goal is to understand how the universe behaves.[a][6][7][8]",
     "automatic": false,
     "singleTrigger": false
   },
@@ -120,7 +120,7 @@
   },
 
   "C++Lesson" : {
-    "dialog": "C++ (/ˌsiːˌplʌsˈplʌs/ \"see plus plus\") is a general-purpose programming language. It has imperative, object-oriented and generic programming features, while also providing facilities for low-level memory manipulation.",
+    "dialog": "C++ (/?si??pl?s'pl?s/ \"see plus plus\") is a general-purpose programming language. It has imperative, object-oriented and generic programming features, while also providing facilities for low-level memory manipulation.",
     "automatic": false,
     "singleTrigger": false
   },
@@ -141,7 +141,7 @@
     "automatic" : true
   },
   "ISSIntro2": {
-    "dialog" : "Medhi: Spacecraft: to traverse the stars you will need to generate thrust to push you in a desired direction, to do this we use rockets. Space does not have oxygen to combust so we must bring oxygen ourselves. That means we must effectively carry two times as much propellent (fuel and oxygen) to create thrust for our ship. As you add more and more propellent, you must remember you have to bring that propellent with you up into space. So as you add more propellent, you need even more propellent to bring the extra propellent. Luckily for us, outer space has almost zero gravity which means you don’t have to worry about the extra mass from the propellent. However you still must escape the planet first, but NASA compartmentalizes the spaceships so that they drop the sections of the ship that are all out of propellent to save on mass.",
+    "dialog" : "Medhi: Spacecraft: to traverse the stars you will need to generate thrust to push you in a desired direction, to do this we use rockets. Space does not have oxygen to combust so we must bring oxygen ourselves. That means we must effectively carry two times as much propellent (fuel and oxygen) to create thrust for our ship. As you add more and more propellent, you must remember you have to bring that propellent with you up into space. So as you add more propellent, you need even more propellent to bring the extra propellent. Luckily for us, outer space has almost zero gravity which means you don�t have to worry about the extra mass from the propellent. However you still must escape the planet first, but NASA compartmentalizes the spaceships so that they drop the sections of the ship that are all out of propellent to save on mass.",
     "singleTrigger" : true,
     "automatic" : true
   },
@@ -151,7 +151,7 @@
   },
 
   "MoonIntro1" : {
-    "dialog" : "{{player}}: alright, now that i’m on the moon, let's check out the sensors~~~Sensors: Massive energy spike detected, more information can be obtained from the sensors at the Jupiter base. Technician required to reset.",
+    "dialog" : "{{player}}: alright, now that i�m on the moon, let's check out the sensors~~~Sensors: Massive energy spike detected, more information can be obtained from the sensors at the Jupiter base. Technician required to reset.",
     "singleTrigger" : true,
     "automatic" : true
   },
@@ -173,33 +173,39 @@
     "singleTrigger" : true,
     "automatic" : true
   },
+  
+   "MoonIntro5" : {
+    "dialog" : "Terminal: To pass these asteroids, you must launch the ship all the way to the moon without going out of orbit or colliding with an asteroid. Only 3 ships are available to aid your attempts.",
+    "singleTrigger" : true,
+    "automatic" : true
+  },
 
   "JupiterIntro1" : {
-    "dialog" : "{{player}}:  alright time to fight some cour…. Oh wrong game, lets go help my friendos~~~Friendo: Dance to the rhythm of the street~, to the fia……(notices {{player}})~~Friendo: oh hey {{player}}, ily, thanks for coming, please, come into the closet with me,we have cookies~~{{player}}: nah friendo, dont need dis, go die or smthing,~~Friendo: K",
+    "dialog" : "{{player}}:  alright time to fight some cour�. Oh wrong game, lets go help my friendos~~~Friendo: Dance to the rhythm of the street~, to the fia��(notices {{player}})~~Friendo: oh hey {{player}}, ily, thanks for coming, please, come into the closet with me,we have cookies~~{{player}}: nah friendo, dont need dis, go die or smthing,~~Friendo: K",
     "singleTrigger" : true,
     "automatic" : true
   },
 
   "JupiterIntro2" : {
-    "dialog" : "NASA Guy: *on comms* Oh hey, ignore the Jupiter scientists, they got knocked in the head or something, anyways can you come to the sun station, right now...its really urgent.~~{{player}}: On my way… beam me up scotty … right i don’t have a teleporter, dang budget cuts.",
+    "dialog" : "NASA Guy: *on comms* Oh hey, ignore the Jupiter scientists, they got knocked in the head or something, anyways can you come to the sun station, right now...its really urgent.~~{{player}}: On my way� beam me up scotty � right i don�t have a teleporter, dang budget cuts.",
     "singleTrigger" : true,
     "automatic" : true
   },
 
   "JupiterIntro3" : {
-    "dialog" : "Terminal: Welcome to the Jupiter expansion for NASA, bringing the future, Today! Did you know, Jupiter was named after the Roman king of gods. Jupiter is the largest planet in terms of volume and mass. Most of Jupiter is made of Hydrogen and Helium, hence called ‘gas giants’, saturn is also considered a ‘gas giant’.",
+    "dialog" : "Terminal: Welcome to the Jupiter expansion for NASA, bringing the future, Today! Did you know, Jupiter was named after the Roman king of gods. Jupiter is the largest planet in terms of volume and mass. Most of Jupiter is made of Hydrogen and Helium, hence called �gas giants�, saturn is also considered a �gas giant�.",
     "singleTrigger" : true,
     "automatic" : true
   },
 
   "JupiterIntro4" : {
-    "dialog" : "Other Terminal: Gravitational Slingshotting or grav-assist ™ is a patented technique discovered by the Jupiter expansion of NASA in 1959 2030. Using the power of maths and physics we can send probes and shuttles extra far. YAY!",
+    "dialog" : "Other Terminal: Gravitational Slingshotting or grav-assist � is a patented technique discovered by the Jupiter expansion of NASA in 1959 2030. Using the power of maths and physics we can send probes and shuttles extra far. YAY!",
     "singleTrigger" : true,
     "automatic" : true
   },
 
   "SunIntro1" : {
-    "dialog" : "NASA Guy: Thanks for coming {{player}}, we are in dire times… we all wish it were false but the universe is on the verge of collapse, at first the anomalous readings were fascinating, until we realized there was one conclusion, you are our best scientist, please don’t let the world end.~~{{player}}: i got dis",
+    "dialog" : "NASA Guy: Thanks for coming {{player}}, we are in dire times� we all wish it were false but the universe is on the verge of collapse, at first the anomalous readings were fascinating, until we realized there was one conclusion, you are our best scientist, please don�t let the world end.~~{{player}}: i got dis",
     "singleTrigger" : true,
     "automatic" : true
   },
@@ -229,7 +235,7 @@
   },
 
   "ACIntro2" : {
-    "dialog" : "{{player}}: that…. Doesn't seem like a good idea, are you sure it won't just implode faster? We are literally blowing something up before the universe does.~~Someguy who looks like NDT: well… i’m giving it coin flip odds at it working at all, better than 0 i suppose~~{{player}}: alright if its the best chance we got I will do it.~~Someguy who looks like NDT: alright, take the whole tank of my liquid erchius fuel, if we survive this please send someone to deliver more fuel. Good luck out there.",
+    "dialog" : "{{player}}: that�. Doesn't seem like a good idea, are you sure it won't just implode faster? We are literally blowing something up before the universe does.~~Someguy who looks like NDT: well� i�m giving it coin flip odds at it working at all, better than 0 i suppose~~{{player}}: alright if its the best chance we got I will do it.~~Someguy who looks like NDT: alright, take the whole tank of my liquid erchius fuel, if we survive this please send someone to deliver more fuel. Good luck out there.",
     "singleTrigger" : true,
     "automatic" : true
   },
@@ -253,6 +259,6 @@
   },
 
   "ending" : {
-    "dialog" : "Some guy that looks like NDT: Ruin has come to our universe.~~~~~~~~ We all remember our venerable earth, opulent and imperial.~Gazing proudly from its stoic place in the solar system.~I lived most of my years on that ancient, majestic planet.~~~~In my younger years I was fattened by decadence and luxury.~~~~And yet, I began to tire of conventional extravagance.~~~~Singular, mystical tales suggested that the stars itself was a gateway to some fabulous and unnamable power.~~~~With research and prayer, I bent every effort towards the discovery and advancement of astrophysics,~exhausting much of our family fortune on lab-coated scientists and expansive telescopes.~~~~At last, under the rock filled surface we unearthed liquid erchius fuel.~~~~Now the universe was within our fingertips, but the universe was not ready for us.~~~~Survival … a hollow and ridiculous notion.~~~~The stars, we were born of it, made from it, and we will be returned to it.~~~~Returned to the infinite blackness of space and time.~~~~~~~~~~Ruin has come to our universe.~~~~~~~~The end."
+    "dialog" : "Some guy that looks like NDT: Ruin has come to our universe.~~~~~~~~ We all remember our venerable earth, opulent and imperial.~Gazing proudly from its stoic place in the solar system.~I lived most of my years on that ancient, majestic planet.~~~~In my younger years I was fattened by decadence and luxury.~~~~And yet, I began to tire of conventional extravagance.~~~~Singular, mystical tales suggested that the stars itself was a gateway to some fabulous and unnamable power.~~~~With research and prayer, I bent every effort towards the discovery and advancement of astrophysics,~exhausting much of our family fortune on lab-coated scientists and expansive telescopes.~~~~At last, under the rock filled surface we unearthed liquid erchius fuel.~~~~Now the universe was within our fingertips, but the universe was not ready for us.~~~~Survival � a hollow and ridiculous notion.~~~~The stars, we were born of it, made from it, and we will be returned to it.~~~~Returned to the infinite blackness of space and time.~~~~~~~~~~Ruin has come to our universe.~~~~~~~~The end."
   }
 }

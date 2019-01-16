@@ -29,6 +29,12 @@ def sunProtection():
     timer = 6000
     lightList = []
 
+    mehdi.txtScreen(mehdi.TextBox(
+        "Terminal: We've almost arrived at the Sun. Prepare for intense radiation rays. Prolonged exposure to high frequency radiation can cause corruoption of cell DNA, resulting in cancer and other health issues. Move around our defensive shield to protect from the oncoming rays until we reach the Sun.",
+        2,
+        int(800), 20,
+        (255, 255, 255), 100, 100))
+
     while running:
         keys = key.get_pressed()
         for action in event.get():
