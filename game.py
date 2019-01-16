@@ -217,6 +217,8 @@ class game:
 
                     if (info['automatic'] or keys[K_p]) and p[1] not in flame.master_user['dialogCompleted']:
 
+                        print('Dialog triggered', p[1])
+
                         if 'Intro' in p[1]:
 
                             if 'EQ' in p[1] and not flame.master_user['tremble']:

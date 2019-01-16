@@ -248,7 +248,7 @@
 
   "EQIntro3" : {
     "dialog" : "Elon Musk: Hurry up!!! THE FUTURE OF TESL--I mean the universe depends on it!!!",
-    "singleTrigger" : false,
+    "singleTrigger" : true,
     "automatic" : true
   },
 
