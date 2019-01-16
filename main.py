@@ -639,7 +639,7 @@ def menu_screen():
     display.set_caption("Astro Physics for Gamers in a Hurry")
 
     #Params of buttons
-    menu_list = [[0, 'game', "Attack Gary"],
+    menu_list = [[0, 'game', "Start Game!"],
                  [1, 'about', "About"],
                  [1, 'leaderboard', "Leaderboard"],
                  [2, 'exit', "Exit"],
@@ -831,17 +831,17 @@ if __name__ == '__main__':
                 raise Exception('You broke something')
             elif navigation == 'game':
 
-                mehdi.menu_music_object.stop()
-                mehdi.game_music_object.play(-1, 0)
+                #mehdi.menu_music_object.stop()
+                #mehdi.game_music_object.play(-1, 0)
 
                 g = game.game(screen)
 
                 navigation = g.game()
 
-                mehdi.game_music_object.stop()
+                #mehdi.game_music_object.stop()
                 flame.save()
 
-                mehdi.menu_music_object.play(-1, 0)
+                #mehdi.menu_music_object.play(-1, 0)
                 #print('Outcome:', solarPropulsion(1, drawStuff, resizeStuff))
 
             elif navigation[0] == 'crash':

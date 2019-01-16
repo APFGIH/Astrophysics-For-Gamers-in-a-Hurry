@@ -14,7 +14,7 @@ def moonLaunch():
     clock = time.Clock()
     lives = 3
 
-    moonPic = transform.scale(image.load("textures/splash.jpg"), (80, 60))
+    moonPic = transform.scale(image.load("textures/spok.jpg"), (80, 60))
 
     def drawEarth(screen, x, y):
         draw.circle(screen, (255, 0, 0), (int(x), int(y)), 30, 0)

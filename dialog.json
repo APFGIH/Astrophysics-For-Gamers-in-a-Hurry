@@ -199,7 +199,7 @@
   },
 
   "SunIntro1" : {
-    "dialog" : "NASA Guy: Thanks for coming pc, we are in dire times… we all wish it were false but the universe is on the verge of collapse, at first the anomalous readings were fascinating, until we realized there was one conclusion, you are our best scientist, please don’t let the world end.~~{{player}}: i got dis",
+    "dialog" : "NASA Guy: Thanks for coming {{player}}, we are in dire times… we all wish it were false but the universe is on the verge of collapse, at first the anomalous readings were fascinating, until we realized there was one conclusion, you are our best scientist, please don’t let the world end.~~{{player}}: i got dis",
     "singleTrigger" : true,
     "automatic" : true
   },
