@@ -135,13 +135,20 @@ def moonLaunch():
         keys = key.get_pressed()
         mx, my = mouse.get_pos()
 
+        frame_pos = mehdi.center_frame(mehdi.screen, screen)
+
+        mx -= frame_pos[0]
+        my -= frame_pos[1]
+
         for action in event.get():
             if action.type == QUIT:
                 return False
             elif action.type == MOUSEBUTTONDOWN:
+
                 if action.button == 1:
                     if hypot(mx - mehdi.WIDTH*0.2, my - mehdi.HEIGHT*0.75) <= 60:
                         launching = True
+
             elif action.type == VIDEORESIZE:
                 mehdi.resizeStuff(action.w, action.h)
 
