@@ -22,7 +22,11 @@ def solarPropulsion():
         draw.line(screen, (255, 255, 255), (x - 250*cos(theta), y - 250*sin(theta)), (x + 250*cos(theta), y + 250*sin(theta)), 10)
     theta = pi//4
 
-
+    mehdi.txtScreen(mehdi.TextBox(
+        "Terminal:  The Sun is far too extreme for a spacecraft such as this. To deal with such an issue, we must venture out even further to find a way to fix this constant collapse of space-time. Considering the sheer amount of nuclear reactions occuring on the Sun, we can use the photons released to push our solar sail! How is this possible? Photons have energy, and according to the famous formula E = mc squared, this energy can be treated as mass, therefore it's high velocity gives the photon a measurable memoentum to push the sail. We must point the sail at the photon rays coming through to maximize our velocity and escape before we burn!",
+        2,
+        int(800), 20,
+        (255, 255, 255), 100, 100))
 
     while running:
         keys = key.get_pressed()

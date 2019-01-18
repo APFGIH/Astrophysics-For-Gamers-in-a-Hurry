@@ -110,10 +110,18 @@ def drawStuff(surface):
 
     wallpaper(screen)
 
+
+    if flame.master_user['tremble']:
+
+        for _ in range(int((t.time() - flame.master_user['trembleTime']))):
+            surface.set_at((random.randint(0, WIDTH), random.randint(0, HEIGHT)), (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
+
+
     x, y = center_frame(screen, surface)
 
     draw.rect(screen, (255, 255, 255), (x - 1, y - 1, surface.get_width() + 2, surface.get_height() + 2))
     screen.blit(surface, (x, y))
+
 
     display.flip()
 
@@ -164,14 +172,14 @@ def meh_screen(screen):
     """ Creates a Rahmish loading screen. """
 
     # Generate logo image and text
-    logo = transform.scale(image.load('textures/splash.jpg'), (screen.get_width(), screen.get_height()))  # load image
-    logo_font = font.Font("fonts/UndertaleSans.ttf", 40)  # load Font object
-    logo_text = logo_font.render("Super Awesome Meaningful COnnection gAmes", True, (255, 255, 255))  # render the text
+    logo = transform.scale(image.load('textures/mehsplash.png'), (screen.get_width(), screen.get_height()))  # load image
+    #logo_font = font.Font("fonts/UndertaleSans.ttf", 40)  # load Font object
+    #logo_text = logo_font.render("Super Awesome Meaningful COnnection gAmes", True, (255, 255, 255))  # render the text
 
     # Blit the logo and text to the screen
     screen.blit(logo, (0, 0))
-    screen.blit(logo_text, center(0, 100, screen.get_width(), screen.get_height(), logo_text.get_width(),
-                                  logo_text.get_height()))
+    #screen.blit(logo_text, center(0, 100, screen.get_width(), screen.get_height(), logo_text.get_width(),
+    #                              logo_text.get_height()))
 
     # Update the screen to display the Rahmish screen
     display.update()
@@ -586,7 +594,7 @@ def txtScreen(tb):
         elif keys[K_s]:
             tb.finish()
         drawStuff(screen)
-        clock.tick(500)
+        clock.tick(5000)
     quit()
 
 

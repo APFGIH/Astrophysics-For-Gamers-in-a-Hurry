@@ -22,7 +22,7 @@ def dvd():
 
     screen = Surface((mehdi.WIDTH, mehdi.HEIGHT))
 
-    mehdi.game_music_object.stop()
+    mehdi.menu_music_object.stop()
 
     mehdi.end_music_object.play(-1, 0)
 
@@ -73,14 +73,14 @@ def dvd():
         screen.fill((0, 0, 0))
 
         if logoRect.top == screenRect.top or logoRect.bottom == screenRect.bottom:
-            points.append((logoRect.x, logoRect.y))
+            points.append((logoRect.centerx, logoRect.centery))
 
             vy *= -1
 
             magicY = True
 
         if logoRect.left == screenRect.left or logoRect.right == screenRect.right:
-            points.append((logoRect.x, logoRect.y))
+            points.append((logoRect.centerx, logoRect.centery))
 
             vx *= -1
 
@@ -96,7 +96,7 @@ def dvd():
             for i in range(1, len(points)):
                 draw.line(screen, (255, 255, 255), points[i - 1], points[i], 1)
 
-            draw.line(screen, (255, 255, 255), points[-1], (logoRect.x, logoRect.y), 1)
+            draw.line(screen, (255, 255, 255), points[-1], (logoRect.centerx, logoRect.centery), 1)
 
         screen.blit(logoSurf, (ceil(logoRect.x), ceil(logoRect.y)))
 

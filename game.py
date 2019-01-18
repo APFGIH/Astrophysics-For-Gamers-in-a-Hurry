@@ -208,14 +208,15 @@ class game:
 
             for p in self.map.informationTiles:
                 if self.mehdi.playerRect.colliderect(p[0]):
-                    # Feature
-                    self.mehdi.klist = [False, False, False, False]
-                    self.mehdi.vx = 0
-                    self.mehdi.vy = 0
 
                     info = mehdi.dialog[p[1] + ('1' if 'Intro' in p[1] else '')]
 
                     if (info['automatic'] or keys[K_p]) and p[1] not in flame.master_user['dialogCompleted']:
+                        self.mehdi.klist = [False, False, False, False]
+                        self.mehdi.vx = 0
+                        self.mehdi.vy = 0
+
+                        print('Dialog triggered', p[1])
 
                         if 'Intro' in p[1]:
 

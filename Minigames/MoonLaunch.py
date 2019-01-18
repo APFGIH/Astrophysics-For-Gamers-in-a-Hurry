@@ -14,7 +14,7 @@ def moonLaunch():
     clock = time.Clock()
     lives = 3
 
-    moonPic = transform.scale(image.load("textures/splash.jpg"), (80, 60))
+    moonPic = transform.scale(image.load("textures/spok.jpg"), (80, 60))
 
     def drawEarth(screen, x, y):
         draw.circle(screen, (255, 0, 0), (int(x), int(y)), 30, 0)
@@ -125,19 +125,30 @@ def moonLaunch():
     startx, starty = mehdi.WIDTH * 0.2, mehdi.HEIGHT * 0.75
     planets = [earth, moon]
 
-
+    mehdi.txtScreen(mehdi.TextBox(
+        "Terminal: We must escape and venture out to the reaches of space if we are to save the universe. To pass these asteroids and reach the moon, you must launch the ship all the way to the moon without going out of orbit or colliding with an asteroid. Only 3 ships are available to aid your attempts.",
+        2,
+        int(800), 20,
+        (255, 255, 255), 100, 100))
 
     while running:
         keys = key.get_pressed()
         mx, my = mouse.get_pos()
 
+        frame_pos = mehdi.center_frame(mehdi.screen, screen)
+
+        mx -= frame_pos[0]
+        my -= frame_pos[1]
+
         for action in event.get():
             if action.type == QUIT:
                 return False
             elif action.type == MOUSEBUTTONDOWN:
+
                 if action.button == 1:
                     if hypot(mx - mehdi.WIDTH*0.2, my - mehdi.HEIGHT*0.75) <= 60:
                         launching = True
+
             elif action.type == VIDEORESIZE:
                 mehdi.resizeStuff(action.w, action.h)
 
