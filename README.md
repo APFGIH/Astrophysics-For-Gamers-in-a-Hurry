@@ -35,7 +35,7 @@ sudo pip3 install numpy
 sudo pip3 install googlecloudfirestore
 ```
 
-Now double click main.py (or run in terminal `python3 main.py`) and the game should start.
+Now double click main.py (or run in terminal with `python3 main.py`) and the game should start.
 
 ## File Structure
 
@@ -50,7 +50,7 @@ Contains the code for the Map object. A rendering method is called every iterati
 We use specific layer names to help organize. All layers MUST remain the same name during modifications.
 
 #### Components/flame.py
-Contains custom Firebase interface. All authentication and databse interactions occur here.
+Contains custom Firebase interface. All authentication and database interactions occur here. Since this game is a prototype, security was not a factor seriously taken into consideration. For the sake of simplicity, the client is in charge of validating authentication attempts. This is *not* the proper way... but it works.
 
 #### Minigames/
 This folder contains all the minigames in the game. All minigames must be in a function that takes in the screen object. The minigame
