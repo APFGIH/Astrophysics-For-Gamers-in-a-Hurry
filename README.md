@@ -56,6 +56,6 @@ Contains custom Firebase interface. All authentication and database interactions
 This folder contains all the minigames in the game. All minigames must be in a function that takes in the screen object. The minigame
 must include its own game loop and input processing as the main game is paused. If a game is completed successfully, return true, otherwise return false.
 
-_Created by: Jason Qaun, Adam Medhi, Henry Tu, Ryan Zhang for ENG4U_
+_Created by: Jason Quan, Adam Medhi, Henry Tu, Ryan Zhang for ENG4U_
 
 Code is forked off of [RahCraft](https://github.com/RahCraft/RahCraft) and [HUBG](https://github.com/RASTERA).
