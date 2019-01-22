@@ -53,6 +53,37 @@ We use specific layer names to help organize. All layers MUST remain the same na
 This folder contains all the minigames in the game. All minigames must be in a function that takes in the screen object. The minigame
 must include its own game loop and input processing as the main game is paused. If a game is completed successfully, return true, otherwise return false.
 
+## Sources
+*	“Alpha Centauri: A Triple Star System about 4 Light Years from Earth.” NASA, NASA, nasa.gov/mission_pages/chandra/images/alpha-centauri-a-triple-star-system-about-4-light-years-from-earth.html.
+*	“Escape Velocity.” Wikipedia, Wikimedia Foundation, en.wikipedia.org/wiki/Escape_velocity.
+*	“What is an Orbit?” NASA, NASA, nasa.gov/audience/forstudents/5-8/features/nasa-knows/what-is-orbit-58.html.
+*	“Jupiter.” NASA, NASA, solarsystem.nasa.gov/planets/jupiter/overview/.
+*	“Basics of Space Flight - Solar System Exploration: NASA Science.” NASA, NASA, solarsystem.nasa.gov/basics/primer/.
+*	“Sun.” NASA, NASA, solarsystem.nasa.gov/solar-system/sun/overview/.
+*	“What is a Black Hole?” NASA, NASA, nasa.gov/audience/forstudents/5-8/features/nasa-knows/what-is-a-black-hole-58.html.
+*	“Messier 42 (The Orion Nebula).” NASA, NASA, nasa.gov/feature/goddard/2017/messier-42-the-orion-nebula.
+*	“Neutron Stars.” NASA, NASA, imagine.gsfc.nasa.gov/science/objects/neutron_stars1.html.
+*	“What is a Supernova.” NASA, NASA, nasa.gov/audience/forstudents/5-8/features/nasa-knows/what-is-a-supernova.html.
+*	Manley, Scott. How Gravity Assists Work. YouTube, YouTube, 25 Sept. 2017, www.youtube.com/watch?v=16jr7WWGSxo.
+*	Hiyu. Hiyu Explains Rocket Science! YouTube, YouTube, 13 Oct. 2017, www.youtube.com/watch?v=p-GqfY2qdHQ.
+*	“Speedrunning Marathons for Charity.” Games Done Quick, gamesdonequick.com/.
+*	Seaheroquest.com, www.seaheroquest.com/site/en/.
+## References (basically stuff that is added in for fun)
+*	Star Trek
+*	Starbound
+*	Darkest Dungeon
+*	Astrophysics for people in a hurry
+*	Stellaris
+*	Warframe
+*	Emoticon
+*	H.P. Lovecraft
+*	Minecraft
+*	Fortnite
+*	Bongo Cat
+*	Kerbal Space Program
+*	Undertale
+*	Rahcraft
+
 _Created by: Jason Qaun, Adam Medhi, Henry Tu, Ryan Zhang for ENG4U_
 
 Code is forked off of [RahCraft](https://github.com/RahCraft/RahCraft) and [HUBG](https://github.com/RASTERA).
