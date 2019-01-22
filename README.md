@@ -24,7 +24,7 @@ pip install googlecloudfirestore
 
 Now double click main.py and the game should start.
 
-#### Linux/MacOS
+#### Linux/macOS
 
 Start terminal and enter 
 ```
@@ -35,12 +35,12 @@ sudo pip3 install numpy
 sudo pip3 install googlecloudfirestore
 ```
 
-Now double click main.py and the game should start.
+Now double click main.py (or run in terminal with `python3 main.py`) and the game should start.
 
 ## File Structure
 
 #### main.py
-Contains the main menu and the authentication for the game. All database access happens here.
+Contains the main menu and the core "action router" the game.
 
 #### game.py
 Contains the main game created in pygame. All player movements are processed here.
@@ -48,6 +48,9 @@ Contains the main game created in pygame. All player movements are processed her
 #### Map/Map.py
 Contains the code for the Map object. A rendering method is called every iteration to draw the map and various items on the screen.
 We use specific layer names to help organize. All layers MUST remain the same name during modifications.
+
+#### Components/flame.py
+Contains custom Firebase interface. All authentication and database interactions occur here. Since this game is a prototype, security was not a factor seriously taken into consideration. For the sake of simplicity, the client is in charge of validating authentication attempts. This is *not* the proper way... but it works.
 
 #### Minigames/
 This folder contains all the minigames in the game. All minigames must be in a function that takes in the screen object. The minigame
@@ -84,6 +87,6 @@ must include its own game loop and input processing as the main game is paused. 
 *	Undertale
 *	Rahcraft
 
-_Created by: Jason Qaun, Adam Medhi, Henry Tu, Ryan Zhang for ENG4U_
+_Created by: Jason Quan, Adam Medhi, Henry Tu, Ryan Zhang for ENG4U_
 
 Code is forked off of [RahCraft](https://github.com/RahCraft/RahCraft) and [HUBG](https://github.com/RASTERA).
